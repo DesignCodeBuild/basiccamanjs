@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>Upload A Picture</title>
-  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/camanjs/4.0.0/caman.full.min.js"></script>
   <style type="text/css">
     body
     {
