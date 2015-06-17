@@ -1,18 +1,21 @@
 <?
-require_once( dirname( __FILE__ ) . '/admin.php' );
-require_once( '../wp-includes/post.php' );
-require_once( '../wp-includes/media.php' );
-require_once( '../wp-includes/option.php' );
-require_once( '../wp-content/themes/twentythirteen/functions.php' );
-$postnine = get_post(9);
-$orig_content=$postnine->post_content;
-$postnine->post_content="[gallery ids=\"11,12,13,14,16,21\"]\n\nabc";
+//require_once( dirname( __FILE__ ) . '/wp-admin/admin.php' );
+require_once('wp-config.php');
+require_once('wp-includes/functions.php');
+require_once('wp-includes/media.php');
+require_once( 'wp-includes/option.php' );
+require_once( 'wp-includes/post.php' );
+require_once( 'wp-content/themes/twentythirteen/functions.php' );
+//$postnine = get_post(9);
+//$orig_content=$postnine->post_content;
+//$postnine->post_content="[gallery ids=\"11,12,13,14,16,21\"]\n\nabc";
 //wp_update_post($postnine);
 
 //////////
 //$imageLocation=ABSPATH ."/wordpress/wp-content/uploads/2015/06/631px-Barenmutter_Junges_3_2004-11-17.jpg";
-$imageLocation="../wp-content/uploads/2015/06/631px-Barenmutter_Junges_3_2004-11-17.jpg";
-$imageDirectory="../wp-content/uploads/2015/06/";
+
+$imageLocation="wp-content/uploads/2015/06/631px-Barenmutter_Junges_3_2004-11-17.jpg";
+$imageDirectory="wp-content/uploads/2015/06/";
 $imageName = "631px-Barenmutter_Junges_3_2004-11-17"; //without extention
 $imageExtension = "jpg";
 $imageDescription="A polar bear resides in a Canadian national park";
@@ -69,24 +72,28 @@ $UploadPicture = array(
   'post_mime_type'	=> $imageMimeType
 );
 
+wp_insert_post($UploadPicture);
+$imagePost = get_page_by_title($imageName, OBJECT, 'attachment');
+$importantID = $imagePost->ID;
+
+$postnine = get_post(9);
+$orig_content=$postnine->post_content;
+$postnine->post_content="[gallery ids=\"11,12,13,14,16,21," . $importantID . "\"]\n\nabc";
+wp_update_post($postnine);
+
 ?>
 
 
 <html>
-<head><title>HACKING INTO WORDPRESS</title>
+<head><title>Using Wordpress stuff</title>
 <script type="text/javascript">
 </script>
 <style>
-body
-{
-background-color:black;
-color:white;
-}
 </style>
 </head>
 <body>
-Here we are <br /> <br />
 
-<textarea id="phpstuff"><?php echo $files[0] . "\n" . $files[1] . "\n" . $files[2]; ?></textarea>
+<textarea id="phpstuff" style="width:600px;height:400px;"><?php echo $files[0] . "\n" . $files[1] . "\n" . $files[2] . "\n" . $importantID; ?></textarea>
+
 </body>
 </html>
