@@ -6,3 +6,4 @@
   - It is difficult because there is a specific size (in this case, 604, 270) that is determined by the theme, where the url will vary.
   - Need to figure out how to find ID for an image once submitted. (done)
   - Figure out how to get wordpress to actually recognize the existence of the image (probably has to do with wp\_postmeta)
+  - Probably look at [wp\_insert\_attachment](https://codex.wordpress.org/Function_Reference/wp_insert_attachment)
