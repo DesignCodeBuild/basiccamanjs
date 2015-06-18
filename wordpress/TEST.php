@@ -6,6 +6,7 @@ require_once('wp-includes/media.php');
 require_once( 'wp-includes/option.php' );
 require_once( 'wp-includes/post.php' );
 require_once( 'wp-content/themes/twentythirteen/functions.php' );
+require_once( 'wp-admin/includes/image.php' );
 //$postnine = get_post(9);
 //$orig_content=$postnine->post_content;
 //$postnine->post_content="[gallery ids=\"11,12,13,14,16,21\"]\n\nabc";
@@ -14,7 +15,7 @@ require_once( 'wp-content/themes/twentythirteen/functions.php' );
 //////////
 //$imageLocation=ABSPATH ."/wordpress/wp-content/uploads/2015/06/631px-Barenmutter_Junges_3_2004-11-17.jpg";
 
-$imageLocation="wp-content/uploads/2015/06/631px-Barenmutter_Junges_3_2004-11-17.jpg";
+$imageLocation=ABSPATH."wp-content/uploads/2015/06/631px-Barenmutter_Junges_3_2004-11-17.jpg";
 $imageDirectory="wp-content/uploads/2015/06/";
 $imageName = "631px-Barenmutter_Junges_3_2004-11-17"; //without extention
 $imageExtension = "jpg";
@@ -64,21 +65,19 @@ $UploadPicture = array(
   'post_name' => strtolower($imageName),
   'post_title' => $imageName,
   'post_status' => 'inherit',
-  'post_type' => 'attachment',
   'post_author'	=> 1,
   'post_excerpt'	=> $imageCaption,
-  'post_date'	=> date('Y-m-d H:i:s'),
-  'post_date_gmt'	=> date('Y-m-d H:i:s'),
   'post_mime_type'	=> $imageMimeType
 );
 
-wp_insert_post($UploadPicture);
-$imagePost = get_page_by_title($imageName, OBJECT, 'attachment');
-$importantID = $imagePost->ID;
+$attach_ID = wp_insert_attachment($UploadPicture, $imageLocation);
+$attach_data = wp_generate_attachment_metadata($attach_ID, $imageLocation);
+wp_update_attachment_metadata($attach_ID, $attach_data);
+
 
 $postnine = get_post(9);
 $orig_content=$postnine->post_content;
-$postnine->post_content="[gallery ids=\"11,12,13,14,16,21," . $importantID . "\"]\n\nabc";
+$postnine->post_content="[gallery ids=\"11,12,13,14,16,21," . $attach_ID . "\"]\n\nabc";
 wp_update_post($postnine);
 
 ?>
