@@ -99,7 +99,7 @@ else {
       method: "POST", 
       url: "acceptImages.php",
       data: {data: safeBase64(imageData), name: imageName, type: imageType, dir: safeBase64(imageDir), title: safeBase64(imageTitle), caption: safeBase64(imageCaption), description: safeBase64(imageDescription)}
-    }); 
+    }).done(function(){ $("#redirectForm").submit()});
    /*
     $("#Jdata").val(imageData);
     $("#Jname").val(imageName);
@@ -201,7 +201,7 @@ else {
   <img src="<?php echo $target_file; ?>" id="toEdit" class="featured" /><br />
   <!--textarea id="txtarea"></textarea-->
   <button id="save">Save</button>
-  <!--form action="wordpress/acceptImages.php" id="testForm" method="post">
+  <form action="acceptImages.php" id="testForm" method="post">
     <input type="hidden" name="data" id="Jdata" value=""/>
     <input type="hidden" name="name" id="Jname" value=""/>
     <input type="hidden" name="type" id="Jtype"  value=""/>
@@ -209,7 +209,8 @@ else {
     <input type="hidden" name="title" id="Jtitle"  value=""/>
     <input type="hidden" name="caption" id="Jcaption"  value=""/>
     <input type="hidden" name="description" id="Jdescription"  value=""/>
-  </form-->
+  </form>
+  <form action="../index.php/photo-gallery/" method="get" id="redirectForm"></form>
 </div>
 </body>
 </html>

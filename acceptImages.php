@@ -5,7 +5,6 @@
   require_once(ABSPATH.'wp-includes/media.php');
   require_once(ABSPATH.'wp-includes/option.php' );
   require_once(ABSPATH.'wp-includes/post.php' );
-  require_once(ABSPATH.'wp-content/themes/twentythirteen/functions.php' );
   require_once(ABSPATH.'wp-admin/includes/image.php' );
 
   function correctBase64($input, $justSlash=false)
@@ -112,16 +111,15 @@
 
     // This should specifically find the ids within parentheses.
     // e.g. in '[gallery ids="4,7,10,15"]' this would find "4, 7, 10, 15"
-    $e1 = 
-    $e1 = explode('ids', $ce_gallery_portion);
+    $e1 = explode('ids=', $ce_gallery_portion);
     $e2 = explode('"', $e1[1]);
     $ids = $e2[1];
       //$ids = explode('"', explode('ids', $ce_gallery_portion)[1])[1];
     // Add the new image we just created.
-    $ids .= "," . $ce_image_id;
+    $ids = $ce_image_id . "," . $ids;
 
     //Put the new ids's section back into a [gallery] shortlist.
-    $ce_gallery_portion = '[gallery ids="' . $ids . '"]';
+    $ce_gallery_portion = $e1[0] . 'ids="' . $ids . '"' . $e2[2];
     //Add information preceeding or going after the [gallery].
     $ce_newdata = $ce_begin_portion . $ce_gallery_portion . $ce_end_portion;
     echo "cenewdata: " . $ce_newdata . "<br />";
@@ -133,7 +131,7 @@
     
   }
 
-  $ce_photo_gallery_ID = 9;
+  $ce_photo_gallery_ID = 6;
 
   $imageData = correctBase64($_POST['data']);
   $imageName = $_POST['name'];
