@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 
 <?php
+
+$wordpressHome = "wordpress/";
+
+//Figure out if the image is real and what format it is
+
 $imageData = $_FILES["image"];
 $type = $imageData['type'];
 $ext = "";
@@ -14,11 +19,24 @@ if($type != "image/png" && $type != "image/jpg" && $type != "image/jpeg")
   {
   //echo "<h2 style=\"color:red\">Sorry, we can only process PNG or JPG images.</h2> <br /> <a href=\"begin.php\">Try Again</a>";
   }
+
+// 
+//
+
 else {
   $hash = substr(base_convert(hash("md5", date("d m Y G i s u"), false), 16, 32), 0, 11);
   $filename = $hash . "." . $ext; 
-  $target_dir = "uploads/";
-  $target_file = $target_dir . $filename;
+//  $target_dir = "uploads/";
+  $target_dir = "wp-content/uploads/" . date("Y") . "/";
+  //Check to see if year directory exists:
+  if(!is_dir($wordpressHome.$target_dir))
+    mkdir($wordpressHome.$target_dir);
+  //Check to see if month directory exists:
+  $target_dir .=  date("m") . "/";
+  if(!is_dir($wordpressHome.$target_dir))
+    mkdir($wordpressHome.$target_dir);
+  
+  $target_file = $wordpressHome. $target_dir . $filename;
   
   /*if(*/move_uploaded_file($imageData["tmp_name"], $target_file);//) echo "worked<br />";
 //  else echo "didn't work<br />";
@@ -57,11 +75,11 @@ else {
     for(var i=0;i<input.length;++i)
     {
       if(input.charAt(i) == '/')
-        output += "_";
+        output += "^";
       else if(input.charAt(i) == ':')
         output += "*";
       else if(input.charAt(i) == ';')
-        output += "^";
+        output += "_";
       else if(input.charAt(i) == '+')
         output += "-";
       else if(input.charAt(i) == '=')
@@ -74,13 +92,23 @@ else {
   //  return input;
   }
 
-  function ajaxSend(imageData, imageName, imageType)
+  function ajaxSend(imageData, imageName, imageType, imageDir, imageTitle, imageCaption, imageDescription)
   {
+  
     $.ajax({
       method: "POST", 
-      url: "acceptImages.php",
-      data: {data: safeBase64(imageData), name: imageName, type: imageType}
-    });
+      url: "wordpress/acceptImages.php",
+      data: {data: safeBase64(imageData), name: imageName, type: imageType, dir: safeBase64(imageDir), title: safeBase64(imageTitle), caption: safeBase64(imageCaption), description: safeBase64(imageDescription)}
+    }); 
+   /*
+    $("#Jdata").val(imageData);
+    $("#Jname").val(imageName);
+    $("#Jtype").val(imageType);
+    $("#Jdir").val(imageDir);
+    $("#Jtitle").val(imageTitle);
+    $("#Jcaption").val(imageCaption);
+    $("#Jdescription").val(imageDescription);
+    $("#testForm").submit(); */
   } 
   
   var controls= Array("brightness", "saturation", "exposure", "gamma", "clip", "stackBlur", "contrast", "vibrance", "hue", "sepia", "noise", "sharpen");
@@ -108,7 +136,7 @@ else {
       caman.render(function(){
         var imageData = caman.toBase64("<?php echo "jpeg"; ?>");
         $("#txtarea").text(safeBase64(imageData));
-        ajaxSend(imageData, "<?php echo $hash; ?>", "<?php echo $ext; ?>");
+        ajaxSend(imageData, "<?php echo $hash; ?>", "<?php echo $ext; ?>", "<?php echo $target_dir; ?>", $("#title").val(), $("#caption").val(),$("#descrip").val());
       });
     });
   
@@ -125,10 +153,15 @@ else {
     float:left;
     width:200px;
   }
-  img.right
+  img.featured
   {
-    float:right;
+    float:left;
     width:550px;
+  }
+#title_d, #caption_d, #descrip_d
+  {
+    float: left;
+    width:400px;
   }
 </style>
 </head>
@@ -162,9 +195,21 @@ else {
       <input type="range" name="sharpen" id="sharpen" data-filter="sharpen" min="0" max="100" /> <br />
     </form>
   </div>
-  <img src="<?php echo $target_file; ?>" id="toEdit" style="float:right;width:550px;" />
-  <textarea id="txtarea"></textarea>
+  <div id="title_d">Title: <input type="text" id="title" /></div><br />
+  <div id="caption_d">Caption: <input type="text" id = "caption" /></div>
+  <div id="descrip_d">Description: <input type="text" id="descrip" /></div>
+  <img src="<?php echo $target_file; ?>" id="toEdit" class="featured" /><br />
+  <!--textarea id="txtarea"></textarea-->
   <button id="save">Save</button>
+  <!--form action="wordpress/acceptImages.php" id="testForm" method="post">
+    <input type="hidden" name="data" id="Jdata" value=""/>
+    <input type="hidden" name="name" id="Jname" value=""/>
+    <input type="hidden" name="type" id="Jtype"  value=""/>
+    <input type="hidden" name="dir" id="Jdir"  value=""/>
+    <input type="hidden" name="title" id="Jtitle"  value=""/>
+    <input type="hidden" name="caption" id="Jcaption"  value=""/>
+    <input type="hidden" name="description" id="Jdescription"  value=""/>
+  </form-->
 </div>
 </body>
 </html>

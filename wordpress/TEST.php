@@ -29,12 +29,13 @@ $iarray;
 function ce_get_image_sizes()
 {
   $ce_sizes = array();
-  foreach(array('thumbnail', 'medium') as $ce_size)
+  foreach(array('thumbnail', 'medium', 'large') as $ce_size)
   {
     $ce_sizes[ $ce_size ]['width'] = get_option( $ce_size . '_size_w' );
     $ce_sizes[ $ce_size ]['height'] = get_option( $ce_size . '_size_h' );
     $ce_sizes[ $ce_size ]['crop'] = get_option( $ce_size . '_crop' );
   }
+    // This one is hard to find: I think it depends on the theme.
   $ce_sizes['sixzerofour'] = array('width' => 604, 'height' => 270, 'crop'=>true);
   return $ce_sizes;
 }
