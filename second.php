@@ -94,13 +94,13 @@ else {
 
   function ajaxSend(imageData, imageName, imageType, imageDir, imageTitle, imageCaption, imageDescription)
   {
-  
     $.ajax({
       method: "POST", 
       url: "acceptImages.php",
       data: {data: safeBase64(imageData), name: imageName, type: imageType, dir: safeBase64(imageDir), title: safeBase64(imageTitle), caption: safeBase64(imageCaption), description: safeBase64(imageDescription)}
     }).done(function(){ $("#redirectForm").submit()});
-   /*
+   
+  /*
     $("#Jdata").val(imageData);
     $("#Jname").val(imageName);
     $("#Jtype").val(imageType);
@@ -108,7 +108,8 @@ else {
     $("#Jtitle").val(imageTitle);
     $("#Jcaption").val(imageCaption);
     $("#Jdescription").val(imageDescription);
-    $("#testForm").submit(); */
+    $("#testForm").submit(); 
+  */
   } 
   
   var controls= Array("brightness", "saturation", "exposure", "gamma", "clip", "stackBlur", "contrast", "vibrance", "hue", "sepia", "noise", "sharpen");
