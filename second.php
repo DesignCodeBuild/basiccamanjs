@@ -2,7 +2,7 @@
 
 <?php
 
-$wordpressHome = "wordpress/";
+$wordpressHome = "../";
 
 //Figure out if the image is real and what format it is
 
@@ -97,7 +97,7 @@ else {
   
     $.ajax({
       method: "POST", 
-      url: "wordpress/acceptImages.php",
+      url: "acceptImages.php",
       data: {data: safeBase64(imageData), name: imageName, type: imageType, dir: safeBase64(imageDir), title: safeBase64(imageTitle), caption: safeBase64(imageCaption), description: safeBase64(imageDescription)}
     }); 
    /*

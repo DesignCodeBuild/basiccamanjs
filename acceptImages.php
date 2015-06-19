@@ -1,12 +1,12 @@
 <?php
   
-  require_once('wp-config.php');
-  require_once('wp-includes/functions.php');
-  require_once('wp-includes/media.php');
-  require_once( 'wp-includes/option.php' );
-  require_once( 'wp-includes/post.php' );
-  require_once( 'wp-content/themes/twentythirteen/functions.php' );
-  require_once( 'wp-admin/includes/image.php' );
+  require_once('../wp-config.php');
+  require_once(ABSPATH.'wp-includes/functions.php');
+  require_once(ABSPATH.'wp-includes/media.php');
+  require_once(ABSPATH.'wp-includes/option.php' );
+  require_once(ABSPATH.'wp-includes/post.php' );
+  require_once(ABSPATH.'wp-content/themes/twentythirteen/functions.php' );
+  require_once(ABSPATH.'wp-admin/includes/image.php' );
 
   function correctBase64($input, $justSlash=false)
   {
