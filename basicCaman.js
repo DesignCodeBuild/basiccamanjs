@@ -104,5 +104,5 @@
     $("#Jcaption").val(imageCaption);
     $("#Jdescription").val(imageDescription);
     $("#testForm").submit(); 
-    */
+  */
   }
