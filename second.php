@@ -54,7 +54,7 @@ else
   <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src="basicCaman.js"></script>
 <script>
-  caman = Caman("#toEdit");
+  var caman = Caman("#toEdit");
   
   var MyControls = {brightness: "brightness", saturation: "saturation", exposure: "exposure", gamma:"gamma", clip: "clip", stackBlur: "stackBlur", contrast:"contrast", vibrance:"vibrance", hue:"hue", sepia:"sepia", noise:"noise", sharpen:"sharpen"};
 
@@ -74,7 +74,7 @@ else
       caman.render(function(){
         var imageData = caman.toBase64("<?php echo "jpeg"; ?>");
         $("#txtarea").text(ceEscapeString(imageData));
-        ceAjaxSend("acceptImages.php","redirectForm", imageData, "<?php echo $random_string; ?>", "<?php echo $image_extention; ?>", "<?php echo $wp_media_dir; ?>", $("#title").val(), $("#caption").val(),$("#descrip").val());
+        ceAjaxSend("acceptImages.php","../index.php/photo-gallery/", imageData, "<?php echo $random_string; ?>", "<?php echo $image_extention; ?>", "<?php echo $wp_media_dir; ?>", $("#title").val(), $("#caption").val(),$("#descrip").val());
       });
     });
   
@@ -148,7 +148,6 @@ else
     <input type="hidden" name="caption" id="Jcaption"  value=""/>
     <input type="hidden" name="description" id="Jdescription"  value=""/>
   </form>
-  <form action="../index.php/photo-gallery/" method="get" id="redirectForm"></form>
 </div>
 </body>
 </html>

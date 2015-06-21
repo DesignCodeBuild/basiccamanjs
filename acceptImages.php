@@ -1,11 +1,5 @@
 <?php
   
-  require_once('../wp-config.php');
-  require_once(ABSPATH.'wp-includes/functions.php');
-  require_once(ABSPATH.'wp-includes/media.php');
-  require_once(ABSPATH.'wp-includes/option.php' );
-  require_once(ABSPATH.'wp-includes/post.php' );
-  require_once(ABSPATH.'wp-admin/includes/image.php' );
   require_once('basicCaman.php');
 
   $ce_photo_gallery_ID = 6;

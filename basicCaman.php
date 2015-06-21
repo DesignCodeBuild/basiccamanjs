@@ -1,5 +1,12 @@
 <?php
 
+  require_once('../wp-config.php');
+  require_once(ABSPATH.'wp-includes/functions.php');
+  require_once(ABSPATH.'wp-includes/media.php');
+  require_once(ABSPATH.'wp-includes/option.php' );
+  require_once(ABSPATH.'wp-includes/post.php' );
+  require_once(ABSPATH.'wp-admin/includes/image.php' );
+
   // Takes mime type and returns extention (png or jpg)
   // Returns (false) if the extention is unsupported
   //    Otherwise, it returns the extention ("png" or "jpg")
