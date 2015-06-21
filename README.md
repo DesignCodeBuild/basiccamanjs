@@ -101,8 +101,11 @@ header( 'Location: choose_file.php?q=type' );
 ```
 ####Section 2 (cont)
 Continuing, it is now important to choose what tools to include to edit images.  Currently, the following are supported:
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **brightness, saturation, exposure, gamma, clip, stackBlur, contrast, vibrance, hue, sepia, noise, sharpen**
+
 Not all must be used if some seem useless.  Make note of the range limits:
+
 ```
 brightness: -100 to 100
 saturation: -100 to 100
@@ -118,13 +121,17 @@ sepia: 0 to 100
 noise: 0 to 100 (although 100 is excessive)
 sharpen: 0 to 100
 ```
+
 For each chosen tool, add a range and span (to label).
+
 ```html
 Brightness (<span id="bright_label">0</span>)<br />
 <input type="range" name="brightness" id="bright" min="-100" max="100" /> <br />
 ```
+
 Also position the image in a reasonable spot.
-Additionally, create boxes (<input type="text"> or <textarea>) to identify title, caption, and description.
+
+Additionally, create boxes (&lt;input type="text"&gt; or &lt;textarea&gt;) to identify title, caption, and description.
 
 Now, add javascript.  Begin by including necessary files: jQuery, Caman.js, and basicCaman.js
 ```html
@@ -132,7 +139,7 @@ Now, add javascript.  Begin by including necessary files: jQuery, Caman.js, and 
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="basicCaman.js"></script>
 ```
-Now, either within <script></script> or in an external file, start by making a Caman object, and initialize it with the id of the <img>:
+Now, either within &lt;script&gt;&lt;/script&gt; or in an external file, start by making a Caman object, and initialize it with the id of the &lt;img&gt;:
 ```javascript
 var camanObject = Caman("#imageID");
 ```
