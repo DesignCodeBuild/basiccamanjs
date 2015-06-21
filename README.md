@@ -1,7 +1,7 @@
 #Simplified Caman.js & Wordpress
 
 ## Important notes
-+ Use the NEWEST release of CamanJS: the one from github.  Because 4.1.1 and the CDN version have a bug in Caman.revert(true)
++ Use the NEWEST release of CamanJS: the one from github.  Because 4.1.1 and the CDN version have an issue in Caman.revert(true)
 + Must transfer image from CamanJS to php through AJAX, and must reconfigure base64 because it contains '/', ';', ':', '+', '/'.  Currently, it converts to html character codes.
 + It is difficult to deal with thumbnails because there is a specific size (in this case, 604, 270) that is determined by the theme, where the url will vary.
 + We basically only need to use basicCaman.js and basicCaman.php.
@@ -13,7 +13,7 @@ We can split the process into four sections:
 + **Section 2**: Edit the image with CamanJS (e.g. second.php)
 + **Section 3**: Send the image to (e.g. acceptImages.php)
 
-####Pre: Using wordpress
+####Pre: Wordpress
 Create a wordpress page (or post).  Inside it, insert a gallery.  The gallery can be located anywhere in the page, but **there can only be one gallery per page**.  Find the page ID by going to edit the page and clicking **Get Shortlink**.  This will be useful later.
 
 ####Section 1: Choose a file
@@ -153,7 +153,7 @@ editingTools["brightness"] == "bright"
 ```
 
 #### A Note About Naming ID's
-Note that when labeling the value of the range (as in <span id="bright_label">0</span>), it must be in this form: [id of the associated range slider] + "_label".  This is seen here:
+Note that when labeling the value of the range (as in &lt;span id="bright_label"&gt;0&lt;/span&gt;), it must be in this form: [id of the associated range slider] + "_label".  This is seen here:
 ```html
 Brightness (<span id="bright_label">0</span>)<br />
 <input type="range" name="brightness" id="bright" min="-100" max="100" /> <br />
@@ -180,6 +180,7 @@ $( document ).ready(function(){
 });
 ```
 **All other javascript from now on must be placed within the .ready(function(){ _here_ });** I have not gotten it to work otherwise
+
 We are now beginning to make the camanjs actually functional.  We want the image to update every time a range is changed ( like [here](http://camanjs.com/examples/) ) so act whenever an <input> changes: (this is within $(document).ready)
 ```javascript
 $("input").on("change", function(){
