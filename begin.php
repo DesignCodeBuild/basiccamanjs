@@ -7,6 +7,7 @@
     {
       
     }
+    /* Making the "Choose file" button less ugly */
     div.uploadButton
     {
       position:relative;
@@ -44,12 +45,24 @@
     function uploadImage()
     {
       document.getElementById("imageForm").submit();
+      // equiv. jQuery: $("#imageForm").submit();
     }
   </script>
 </head>
 <body>
   <form action="second.php" method="post" enctype="multipart/form-data" id="imageForm">
-    <h2 style="color:red;" id="alarm"><?php /*if($_GET['q']=="img") {echo "Only supports JPG and PNG files.";}*/ ?></h2>
+    <h2 style="color:red;" id="alarm">
+      <?php
+        // If there's an error code sent by upload file, report it to the user.
+        if(isset($_GET['q']))
+        {
+          if($_GET['q']=="type")
+            echo "Only supports JPG and PNG files.";
+          else if($_GET['q']=="error")
+            echo "Unknown error uploading file.  Try again.";
+        }
+      ?>
+    </h2>
     <div class="uploadButton">
       <div class="labelUpload">Choose a File</div>
       <input type="file" name="image" id="image" onChange="uploadImage()" />

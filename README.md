@@ -1,5 +1,3 @@
-This branch will soon be for a more general usage: it will be in a folder within wordpress: _[wordpress-directory]/basiccaman/_ or something like that.
-
 ## Important notes
 + Use the NEWEST release of CamanJS: the one from github.  Because 4.1.1 and the CDN version have a bug in Caman.revert(true)
 + Must transfer image from CamanJS to php through AJAX, and must reconfigure base64 because it contains '/', ';', ':', '+', '/'
@@ -8,6 +6,8 @@ This branch will soon be for a more general usage: it will be in a folder within
   - (done) Figure out how to get wordpress to actually recognize the existence of the image (probably has to do with wp\_postmeta)
 + Alter base64 stuff to deal with all restricted characters.
 + Need to say something/go somewhere when the image is successfully uploaded
+
+##
 
 ####Currently...
 + begin.php -> second.php -> w/acceptImages.php (through ajax)

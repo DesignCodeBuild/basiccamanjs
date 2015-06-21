@@ -1,48 +1,50 @@
 <!DOCTYPE html>
 
 <?php
+// Important functions that make this easier
+require_once("basicCaman.php");
 
+// Identify where wordpress is installed relative to our current directory.
 $wordpressHome = "../";
 
 //Figure out if the image is real and what format it is
 
+//This retrieves all the image data that we sent from the previous HTML file.  It is an array.
 $imageData = $_FILES["image"];
-$type = $imageData['type'];
-$ext = "";
+//Part of the array is the "mime type" which identifies what kind of image it is that we're using.
+$mimeType = $imageData['type'];
 
-if($type == "image/jpg" || $type== "image/jpeg")
-  $ext = "jpg";
-if($type == "image/png")
-  $ext = "png";
+// This uses a function to determine the file extention based on the mime type.
+//   If it is unsupported, it will return (false).
+$imageExtention = ce_find_extention($mimeType);
 
-if($type != "image/png" && $type != "image/jpg" && $type != "image/jpeg")
+if($imageExtention === false)
+{
+  // Redirect to the previous page, and tell it that the image type was incorrect.
+  header( "Location: begin.php?q=type" ) ;
+}
+else 
+{
+  // Create a random string of numbers and characters to use as a file name.
+  $random_string = ce_random_string();
+  // Make a file name from the random numbers and extention.
+  $filename = $random_string . "." . $imageExtention; 
+
+  // Figure out where we will put the images.
+  $wp_media_dir = ce_get_media_directory($wordpressHome);
+  // Combine the file name and directories to determine where the file will go
+  $target_file = $wordpressHome . $wp_media_dir . $filename;
+  
+  // Move the temporary image file to a new location.  If it works, nothing happens.
+  if(move_uploaded_file($imageData["tmp_name"], $target_file))
+    {}
+  // If moving the file is unsuccessful, redirect to the last page to report that it didn't work.
+  else
   {
-  //echo "<h2 style=\"color:red\">Sorry, we can only process PNG or JPG images.</h2> <br /> <a href=\"begin.php\">Try Again</a>";
+    // Redirect to the previous page, and tell it that the image type was incorrect.
+    header( 'Location: begin.php?q=error' ) ;
   }
-
-// 
-//
-
-else {
-  $hash = substr(base_convert(hash("md5", date("d m Y G i s u"), false), 16, 32), 0, 11);
-  $filename = $hash . "." . $ext; 
-//  $target_dir = "uploads/";
-  $target_dir = "wp-content/uploads/" . date("Y") . "/";
-  //Check to see if year directory exists:
-  if(!is_dir($wordpressHome.$target_dir))
-    mkdir($wordpressHome.$target_dir);
-  //Check to see if month directory exists:
-  $target_dir .=  date("m") . "/";
-  if(!is_dir($wordpressHome.$target_dir))
-    mkdir($wordpressHome.$target_dir);
-  
-  $target_file = $wordpressHome. $target_dir . $filename;
-  
-  /*if(*/move_uploaded_file($imageData["tmp_name"], $target_file);//) echo "worked<br />";
-//  else echo "didn't work<br />";
-  
-//  echo "<a href=\"" . $target_file . "\">" . $target_file . "</a>";
-  }
+}
 
 ?>
 <html>
@@ -50,94 +52,29 @@ else {
   <title>Edit Image <?php echo $target_file; ?></title>
   <script type="text/javascript" src="caman/caman.full.min.js"></script>
   <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="basicCaman.js"></script>
 <script>
   caman = Caman("#toEdit");
   
-  function updateCaman()
-  {
-    for(var i=0;i<controls.length;++i)
-    {
-      var $tfilter = controls[i];
-      var $tvalue = $("#" + controls[i]).val();
-      $("#" + controls[i] + "_label").text($tvalue);
-      if($tfilter != "gamma" && parseInt($tvalue) != 0) {
-        caman[$tfilter](parseFloat($tvalue, 10));
-      }
-      if($tfilter == "gamma" && parseInt($tvalue) != 1) {
-        caman[$tfilter](parseInt($tvalue)+1);
-      }
-    }
-  }
+  var MyControls = {brightness: "brightness", saturation: "saturation", exposure: "exposure", gamma:"gamma", clip: "clip", stackBlur: "stackBlur", contrast:"contrast", vibrance:"vibrance", hue:"hue", sepia:"sepia", noise:"noise", sharpen:"sharpen"};
 
-  function safeBase64(input)
-  {
-    var output="";
-    for(var i=0;i<input.length;++i)
-    {
-      if(input.charAt(i) == '/')
-        output += "^";
-      else if(input.charAt(i) == ':')
-        output += "*";
-      else if(input.charAt(i) == ';')
-        output += "_";
-      else if(input.charAt(i) == '+')
-        output += "-";
-      else if(input.charAt(i) == '=')
-        output += "~";
-      else {
-        output += input.charAt(i);
-      }
-    } 
-    return output;
-  //  return input;
-  }
-
-  function ajaxSend(imageData, imageName, imageType, imageDir, imageTitle, imageCaption, imageDescription)
-  {
-    $.ajax({
-      method: "POST", 
-      url: "acceptImages.php",
-      data: {data: safeBase64(imageData), name: imageName, type: imageType, dir: safeBase64(imageDir), title: safeBase64(imageTitle), caption: safeBase64(imageCaption), description: safeBase64(imageDescription)}
-    }).done(function(){ $("#redirectForm").submit()});
-   
-  /*
-    $("#Jdata").val(imageData);
-    $("#Jname").val(imageName);
-    $("#Jtype").val(imageType);
-    $("#Jdir").val(imageDir);
-    $("#Jtitle").val(imageTitle);
-    $("#Jcaption").val(imageCaption);
-    $("#Jdescription").val(imageDescription);
-    $("#testForm").submit(); 
-  */
-  } 
-  
-  var controls= Array("brightness", "saturation", "exposure", "gamma", "clip", "stackBlur", "contrast", "vibrance", "hue", "sepia", "noise", "sharpen");
-  var filters = {};
   $( document ).ready(function() {
-    for(var i=0;i<controls.length;++i)
-      $("#"+controls[i]).val("0");
 
+    ceResetRanges(MyControls);
 
-//  $( "input" ).each(function() {
-//    var filter=this.data("filter");
-//    filters.push(filter);
-//  });
     $( "input" ).on("change", function() {
-      //var $tfilter = $(this).data("filter");
-      //var $tval = $(this).val();
       caman.revert(false);
-      updateCaman();
+      ceUpdateCaman(caman, MyControls);
       caman.render();
     });
   
     $( "#save" ).on("click", function(){
       caman.revert(false);
-      updateCaman();
+      ceUpdateCaman(caman, MyControls);
       caman.render(function(){
         var imageData = caman.toBase64("<?php echo "jpeg"; ?>");
-        $("#txtarea").text(safeBase64(imageData));
-        ajaxSend(imageData, "<?php echo $hash; ?>", "<?php echo $ext; ?>", "<?php echo $target_dir; ?>", $("#title").val(), $("#caption").val(),$("#descrip").val());
+        $("#txtarea").text(ceEscapeString(imageData));
+        ceAjaxSend("acceptImages.php","redirectForm", imageData, "<?php echo $random_string; ?>", "<?php echo $imageExtention; ?>", "<?php echo $wp_media_dir; ?>", $("#title").val(), $("#caption").val(),$("#descrip").val());
       });
     });
   

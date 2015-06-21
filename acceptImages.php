@@ -7,17 +7,9 @@
   require_once(ABSPATH.'wp-includes/post.php' );
   require_once(ABSPATH.'wp-admin/includes/image.php' );
 
-  function correctBase64($input, $justSlash=false)
+  function correctBase64($input)
   {
-    $input = str_replace("^", "/", $input);
-    if($justSlash === false)
-    {
-      $input = str_replace("-", "+", $input);
-      $input = str_replace("*", ":", $input);
-      $input = str_replace("_", ";", $input);
-      $input = str_replace("~", "=", $input);
-    }
-    return $input;
+    return html_entity_decode($input);
   }
   
   function base64ToImage($input)
@@ -137,10 +129,11 @@
   $imageName = $_POST['name'];
   $imageType = $_POST['type'];
   $imageMimeType = ce_createMimeType($imageType);
-  $imageDirectory = ABSPATH . correctBase64($_POST['dir'], true);
-  $imageDescription = correctBase64($_POST['description'], true);
-  $imageCaption = correctBase64($_POST['caption'], true);
-  $imageTitle = correctBase64($_POST['title'], true);
+  $imageDirectory = ABSPATH . correctBase64($_POST['dir']);
+  $imageDescription = correctBase64($_POST['description']);
+  $imageCaption = correctBase64($_POST['caption']);
+  $imageTitle = correctBase64($_POST['title']);
+
 
   if($imageData != "")
   {
@@ -159,7 +152,7 @@
   {
     echo "nothing.";
   }
-  
+
 
 
 ?>
