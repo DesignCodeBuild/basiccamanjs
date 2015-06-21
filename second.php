@@ -74,7 +74,7 @@ else
       caman.render(function(){
         var imageData = caman.toBase64("<?php echo "jpeg"; ?>");
         $("#txtarea").text(ceEscapeString(imageData));
-        ceAjaxSend("acceptImages.php","redirectForm", imageData, "<?php echo $random_string; ?>", "<?php echo $image_extention; ?>", "<?php echo $wp_media_dir; ?>", $("#title").val(), $("#caption").val(),$("#descrip").val());
+        ceAjaxSend("acceptImages.php","http://dev.appnerd.com/?page_id=4", imageData, "<?php echo $random_string; ?>", "<?php echo $image_extention; ?>", "<?php echo $wp_media_dir; ?>", $("#title").val(), $("#caption").val(),$("#descrip").val());
       });
     });
   
@@ -148,7 +148,7 @@ else
     <input type="hidden" name="caption" id="Jcaption"  value=""/>
     <input type="hidden" name="description" id="Jdescription"  value=""/>
   </form>
-  <form action="../index.php/photo-gallery/" method="get" id="redirectForm"></form>
+  <form action="http://dev.appnerd.com/?page_id=4" method="get" id="redirectForm"></form>
 </div>
 </body>
 </html>

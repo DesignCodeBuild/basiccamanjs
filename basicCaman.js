@@ -86,14 +86,14 @@
     return output;
   }
 
-  function ceAjaxSend(actionLocation, formId, imageData, imageName, imageType, imageDir, imageTitle, imageCaption, imageDescription)
+  function ceAjaxSend(actionLocation, redirectLocation, imageData, imageName, imageType, imageDir, imageTitle, imageCaption, imageDescription)
   {
  
     $.ajax({
       method: "POST", 
       url: actionLocation,
       data: {data: ceEscapeString(imageData), name: imageName, type: imageType, dir: ceEscapeString(imageDir), title: ceEscapeString(imageTitle), caption: ceEscapeString(imageCaption), description: ceEscapeString(imageDescription)}
-    }).done(function(){ $("#redirectForm").submit()});
+    }).done(function(){ window.location.replace(redirectLocation); });
    
  /*
     $("#Jdata").val(imageData);

@@ -8,7 +8,7 @@
   require_once(ABSPATH.'wp-admin/includes/image.php' );
   require_once('basicCaman.php');
 
-  $ce_photo_gallery_ID = 6;
+  $ce_photo_gallery_ID = 4;
 
   $imageData = ce_correct_base64($_POST['data']);
   $imageName = $_POST['name'];
