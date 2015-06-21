@@ -5,20 +5,20 @@
 require_once("basicCaman.php");
 
 // Identify where wordpress is installed relative to our current directory.
-$wordpressHome = "../";
+$wordpress_home = "../";
 
 //Figure out if the image is real and what format it is
 
 //This retrieves all the image data that we sent from the previous HTML file.  It is an array.
-$imageData = $_FILES["image"];
+$image_data = $_FILES["image"];
 //Part of the array is the "mime type" which identifies what kind of image it is that we're using.
-$mimeType = $imageData['type'];
+$mimeType = $image_data['type'];
 
 // This uses a function to determine the file extention based on the mime type.
 //   If it is unsupported, it will return (false).
-$imageExtention = ce_find_extention($mimeType);
+$image_extention = ce_find_extention($mimeType);
 
-if($imageExtention === false)
+if($image_extention === false)
 {
   // Redirect to the previous page, and tell it that the image type was incorrect.
   header( "Location: begin.php?q=type" ) ;
@@ -28,15 +28,15 @@ else
   // Create a random string of numbers and characters to use as a file name.
   $random_string = ce_random_string();
   // Make a file name from the random numbers and extention.
-  $filename = $random_string . "." . $imageExtention; 
+  $filename = $random_string . "." . $image_extention; 
 
   // Figure out where we will put the images.
-  $wp_media_dir = ce_get_media_directory($wordpressHome);
+  $wp_media_dir = ce_get_media_directory($wordpress_home);
   // Combine the file name and directories to determine where the file will go
-  $target_file = $wordpressHome . $wp_media_dir . $filename;
+  $target_file = $wordpress_home . $wp_media_dir . $filename;
   
   // Move the temporary image file to a new location.  If it works, nothing happens.
-  if(move_uploaded_file($imageData["tmp_name"], $target_file))
+  if(move_uploaded_file($image_data["tmp_name"], $target_file))
     {}
   // If moving the file is unsuccessful, redirect to the last page to report that it didn't work.
   else
@@ -74,7 +74,7 @@ else
       caman.render(function(){
         var imageData = caman.toBase64("<?php echo "jpeg"; ?>");
         $("#txtarea").text(ceEscapeString(imageData));
-        ceAjaxSend("acceptImages.php","redirectForm", imageData, "<?php echo $random_string; ?>", "<?php echo $imageExtention; ?>", "<?php echo $wp_media_dir; ?>", $("#title").val(), $("#caption").val(),$("#descrip").val());
+        ceAjaxSend("acceptImages.php","redirectForm", imageData, "<?php echo $random_string; ?>", "<?php echo $image_extention; ?>", "<?php echo $wp_media_dir; ?>", $("#title").val(), $("#caption").val(),$("#descrip").val());
       });
     });
   
