@@ -67,7 +67,34 @@
     return $ce_media_dir;
   }
 
-  function ce_correct_base64($input)
+  // When exporting as base64 data, must specify either "jpeg" or "png"
+  //   It uses "jpeg" instead of "jpg"
+  function ce_caman_image_type($ce_extention)
+  {
+    // If this really is an extention
+    if(strpos($ce_extention, '/') === false)
+    {
+      if($ce_extention == "jpg" || $ce_extention == "jpeg")
+        return "jpeg";
+      if($ce_extention == "png")
+        return "png";
+    }
+    else // If this is actually a mime type
+    {
+      if($ce_extention == "image/jpg" || $ce_extention == "image/jpeg")
+        return "jpeg";
+      if($ce_extention == "image/png")
+        return "png";
+    }
+    return false;
+  }
+
+  function ce_escape_string($input)
+  {
+    return htmlentities($input);
+  }
+
+  function ce_unescape_string($input)
   {
     return html_entity_decode($input);
   }

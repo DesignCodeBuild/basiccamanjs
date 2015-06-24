@@ -91,8 +91,18 @@ else
       camanObject.render();
     });
 
+    $(" #revert ").on("click", function(){
+      camanObject.revert(false);
+    });
+    $(" #next ").on("click", function(){
+      var imageData = camanObject.toBase64("<?php echo ce_caman_image_type($image_extention); ?>");
+      $("#imageData").val(ceEscapeString(imageData));
+      $("#infoForm").submit();
+    });
+
   });
 </script>
+<link rel="stylesheet" type = "text/css" href="bootstrap/bootstrap.min.css" />
 <style>
 div.picture
 {
@@ -100,6 +110,13 @@ div.picture
   margin-left:auto;
   margin-right:auto;
   width:640px;
+}
+div.two
+{
+  position:block;
+  margin-left:auto;
+  margin-right:auto;
+  width:250px;
 }
 </style>
 </head>
@@ -111,25 +128,25 @@ div.picture
 <table style="width:640px;position:block;margin-left:auto;margin-right:auto;">
   <tr>
   <td style="width:128px">
-  <button id="vintage">Vintage</button>
+  <button class="btn btn-default" style="width:120px" id="vintage">Vintage</button class="btn btn-default" style="width:120px">
   </td>
   <td style="width:128px">
-  <button id="lomo">Lomo</button>
+  <button class="btn btn-default" style="width:120px" id="lomo">Lomo</button class="btn btn-default" style="width:120px">
   </td>
   <td style="width:128px">
-  <button id="clarity">Clarity</button>
+  <button class="btn btn-default" style="width:120px" id="clarity">Clarity</button class="btn btn-default" style="width:120px">
   </td>
   <td style="width:128px">
-  <button id="sinCity">Sin City</button>
+  <button class="btn btn-default" style="width:120px" id="sinCity">Sin City</button class="btn btn-default" style="width:120px">
   </td>
   <td style="width:128px">
-  <button id="sunrise">Sunrise</button>
+  <button class="btn btn-default" style="width:120px" id="sunrise">Sunrise</button class="btn btn-default" style="width:120px">
   </td>
   </tr>
 
   <tr>
   <td>
-  <button id="crossProcess">Cross Process</button>
+  <button class="btn btn-default" style="width:120px" id="crossProcess">Cross Process</button class="btn btn-default" style="width:120px">
   </td>
   <td>
   </td>
@@ -142,6 +159,16 @@ div.picture
 
   </tr>
 </table>
+<div class="two">
+  <button class="btn btn-danger" style="width:100px;float:left;" id="remove">Remove Filters</button>
+  <button class="btn btn-primary" style="width:100px;float:right;" id="next">Next -&gt;</button>
+</div>
+
+<form action="second.php" method="post" id="infoForm">
+  <input type="hidden" name="tmp_location" id="tmpImageLocation" value="<?php echo ce_escape_string($target_file); ?>" />
+  <input type="hidden" name="data" id="imageData" value="" /> <!--Will be filled in with javascript-->
+  <input type="hidden" name="type" id="imageType" value="<?php echo $image_extention; ?>" />
+</form>
   
 </body>
 </html>

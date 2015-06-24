@@ -1,6 +1,7 @@
 #Simplified Caman.js & Wordpress
 
 ## Important notes
++ Remember to add capital/lowercase support for extentions
 + Use the NEWEST release of CamanJS: the one from github.  Because 4.1.1 and the CDN version have an issue in Caman.revert(true)
 + Must transfer image from CamanJS to php through AJAX, and must reconfigure base64 because it contains '/', ';', ':', '+', '/'.  Currently, it converts to html character codes.
 + It is difficult to deal with thumbnails because there is a specific size (in this case, 604, 270) that is determined by the theme, where the url will vary.
