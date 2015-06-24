@@ -91,6 +91,18 @@
     $ce_sizes['sixzerofour'] = array('width' => 604, 'height' => 270, 'crop'=>true);
     return $ce_sizes;
   }
+  
+  function ce_smaller_image($ce_image_location)
+  {
+    $ce_image_data = wp_get_image_editor($ce_image_location);
+    if( ! is_wp_error($ce_image_data) )
+    {
+      $ce_image_data->resize(640, 640, false);
+      $ce_image_data->save($ce_image_location);
+    }
+    else
+      return false;
+  }
 
   function ce_create_thumbnails($ce_image_location)
   {

@@ -86,6 +86,11 @@ else
     display:block;
     width:800px;
   }
+  div.fright
+  {
+    float:right;
+    width:350px;
+  }
   div.leftForm
   {
     float:left;
@@ -93,8 +98,8 @@ else
   }
   img.featured
   {
-    float:left;
-    width:550px;
+    float:right;
+    width:400px;
   }
 #title_d, #caption_d, #descrip_d
   {
@@ -117,7 +122,7 @@ else
       <input type="range" name="gamma" id="gamma" data-filter="gamma" min="0" max="10" /> <br />
       Clip (<span id="clip_label">0</span>)
       <input type="range" name="clip" id="clip" data-filter="clip" min="0" max="100" /> <br />
-      Blur (<span id="blur_label">0</span>)
+      Blur (<span id="stackBlur_label">0</span>)
       <input type="range" name="stackBlur" id="stackBlur" data-filter="stackBlur" min="0" max="20" /> <br />
       Contrast (<span id="contrast_label">0</span>)
       <input type="range" name="contrast" id="contrast" data-filter="contrast" min="-100" max="100" /> <br />
@@ -130,12 +135,14 @@ else
       Noise (<span id="noise_label">0</span>)
       <input type="range" name="noise" id="noise" data-filter="noise" min="0" max="10" /> <br />
       Sharpen (<span id="sharpen_label">0</span>)
-      <input type="range" name="sharpen" id="sharpen" data-filter="sharpen" min="0" max="100" /> <br />
+       <input type="range" name="sharpen" id="sharpen" data-filter="sharpen" min="0" max="100" /> <br />
     </form>
   </div>
-  <div id="title_d">Title: <input type="text" id="title" /></div><br />
-  <div id="caption_d">Caption: <input type="text" id = "caption" /></div>
-  <div id="descrip_d">Description: <input type="text" id="descrip" /></div>
+  <div class="fright">
+    <div id="title_d">Title: <input type="text" id="title" /></div><br />
+    <div id="caption_d">Caption: <input type="text" id = "caption" /></div>
+    <div id="descrip_d">Description: <input type="text" id="descrip" /></div>
+  </div>
   <img src="<?php echo $target_file; ?>" id="toEdit" class="featured" /><br />
   <!--textarea id="txtarea"></textarea-->
   <button id="save">Save</button>

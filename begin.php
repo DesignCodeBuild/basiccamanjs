@@ -50,7 +50,7 @@
   </script>
 </head>
 <body>
-  <form action="second.php" method="post" enctype="multipart/form-data" id="imageForm">
+  <form action="onepointfive.php" method="post" enctype="multipart/form-data" id="imageForm">
     <h2 style="color:red;" id="alarm">
       <?php
         // If there's an error code sent by upload file, report it to the user.
