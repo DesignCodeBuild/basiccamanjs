@@ -18,6 +18,8 @@
 
   if($image_data != "")
   {
+    // delete old file
+    unlink($image_tmp_location);
     echo "<!doctype html><html><head><style>body{font-family:\"Courier New\", Courier, monospace;}</style></head><body>";
     echo $image_name . "<br />" . $image_type . "<br />" . $image_mime_type . "<br />" . $image_directory . "<br />" . $image_description . "<br />" . $image_caption . "<br />" . $image_title. "<br />";
     $filestream = fopen($image_directory.$image_name.".".$image_type, "wb");
