@@ -51,12 +51,19 @@
   }
 
   // 
-  function ceResetRanges(ceCamanControlArray)
+  function ceResetRanges(ceCamanControlArray, ceLabelSuffix)
   {
+    if(ceCamanControlArray === 'undefined')
+      ceCamanControlArray = ceDefaultControlArray();
+    if(ceLabelSuffix === 'undefined')
+      ceLabelSuffix = "_label";
     for(var i=0;i<ceCamanControls.length;++i)
     {
       if(ceCamanControlArray[ceCamanControls[i]] != "")
+      {
         $("#" + ceCamanControlArray[ceCamanControls[i]]).val("0");
+        $("#" + ceCamanControlArray[ceCamanControls[i]] + ceLabelSuffix ).text("0");
+      }
     }
   }
 
@@ -86,23 +93,28 @@
     return output;
   }
 
-  function ceAjaxSend(actionLocation, redirectLocation, imageData, imageName, imageType, imageDir, imageTitle, imageCaption, imageDescription)
+//  function ceAjaxSend(actionLocation, redirectLocation, imageData, imageName, imageType, imageDir, imageTitle, imageCaption, imageDescription)
+  function ceAjaxSend(actionLocation, dataArray, redirectLocation)
   {
- 
+
     $.ajax({
       method: "POST", 
       url: actionLocation,
-      data: {data: ceEscapeString(imageData), name: imageName, type: imageType, dir: ceEscapeString(imageDir), title: ceEscapeString(imageTitle), caption: ceEscapeString(imageCaption), description: ceEscapeString(imageDescription)}
-    }).done(function(){ window.location.replace(redirectLocation); });
+      data: dataArray
+      //{data: ceEscapeString(imageData), name: imageName, type: imageType, dir: ceEscapeString(imageDir), title: ceEscapeString(imageTitle), caption: ceEscapeString(imageCaption), description: ceEscapeString(imageDescription)}
+    }).done(function(){ 
+    if(redirectLocation != "")
+      window.location.replace(redirectLocation);
+    });
+
    
  /*
-    $("#Jdata").val(imageData);
-    $("#Jname").val(imageName);
-    $("#Jtype").val(imageType);
-    $("#Jdir").val(imageDir);
-    $("#Jtitle").val(imageTitle);
-    $("#Jcaption").val(imageCaption);
-    $("#Jdescription").val(imageDescription);
+    $("#Jdata").val(dataArray['data']);
+    $("#Jtype").val(dataArray['type'])
+    $("#Jdir").val(dataArray['tmploc']);
+    $("#Jtitle").val(dataArray['title']);
+    $("#Jcaption").val(dataArray['caption']);
+    $("#Jdescription").val(dataArray['description']);
     $("#testForm").submit(); 
   */
   }

@@ -1,5 +1,12 @@
 <?php
 
+  require_once('../wp-config.php');
+  require_once(ABSPATH.'wp-includes/functions.php');
+  require_once(ABSPATH.'wp-includes/media.php');
+  require_once(ABSPATH.'wp-includes/option.php' );
+  require_once(ABSPATH.'wp-includes/post.php' );
+  require_once(ABSPATH.'wp-admin/includes/image.php' );
+
   // Takes mime type and returns extention (png or jpg)
   // Returns (false) if the extention is unsupported
   //    Otherwise, it returns the extention ("png" or "jpg")
@@ -60,7 +67,34 @@
     return $ce_media_dir;
   }
 
-  function ce_correct_base64($input)
+  // When exporting as base64 data, must specify either "jpeg" or "png"
+  //   It uses "jpeg" instead of "jpg"
+  function ce_caman_image_type($ce_extention)
+  {
+    // If this really is an extention
+    if(strpos($ce_extention, '/') === false)
+    {
+      if($ce_extention == "jpg" || $ce_extention == "jpeg")
+        return "jpeg";
+      if($ce_extention == "png")
+        return "png";
+    }
+    else // If this is actually a mime type
+    {
+      if($ce_extention == "image/jpg" || $ce_extention == "image/jpeg")
+        return "jpeg";
+      if($ce_extention == "image/png")
+        return "png";
+    }
+    return false;
+  }
+
+  function ce_escape_string($input)
+  {
+    return htmlentities($input);
+  }
+
+  function ce_unescape_string($input)
   {
     return html_entity_decode($input);
   }
@@ -83,6 +117,18 @@
       // This one is hard to find: I think it depends on the theme.
     $ce_sizes['sixzerofour'] = array('width' => 604, 'height' => 270, 'crop'=>true);
     return $ce_sizes;
+  }
+  
+  function ce_smaller_image($ce_image_location)
+  {
+    $ce_image_data = wp_get_image_editor($ce_image_location);
+    if( ! is_wp_error($ce_image_data) )
+    {
+      $ce_image_data->resize(640, 640, false);
+      $ce_image_data->save($ce_image_location);
+    }
+    else
+      return false;
   }
 
   function ce_create_thumbnails($ce_image_location)
