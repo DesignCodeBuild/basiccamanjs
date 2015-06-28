@@ -2,7 +2,7 @@
   
   require_once('basicCaman.php');
 
-  $ce_photo_gallery_ID = 6;
+  $ce_photo_gallery_ID = 4;
 
   $image_data = ce_unescape_string($_POST['data']);
   $image_tmp_location = ce_unescape_string($_POST['tmploc']);

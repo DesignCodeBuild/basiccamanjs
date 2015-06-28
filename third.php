@@ -51,14 +51,22 @@ if($image_data != "")
     });
   
     $( "#save" ).on("click", function(){
-      caman.revert(false);
-      ceUpdateCaman(caman, MyControls);
-      caman.render(function(){
-      var imageData = caman.toBase64("<?php echo ce_caman_image_type($image_type); ?>");
-      var allData = {data: ceEscapeString(imageData), tmploc: ceEscapeString("<?php echo $image_tmp_location; ?>"), type: "<?php echo $image_type; ?>", title: ceEscapeString($("#title").val()), caption: ceEscapeString($("#caption").val()), description: ceEscapeString($("#descrip").val())};
-        ceAjaxSend("acceptImages.php", allData, "../index.php/photo-gallery/");
+      //First: check for a title
+      if($("#title").val() == "")
+      {
+        $("#title_alert").text("Please enter a title.");
+      }
+      else
+      {
+        caman.revert(false);
+        ceUpdateCaman(caman, MyControls);
+        caman.render(function(){
+          var imageData = caman.toBase64("<?php echo ce_caman_image_type($image_type); ?>");
+          var allData = {data: ceEscapeString(imageData), tmploc: ceEscapeString("<?php echo $image_tmp_location; ?>"), type: "<?php echo $image_type; ?>", title: ceEscapeString($("#title").val()), caption: ceEscapeString($("#caption").val()), description: ceEscapeString($("#descrip").val())};
+          ceAjaxSend("acceptImages.php", allData, "../index.php/photo-gallery/");
 //"../index.php/photo-gallery/", imageData, "<?php echo $random_string; ?>", "<?php echo $image_extention; ?>", "<?php echo $wp_media_dir; ?>", $("#title").val(), $("#caption").val(),$("#descrip").val());
-      });
+        });
+      }
     });
   
   });
@@ -105,12 +113,18 @@ if($image_data != "")
     float:right;
     width:320px;
   }
+#title_alert
+  {
+    color:red;
+    font-weight:900;
+  }
 </style>
 </style>
 </head>
 <body>
 <h1 style="text-align:center;">Final Touches</h1>
 <div class="featured">
+  <span id="title_alert"></span>
   <div id="title_d">Title: <input type="text" id="title" /></div>
   <div id="caption_d">Caption: <input type="text" id = "caption" /></div>
   <div id="descrip_d">Description: <input type="text" id="descrip" /></div><br />
