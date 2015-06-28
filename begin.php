@@ -44,8 +44,18 @@
   <script type="text/javascript">
     function uploadImage()
     {
-      document.getElementById("imageForm").submit();
-      // equiv. jQuery: $("#imageForm").submit();
+      var str=document.getElementById('image').value;
+      var strParts = str.split(".");
+      var strExt = strParts[strParts.length-1].toLowerCase();
+      if(strExt == "jpg" || strExt == "png" || strExt == "jpeg")
+      {
+        document.getElementById("imageForm").submit();
+        equiv. jQuery: $("#imageForm").submit();
+      }
+      else
+      {
+        document.getElementById("alarm").innerHTML = "Only supports JPG and PNG files.";
+      }
     }
   </script>
 </head>
