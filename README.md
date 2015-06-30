@@ -3,7 +3,7 @@
 ## Important notes
 + Require a title
 + Check for image type on the first (begin.php) page
-+ Remember to add capital/lowercase support for extentions
++ Remember to add capital/lowercase support for extensions
 + Use the NEWEST release of CamanJS: the one from github.  Because 4.1.1 and the CDN version have an issue in Caman.revert(true)
 + Must transfer image from CamanJS to php through AJAX, and must reconfigure base64 because it contains '/', ';', ':', '+', '/'.  Currently, it converts to html character codes.
 + It is difficult to deal with thumbnails because there is a specific size (in this case, 604, 270) that is determined by the theme, where the url will vary.
@@ -13,11 +13,19 @@
 We can split the process into four sections:
 + **Pre**: Setup wordpress and create a page with the photo gallery.
 + **Section 1**: Choose a file to upload (e.g. begin.php)
-+ **Section 2**: Edit the image with CamanJS (e.g. second.php)
-+ **Section 3**: Send the image to (e.g. acceptImages.php)
++ **Section 2**: Edit the image with CamanJS preset filters (e.g. second.php)
++ **Section 3**: Fine-tune with CamanJS ranges (eg. third.php)
++ **Section 4**: Send the image to (e.g. acceptImages.php)
 
-####Pre: Wordpress
+####Pre: Wordpress & others
 Create a wordpress page (or post).  Inside it, insert a gallery.  The gallery can be located anywhere in the page, but **there can only be one gallery per page**.  Find the page ID by going to edit the page and clicking **Get Shortlink**.  This will be useful later.
+
+Later sections do not identify what javascript libraries to include.  The following may are good to have in the head, although they might not all be needed.
+```html
+<script type="text/javascript" src="caman/caman.full.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="basicCaman.js"></script>
+```
 
 ####Section 1: Choose a file
 Create a button to choose an image to upload.  Style the page, and this is the important code:
@@ -41,33 +49,71 @@ $( document ).ready(function() {
   });
 });
 ```
+Also useful: check to make sure it is actually an image.  Create a span to hold potential issues:
+```html
+<span style="color:red;font-weight:900;" id="alarm"></span>
+```
+And then alter the javascript function:
+```javascript
+function uploadImage()
+{
+  // Gets the image name
+  var str=document.getElementById('image').value;
+  // eg. "image.png" splits into an array "image", "png"
+  var strParts = str.split(".");
+  // Choose the last part (strParts.length-1), and make it lowercase
+  var strExt = strParts[strParts.length-1].toLowerCase();
+  // If it is a valid image type
+  if(strExt == "jpg" || strExt == "png" || strExt == "jpeg")
+  {
+    // Submit the form
+    document.getElementById("imageForm").submit();
+  }
+  // If it is NOT a valid image type
+  else
+  {
+    // Give an error.
+    document.getElementById("alarm").innerHTML = "Only supports JPG and PNG files.";
+  }
+}
+```
 
 ####Section 2: Save the file
+Create a file at the location specified in the "action" of the form; in the previous example, it's "second.php"
 Recieve the image data like this:
 ```php
 $imageData = $_FILES["image"];
 ```
-Note that $imageData is an array containing information related to the file.  For initial purposes, we probably want to save this file somewhere on the server to use it:
+Note that $imageData is an array containing information related to the file.  It contains: __name__ (original file name), __type__ (file type, eg. image/jpeg), __tmp&#95;name__ (the temporary location at which file data is stored), and more.
+Note that it _does not_ contain the actual file data; the file data is stored in the temporary file.
+
+For initial purposes, we probably want to save this file somewhere on the server to use it.  When doing this, we __move__ the temporary file to a permanent location.
 ```php
 $imageData = $_FILES["image"];
-$filename = $imageData["name"];
+$file_dir = "tmp_images/";
+$filename = $file_dir . $imageData["name"];
 $temporaryLocation = $imageData["tmp_name"];
 move_uploaded_file($temporaryLocation, $filename);
 ```
-It's important that some users may not upload correct data types: we can only handle png and jpg images.
+We need to know what kind of image this is: png or jpg.
 ```php
 $imageType = $imageData["type"];
 ```
-We can write if statements that check mime types from $imageType to see if it is accepted.  This will follow the general structure of*function ce_find_extention()* in *basicCaman.php*  or to save time, use these libraries.  First, include **basicCaman.php**
+Type the following to include a few functions to simplify tedious tasks:
 ```php
 require_once("/path/to/basicCaman.php");
 ```
-Next, use *ce_find_extention()*: This function will return *(false)* if given an invalid mime type; otherwise, it will return the string "png" or "jpg".  We can use if loops to determine what happens.
+######Setting Up basicCaman.php
+Go to the beginning of basicCaman.php.  It requires config.php.  Make sure the path to config.php (part of wordpress) is correct.
+
+####Section 2 (cont)
+
+Next, use *ce_find_extension()*: This function turns the mime type given by _$imageData['type']_ to an extension like jpg or png. It will return *(false)* if given an invalid mime type; otherwise, it will return the string "png" or "jpg".
+
+Although we already checked image extension, we can have one additional check in case the mime type doesn't match with the extension:
 ```php
-$imageExtention = ce_find_extention($imageType);
-if($imageExtention === false) // === instead of == because 
-    // $imageExtention can be either boolean or string
-    // Nevertheless, == would probably work too.
+$image_extension = ce_find_extension($imageType);
+if($image_extension === false)
 {
   echo "Sorry, we only accept png and jpg images.";
 }
@@ -76,18 +122,29 @@ else
   move_uploaded_file($temporaryLocation, $filename);
 }
 ```
+Now that we have basicCaman.php working, we can also rename the file to a random string of characters to avoid naming conflicts, using the function *ce_random_string()* from basicCaman.php
+```php
+$filename = $file_dir . ce_random_string() . "." . $image_extention;
+```
 Eventually, it would be nice to see real evidence that this image actually has been uploaded (perhaps this should happen a bit sooner).  Write html, but leave the previous php in the very beginning -- or at least in the head.
 ```php
-<img src="<?php echo $filename; ?>" />
+<img src="<?php echo $filename; ?>" id="toEdit" />
 ```
-####Optional functionality
+######A Note on Temporary Locations
+In the end, we will put the files in the wordpress media directory.  However, we have two intermediate steps:
+1. The first temporary location, usually at /tmp/_someFileName_, which is created immediately after the form submission and __never referred to in any context after this.__
+2. The second temporary location, in ./tmp&#95;images/_someFileName_, which will used often from now on.  The purpose of this temporary location is a working space to work on the image until it is ready to be put in the wordpress media directory.
+
+######Optional functionality
+*Note: this is less relevant now that the first page checks extension using javascript*
+
 Now that we have added html around the php, our message, *"Sorry, we only accept png and jpg images."* probably won't be very useful.  Instead, it might be nice to give the user another opportunity to choose a file.  So, we will go back to the file-choosing page and give the alert there.
 
 First, make sure that the initial block of php in the second file is before the <html> and <!doctype> markings.  Then, replace the "Sorry, we..." line with this, to redirect to the previous page.
 ```php
 header( 'Location: choose_file.php?q=type' );
 ```
-(In this repository,"choose_file.php" is actually begin.php).  Now, looking at choose_file.php, we will add an area to alert the user if there are issues.
+(In this repository,"choose&#95;file.php" is actually begin.php).  Now, looking at choose&#95;file.php, we will add an area to alert the user if there are issues.
 ```php
 <h3 style="color:red">
 <?php
@@ -103,7 +160,137 @@ header( 'Location: choose_file.php?q=type' );
 </h3>
 ```
 ####Section 2 (cont)
-Continuing, it is now important to choose what tools to include to edit images.  Currently, the following are supported:
+We should now allow the user to add preset filters to their image.  This will primarily require html and javascript.
+
+Start by creating buttons for the filters you want.  Check out the [Camanjs example page](http://camanjs.com/examples/) and look at the bottom example.  Choose from those filters.  Add the buttons to a table or divs that can be positioned how you want them.  For example,
+```html
+<table style="width:640px;position:block;margin-left:auto;margin-right:auto;">
+  <tr>
+  <td style="width:128px">
+  <button class="btn btn-default" style="width:120px" id="vintage">Vintage</button>
+  </td>
+  <td style="width:128px">
+  <button class="btn btn-default" style="width:120px" id="lomo">Lomo</button>
+  </td>
+  <td style="width:128px">
+  <button class="btn btn-default" style="width:120px" id="sinCity">Sin City</button>
+  </td>
+<!--... etc.-->
+```
+The id's can be anything you want, but it simplifies the process to use camelCase.  These buttons also make use of bootstrap.css, which is why they have their class set to "btn btn-default"
+
+We also need an image to edit.  As mentioned above, we will use php to identify the location of the image.  This image should be placed wherever it is easily visible when using the sliders.
+```php
+<img src="<?php echo $filename; ?>" id="toEdit" />
+```
+Now, enable the buttons using javascript and jQuery.  Use this at the beginning of the &lt;script&gt;:
+```javascript
+  var camanObject = Caman("#toEdit");
+```
+Where #toEdit is the id of the image.  
+
+Now, create this:
+```javascript
+$( document ).ready(function() {
+}
+```
+Within this, we can make the buttons respond when clicked on.  Add this code within $( document ).ready, which will make the "vintage" button work.
+```javascript
+  $(" #vintage ").on("click", function(){
+    camanObject.revert(false);
+    camanObject["vintage"]();
+    camanObject.render();
+  });
+  // ...
+```
+The most important part of this code is the middle line, "*camanObject['vintage']();*".  This applies the actual filter, vintage, to the image. However, that code will change the image currently displayed.  What if the user had already applied a different filter?  Then it would effectively apply two filters.  Instead, we need to return back to how the image originally looked.
+
+This line - "*camanObject.revert(false);*" - does that.  By specifying "false", we ask camanjs not to render immediately after reverting, because that would take extra time.
+
+Finally, "*camanObject.render()*" makes changes to the image visible to the user.
+
+Note that if the filter is two words -- like "Cross Product" -- we must use camelCase.  Instead of writing *camanObject["cross product"]*, camanJS will instead react to *camanObject["crossProduct"]*.
+
+__There are two more functions we need__: __revert__ and __submit__.
+Add both of these buttons:
+```html
+<button id="submit">Continue</button>
+<button id="back">Revert</button>
+```
+The back button is easy to make work.
+```javascript
+  $( "#back" ).on("click", function(){
+    camanObject.revert(true);
+  });
+```
+However, the submit button will be a bit more difficult.  Remember, we need to go to the next page to further edit the image.  We will therefore need to send some data about the image.  Specifically, __where the image is stored__, __the type of image__, and __the actual image data__.  We have multiple options:
+1. Send an AJAX request
+2. Save the image, and then proceed while giving the next page the file name
+3. Send all required data through a post form request.
+We cannot send an AJAX request because it will not redirect to the new page.  CamanJS also does not allow for saving the image (to my knowledge), so this leaves us with __option 3__.  This is most easily achieved by creating a form.
+```php
+<form action="third.php" method="post" id="dataForm">
+  <input type="hidden" name="tmp_location" id="tmpImageLocation" value="<?php echo ce_escape_string($filename); ?>" />
+  <input type="hidden" name="data" id="imageData" value="" /> <!--Will be filled in with javascript-->
+  <input type="hidden" name="type" id="imageType" value="<?php echo $image_extension; ?>" />
+</form>
+```
+When this form is submitted, it will send this info to the next page (third.php)
+Look at *ce_escape_string($filename)*.  This is a function defined in basicCaman.php.  Feel free to look there; this function just escapes all potentially dangerous characters, like slashes.  These characters can interrupt data transmission through a post request.
+
+Now, we must fill in the imageData input. Since we hope to send an updated image that was just processed by Camanjs, we should work on a javascript function.
+```javascript
+  $( "#submit" ).on("click", function(){
+    var imageData = camanObject.toBase64();
+    imageData = ceEscapeString(imageData); // escape this string, too.
+    $( "#imageData" ).val(imageData);
+    $( "#dataForm" ).submit();
+  });
+```
+
+CamanJS provides us with a function to export the image data to a base64 encoding.  Now, escape the string to avoid bad characters.  We then input that data into the form (so that it will be sent) and then submit the form. 
+However, we missed one important step.  The *toBase64()* function must know an image type.  Unfortunately, it recognizes "jpeg" instead of "jpg" so we can use a php function from basicCaman.php to correct this:
+```php
+var imageData = camanObject.toBase64("<?php echo ce_caman_image_type($image_extension); ?>");
+```
+__One more thing:__
+You may have noticed that the images are often too big or too small.  We cannot deal with images that are too small, but it is good to limit the image size.  Large images take a long time to load and appear too large.  Immediately afer saving the file to *$filename*, we can use another function from basicCaman.php:
+```php
+ce_smaller_image($filename);
+```
+This will use wordpress functions to reduce the image size to __640x640 px__.  You can go to basicCaman.php and find the function to change this default size.
+
+Now, we continue to __Section 3__.
+
+####Section 3
+We are now in a new php page (eg. third.php).  Include the basicCaman.php file.
+```php
+require_once("basicCaman.php");
+```
+Now, we have three "post" variables to intercept:
+```php
+//Base64-encoded image
+$image_data = ce_unescape_string($_POST['data']);
+//png or jpg
+$image_type = $_POST['type'];
+//Old location: so we can delete it when completed.
+$image_tmp_location = ce_unescape_string($_POST['tmp_location']);
+```
+This introduces a new php function from basicCaman.php: *ce&#95;unescape&#95;string()*.  This function undoes the string-escaping done by *ce&#95;escape&#95;string()* and is required in order to be able to understand image data.
+We now want to save the image data.
+```php
+if($image_data != "")
+{
+  //Write to "tmp location" (w) as binary (b)
+  $filestream = fopen($image_tmp_location, "wb");
+  $image_binary = ce_base64_to_image($image_data);
+  fwrite($filestream, $image_binary);
+  fclose($filestream);
+}
+```
+*ce&#95;base64&#95;to&#95;image()* will convert base64 image data -- create by CamanJS -- to the 1's and 0's that make up a real image.  Make sure to specify the "wb" in "fopen()" because the "b" specifies that this is binary data.
+
+Continuing, it is now important to choose what tools to include to further edit images.  Currently, the following are supported:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **brightness, saturation, exposure, gamma, clip, stackBlur, contrast, vibrance, hue, sepia, noise, sharpen**
 
@@ -111,7 +298,7 @@ Not all must be used if some seem useless.  Make note of the range limits:
 
 ```
 brightness: -100 to 100
-saturation: -100 to 100
+saturation: -100 to 100+
 exposure: -100 to 100
 gamma: 0 to 10 (In reality, 1 to 10, basicCaman.js will deal 
        with that so that 0 can always be the base)
@@ -124,6 +311,10 @@ sepia: 0 to 100
 noise: 0 to 100 (although 100 is excessive)
 sharpen: 0 to 100
 ```
+Also position the image in a reasonable spot, using something similar to the last section:
+```php
+<img src="<?php echo $tmp_image_location; ?>" id="toEdit" />
+```
 
 For each chosen tool, add a range and span (to label).
 
@@ -132,16 +323,8 @@ Brightness (<span id="bright_label">0</span>)<br />
 <input type="range" name="brightness" id="bright" min="-100" max="100" /> <br />
 ```
 
-Also position the image in a reasonable spot.
-
 Additionally, create boxes (&lt;input type="text"&gt; or &lt;textarea&gt;) to identify title, caption, and description.
 
-Now, add javascript.  Begin by including necessary files: jQuery, Caman.js, and basicCaman.js
-```html
-<script type="text/javascript" src="caman/caman.full.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="basicCaman.js"></script>
-```
 Now, either within &lt;script&gt;&lt;/script&gt; or in an external file, start by making a Caman object, and initialize it with the id of the &lt;img&gt;:
 ```javascript
 var camanObject = Caman("#imageID");
@@ -184,7 +367,7 @@ $( document ).ready(function(){
 ```
 **All other javascript from now on must be placed within the .ready(function(){ _here_ });** I have not gotten it to work otherwise
 
-We are now beginning to make the camanjs actually functional.  We want the image to update every time a range is changed ( like [here](http://camanjs.com/examples/) ) so act whenever an <input> changes: (this is within $(document).ready)
+We are now beginning to make the camanjs actually functional.  We want the image to update every time a range is changed ( like [here](http://camanjs.com/examples/) ) so act whenever an &lt;input&gt; changes: (this is within $(document).ready)
 ```javascript
 $("input").on("change", function(){
   // First, revert to the original image data
@@ -201,6 +384,7 @@ $("input").on("change", function(){
   camanObject.render();
 });
 ```
+At this point, range sliders should work to edit the image.
 
 ######I'm running out of time, so a summary of the rest:
 + Change the php so that it saves in the wordpress directory (incl. random string)

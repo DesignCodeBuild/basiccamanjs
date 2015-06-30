@@ -64,7 +64,7 @@ if($image_data != "")
           var imageData = caman.toBase64("<?php echo ce_caman_image_type($image_type); ?>");
           var allData = {data: ceEscapeString(imageData), tmploc: ceEscapeString("<?php echo $image_tmp_location; ?>"), type: "<?php echo $image_type; ?>", title: ceEscapeString($("#title").val()), caption: ceEscapeString($("#caption").val()), description: ceEscapeString($("#descrip").val())};
           ceAjaxSend("acceptImages.php", allData, "../index.php/photo-gallery/");
-//"../index.php/photo-gallery/", imageData, "<?php echo $random_string; ?>", "<?php echo $image_extention; ?>", "<?php echo $wp_media_dir; ?>", $("#title").val(), $("#caption").val(),$("#descrip").val());
+//"../index.php/photo-gallery/", imageData, "<?php echo $random_string; ?>", "<?php echo $image_extension; ?>", "<?php echo $wp_media_dir; ?>", $("#title").val(), $("#caption").val(),$("#descrip").val());
         });
       }
     });

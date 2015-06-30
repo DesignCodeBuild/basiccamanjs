@@ -7,38 +7,38 @@
   require_once(ABSPATH.'wp-includes/post.php' );
   require_once(ABSPATH.'wp-admin/includes/image.php' );
 
-  // Takes mime type and returns extention (png or jpg)
-  // Returns (false) if the extention is unsupported
-  //    Otherwise, it returns the extention ("png" or "jpg")
-  function ce_find_extention($ce_image_type)
+  // Takes mime type and returns extension (png or jpg)
+  // Returns (false) if the extension is unsupported
+  //    Otherwise, it returns the extension ("png" or "jpg")
+  function ce_find_extension($ce_image_type)
   {
-    $ce_extention;
+    $ce_extension;
 
     if($ce_image_type == "image/jpg" || $ce_image_type== "image/jpeg")
-      $ce_extention = "jpg";
+      $ce_extension = "jpg";
 
     if($ce_image_type == "image/png")
-      $ce_extention = "png";
+      $ce_extension = "png";
 
     if($ce_image_type != "image/jpg" && $ce_image_type != "image/jpeg" && $ce_image_type != "image/png")
-      $ce_extention = false;
+      $ce_extension = false;
 
-    return $ce_extention;
+    return $ce_extension;
   }
 
-  // Takes extention and returns mime type ("image/png" or "image/jpg"
-  // Returns (false) if the extention is unsupported.
-  function ce_create_mime_type($ce_extention)
+  // Takes extension and returns mime type ("image/png" or "image/jpg"
+  // Returns (false) if the extension is unsupported.
+  function ce_create_mime_type($ce_extension)
   {
     $ce_mime_type;
 
-    if($ce_extention == "png")
+    if($ce_extension == "png")
       $ce_mime_type = "image/png";
 
-    if($ce_extention == "jpeg" || $ce_extention == "jpg")
+    if($ce_extension == "jpeg" || $ce_extension == "jpg")
       $ce_mime_type = "image/jpeg";
 
-    if($ce_extention != "jpeg" && $ce_extention != "jpg" && $ce_extention != "png")
+    if($ce_extension != "jpeg" && $ce_extension != "jpg" && $ce_extension != "png")
       $ce_mime_type = false;
     return $ce_mime_type;
   }
@@ -69,21 +69,21 @@
 
   // When exporting as base64 data, must specify either "jpeg" or "png"
   //   It uses "jpeg" instead of "jpg"
-  function ce_caman_image_type($ce_extention)
+  function ce_caman_image_type($ce_extension)
   {
-    // If this really is an extention
-    if(strpos($ce_extention, '/') === false)
+    // If this really is an extension
+    if(strpos($ce_extension, '/') === false)
     {
-      if($ce_extention == "jpg" || $ce_extention == "jpeg")
+      if($ce_extension == "jpg" || $ce_extension == "jpeg")
         return "jpeg";
-      if($ce_extention == "png")
+      if($ce_extension == "png")
         return "png";
     }
     else // If this is actually a mime type
     {
-      if($ce_extention == "image/jpg" || $ce_extention == "image/jpeg")
+      if($ce_extension == "image/jpg" || $ce_extension == "image/jpeg")
         return "jpeg";
-      if($ce_extention == "image/png")
+      if($ce_extension == "image/png")
         return "png";
     }
     return false;

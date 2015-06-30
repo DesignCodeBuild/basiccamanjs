@@ -12,11 +12,11 @@ $image_data = $_FILES["image"];
 //Part of the array is the "mime type" which identifies what kind of image it is that we're using.
 $mimeType = $image_data['type'];
 
-// This uses a function to determine the file extention based on the mime type.
+// This uses a function to determine the file extension based on the mime type.
 //   If it is unsupported, it will return (false).
-$image_extention = ce_find_extention($mimeType);
+$image_extension = ce_find_extension($mimeType);
 
-if($image_extention === false)
+if($image_extension === false)
 {
   // Redirect to the previous page, and tell it that the image type was incorrect.
   header( "Location: begin.php?q=type" ) ;
@@ -25,8 +25,8 @@ else
 {
   // Create a random string of numbers and characters to use as a file name.
   $random_string = ce_random_string();
-  // Make a file name from the random numbers and extention.
-  $filename = $random_string . "." . $image_extention; 
+  // Make a file name from the random numbers and extension.
+  $filename = $random_string . "." . $image_extension; 
 
   // Figure out where we will put the images.
   $dir = "tmp_images/";
@@ -95,7 +95,7 @@ else
       camanObject.revert(false);
     });
     $(" #next ").on("click", function(){
-      var imageData = camanObject.toBase64("<?php echo ce_caman_image_type($image_extention); ?>");
+      var imageData = camanObject.toBase64("<?php echo ce_caman_image_type($image_extension); ?>");
       $("#imageData").val(ceEscapeString(imageData));
       $("#infoForm").submit();
     });
@@ -128,25 +128,25 @@ div.two
 <table style="width:640px;position:block;margin-left:auto;margin-right:auto;">
   <tr>
   <td style="width:128px">
-  <button class="btn btn-default" style="width:120px" id="vintage">Vintage</button class="btn btn-default" style="width:120px">
+  <button class="btn btn-default" style="width:120px" id="vintage">Vintage</button>
   </td>
   <td style="width:128px">
-  <button class="btn btn-default" style="width:120px" id="lomo">Lomo</button class="btn btn-default" style="width:120px">
+  <button class="btn btn-default" style="width:120px" id="lomo">Lomo</button>
   </td>
   <td style="width:128px">
-  <button class="btn btn-default" style="width:120px" id="clarity">Clarity</button class="btn btn-default" style="width:120px">
+  <button class="btn btn-default" style="width:120px" id="clarity">Clarity</button>
   </td>
   <td style="width:128px">
-  <button class="btn btn-default" style="width:120px" id="sinCity">Sin City</button class="btn btn-default" style="width:120px">
+  <button class="btn btn-default" style="width:120px" id="sinCity">Sin City</button>
   </td>
   <td style="width:128px">
-  <button class="btn btn-default" style="width:120px" id="sunrise">Sunrise</button class="btn btn-default" style="width:120px">
+  <button class="btn btn-default" style="width:120px" id="sunrise">Sunrise</button>
   </td>
   </tr>
 
   <tr>
   <td>
-  <button class="btn btn-default" style="width:120px" id="crossProcess">Cross Process</button class="btn btn-default" style="width:120px">
+  <button class="btn btn-default" style="width:120px" id="crossProcess">Cross Process</button>
   </td>
   <td>
   </td>
@@ -167,7 +167,7 @@ div.two
 <form action="third.php" method="post" id="infoForm">
   <input type="hidden" name="tmp_location" id="tmpImageLocation" value="<?php echo ce_escape_string($target_file); ?>" />
   <input type="hidden" name="data" id="imageData" value="" /> <!--Will be filled in with javascript-->
-  <input type="hidden" name="type" id="imageType" value="<?php echo $image_extention; ?>" />
+  <input type="hidden" name="type" id="imageType" value="<?php echo $image_extension; ?>" />
 </form>
   
 </body>
