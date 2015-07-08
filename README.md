@@ -356,7 +356,7 @@ Brightness (<span id="number_bright">0</span>)<br />
 ```
 However, if you use a different suffix, make sure to specify when using ceResetRanges() and ceUpdateCaman().
 
-#### Section 2 (cont)
+#### Section 3 (cont)
 Continuing with javascript, we note that without intervention, ranges will assume the position last chosen by a user, not the value assigned in the html.  We use jquery to automatically reset the ranges once it loads.
 ```javascript
 $( document ).ready(function(){
@@ -385,6 +385,58 @@ $("input").on("change", function(){
 });
 ```
 At this point, range sliders should work to edit the image.
+
+We'll also want to include title, caption, and description areas so that wordpress can have meaningful tags along with the images.  Simply use normal input tags:
+```html
+<input type="text" id="title" />
+<input type="text" id="caption" />
+<input type="text" id="descrip" />
+```
+
+Like before, we need to add buttons to save, and a button to revert to the previous state of the images.  The revert button should be easy; it will be the same as before.  The save button will also be similar.  This time, however, we don't want to redirect to the page that submits images; instead, we want to redirect back to the photo gallery.  We'll use AJAX to send a form without going to a new page.
+
+```javascript
+$("#submit").on("click", function(){
+  var imageData = camanObject.toBase64();
+  imageData = ceEscapeString(imageData); // escape this string, too.
+  // Make an array to submit with AJAX.
+          var allData = {data: ceEscapeString(imageData), tmploc: ceEscapeString("<?php echo $image_tmp_location; ?>"), type: "<?php echo $image_type; ?>", title: ceEscapeString($("#title").val()), caption: ceEscapeString($("#caption").val()), description: ceEscapeString($("#descrip").val())};
+  var dataArray = {data: ceEscapeString(imageData),
+    tmploc: ceEscapeString("<?php echo $image_tmp_location; ?>"),
+    type: "<?php echo $image_type; ?>", 
+    title: ceEscapeString($("#title").val()),
+    caption: ceEscapeString($("caption").val()),
+    description: ceEscapeString($("descrip").val())};
+  // This simplifies the ajax process.
+  //      age to accept request, data,      where to redirect to later on.
+  ceAjaxSend("acceptImages.php", dataArray, "photo_gallery_location");
+});
+```
+
+Now, we're done editing the image.  We only need to create _acceptImages.php_, which will actually add these photos onto our wordpress pages.
+
+####Section 4
+_acceptImages.php_ will be written completely in PHP.  The user will never actually see this page, so we don't have to write any HTML, CSS, or Javascript to enclose the page.  It will all be enclosed in php tags.
+
+First, let's intercept the POST information that was sent to us from the browser AJAX.  Remember the array we used to send this informmation:
+```javascript
+  var dataArray = {data: ceEscapeString(imageData),
+    tmploc: ceEscapeString("<?php echo $image_tmp_location; ?>"),
+    type: "<?php echo $image_type; ?>", 
+    title: ceEscapeString($("#title").val()),
+    caption: ceEscapeString($("caption").val()),
+    description: ceEscapeString($("descrip").val())};
+```
+Therefore, we're looking for these:
+```php
+$image_data = $_POST['data'];
+$old_location = $_POST['tmploc'];
+$image_type = $_POST['type'];
+$image_title = $_POST['title'];
+$image_caption = $_POST['caption'];
+$image_description = $_POST['description'];
+```
+The only reason we needed the old location is so we can delete the old image.  We have all our new data in $image&#95;data, so we can now delete the old file.
 
 ######I'm running out of time, so a summary of the rest:
 + Change the php so that it saves in the wordpress directory (incl. random string)
