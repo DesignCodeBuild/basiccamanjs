@@ -414,11 +414,19 @@ $("#submit").on("click", function(){
 ```
 
 Now, we're done editing the image.  We only need to create _acceptImages.php_, which will actually add these photos onto our wordpress pages.
-
+######Remember to prevent submission if there's no title.
 ####Section 4
 _acceptImages.php_ will be written completely in PHP.  The user will never actually see this page, so we don't have to write any HTML, CSS, or Javascript to enclose the page.  It will all be enclosed in php tags.
 
-First, let's intercept the POST information that was sent to us from the browser AJAX.  Remember the array we used to send this informmation:
+First: We don't want this file to make changes if there is no image data.  Otherwise, we might create null entries in the wordpress database.
+```php
+if(isset($_POST['data']))
+{
+  // All our code will go here.
+}
+```
+
+Then, let's intercept the POST information that was sent to us from the browser AJAX.  Remember the array we used to send this informmation:
 ```javascript
   var dataArray = {data: ceEscapeString(imageData),
     tmploc: ceEscapeString("<?php echo $image_tmp_location; ?>"),
@@ -436,7 +444,51 @@ $image_title = $_POST['title'];
 $image_caption = $_POST['caption'];
 $image_description = $_POST['description'];
 ```
+We escaped some of these strings previously, so let's use _ce&#95;unescape&#95;string_ to undo this.
+```php
+$image_data = ce_unescape_string($_POST['data']);
+$old_location = ce_unescape_string($_POST['tmploc']);
+$image_type = $_POST['type'];
+$image_title = ce_unescape_string($_POST['title']);
+$image_caption = ce_unescape_string($_POST['caption']);
+$image_description = ce_unescape_string($_POST['description']);
+```
+
 The only reason we needed the old location is so we can delete the old image.  We have all our new data in $image&#95;data, so we can now delete the old file.
+
+We use the _unlink()_ function for this:
+```php
+unlink($old_location);
+```
+Now, let's write down all the image data to a file.  How should we name it?  We don't know what the image was originally called, but we can use a random string to decrease the likelihood of finding repeats.
+```php
+require_once("basicCaman.php");
+// ...
+$filename = ce_random_string() . "." $image_type;
+```
+If we want this to work with wordpress, however, we want it to go to the correct image directory.  We need to include another file, which comes from wordpress.
+```php
+require_once("../wp-config.php"); // Remember to point to the base wordpress installation directory
+```
+This allows us to use 
+```php
+ABSPATH
+ ```
+which provides the absolute path to the wordpress home directory.  Now, use a function from basicCaman.php
+```php
+ce_get_media_directory($a_string_pointing_to_wordpress_home /* "../" */);
+```
+It will return a string pointing to the directory, and create directories if needed.  A completed file name:
+```php
+$file_path = ABSPATH . ce_get_media_directory("../") . $filename;
+```
+Now, write to file:
+```php
+    $filestream = fopen($file_path, "wb");
+    fwrite($filestream, ce_base64_to_image($image_data));
+    fclose($filestream);
+```
+We use _ce&#95;base64&#95;to&#95;image()_ because previously, Camanjs encoded the image in base64 characters.
 
 ######I'm running out of time, so a summary of the rest:
 + Change the php so that it saves in the wordpress directory (incl. random string)
