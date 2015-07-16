@@ -5,7 +5,7 @@
   <style type="text/css">
     body
     {
-      
+
     }
     /* Making the "Choose file" button less ugly */
     div.uploadButton
@@ -50,7 +50,7 @@
       if(strExt == "jpg" || strExt == "png" || strExt == "jpeg")
       {
         document.getElementById("imageForm").submit();
-        equiv. jQuery: $("#imageForm").submit();
+        //equiv. jQuery: $("#imageForm").submit();
       }
       else
       {

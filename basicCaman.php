@@ -48,7 +48,7 @@
     $hash = substr(base_convert(hash("md5", microtime(), false), 16, 32), 0, 11);
     return $hash;
   }
-  
+
   // Using the uploads/year/month format, this will return the current directory
   //   or create it if it doesn't exist.
   function ce_get_media_directory($ce_wordpress_dir = "./", $ce_base = "wp-content/uploads/")
@@ -98,7 +98,7 @@
   {
     return html_entity_decode($input);
   }
-  
+
   function ce_base64_to_image($input)
   {
     $dataArr = explode(',', $input);
@@ -118,7 +118,7 @@
     $ce_sizes['sixzerofour'] = array('width' => 604, 'height' => 270, 'crop'=>true);
     return $ce_sizes;
   }
-  
+
   function ce_smaller_image($ce_image_location)
   {
     $ce_image_data = wp_get_image_editor($ce_image_location);
@@ -160,7 +160,7 @@
       'post_mime_type'	=> $ce_imageMimeType
     );
 
-    $ce_imageLocation = $ce_filename
+    $ce_imageLocation = $ce_filename;
     echo "iloc: " . $ce_imageLocation . "<br />";
     $attach_ID = wp_insert_attachment($UploadPicture, $ce_imageLocation);
     $attach_data = wp_generate_attachment_metadata($attach_ID, $ce_imageLocation);
@@ -178,12 +178,12 @@
     // (if there is no gallery, exit.)
     if($startpos === false)
       return false;
-    
+
     // Cut off anything before "[gallery.." and save it
     $ce_begin_portion = substr($ce_oldcontent, 0, $ce_startpos);
     // Gallery portion is "[gallery.." and after
     $ce_gallery_portion = substr($ce_oldcontent, $ce_startpos);
-    
+
     // Find where '[gallery..' ends: where there is a ']'.
     $ce_endpos = strpos($ce_gallery_portion, ']');
     // Cut off the end, and save it (if there are more characters there.
@@ -213,7 +213,7 @@
     $ce_postdata->post_content=$ce_newdata;
     // Make the changes live in the database.
     wp_update_post($ce_postdata);
-    
+
   }
 
 ?>
