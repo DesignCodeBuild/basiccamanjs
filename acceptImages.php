@@ -27,7 +27,7 @@
     fclose($filestream);
   
     ce_create_thumbnails($image_directory.$image_name.".".$image_type);
-    $image_id = ce_add_to_database($image_directory, $image_name, $image_type, $image_mime_type, $image_title, $image_caption, $image_description);
+    $image_id = ce_add_to_database($image_directory. $image_name.".". $image_type, $image_mime_type, $image_title, $image_caption, $image_description);
     ce_add_to_photo_gallery($ce_photo_gallery_ID, $image_id);
     echo "</body></html>";
   }

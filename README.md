@@ -490,17 +490,24 @@ Now, write to file:
 ```
 We use _ce&#95;base64&#95;to&#95;image()_ because previously, Camanjs encoded the image in base64 characters.
 
-######I'm running out of time, so a summary of the rest:
-+ Change the php so that it saves in the wordpress directory (incl. random string)
-+ Add a button and javascript to handle exporting the data to base64
-+ base64 encode.
-+ Now, you have to create a php file to accept all of this data.
-+ In this third file:
-  - Save new image to file
-  - Use basicCaman.php: make sure that paths are correct, esp. line 3 or 4 of basicCaman.php
-  - Create thumbnails.
-  - Insert into wordpress databases
-  - Edit your gallery to include the new image.
+We now need to create thumbnails.  To avoid having to find the correct sizes, we can use another function from _basicCaman.php_.
+```php
+    ce_create_thumbnails($file_path);
+```
+Although we created thumbnails, wordpress still doesn't know about the existence of these images.
+```php
+    $image_id = ce_add_to_database($file_path, $image_mime_type, $image_title, $image_caption, $image_description);
+```
+Remember to store the image id.  This allows us to enter it into our gallery.
+
+Finally, make sure we have the wordpress gallery on a page. Find the page id.  Then, use this final function:
+```php
+    $ce_photo_gallery_ID = 4; \\ Or whatever the page's id is
+    // image_id is from the previous function
+    ce_add_to_photo_gallery($ce_photo_gallery_ID, $image_id);
+```
+
+That should be it!
 
 ##Currently...
 + begin.php -> second.php -> w/acceptImages.php (through ajax)

@@ -45,7 +45,7 @@
 
   function ce_random_string()
   {
-    $hash = substr(base_convert(hash("md5", date("d m Y G i s u"), false), 16, 32), 0, 11);
+    $hash = substr(base_convert(hash("md5", microtime(), false), 16, 32), 0, 11);
     return $hash;
   }
   
@@ -141,11 +141,13 @@
     }
   }
 
-  function ce_add_to_database($ce_directory, $ce_imageName, $ce_imageExtention, $ce_imageMimeType, $ce_imageTitle, $ce_imageCaption, $ce_imageDescription)
+
+
+  function ce_add_to_database($ce_filename, $ce_imageMimeType, $ce_imageTitle, $ce_imageCaption, $ce_imageDescription)
   {
     if(trim($ce_imageTitle) == "")
     {
-      $ce_imageTitle = $ce_imageName;
+      $ce_imageTitle = "Image";
     }
     $UploadPicture = array(
       //'ID'		=> {}, // leave empty to specify that this is a NEW
@@ -158,7 +160,7 @@
       'post_mime_type'	=> $ce_imageMimeType
     );
 
-    $ce_imageLocation = $ce_directory . $ce_imageName . "." . $ce_imageExtention;
+    $ce_imageLocation = $ce_filename
     echo "iloc: " . $ce_imageLocation . "<br />";
     $attach_ID = wp_insert_attachment($UploadPicture, $ce_imageLocation);
     $attach_data = wp_generate_attachment_metadata($attach_ID, $ce_imageLocation);
