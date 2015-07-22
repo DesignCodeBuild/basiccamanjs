@@ -21,18 +21,18 @@ if($image_extension === false)
   // Redirect to the previous page, and tell it that the image type was incorrect.
   header( "Location: begin.php?q=type" ) ;
 }
-else 
+else
 {
   // Create a random string of numbers and characters to use as a file name.
   $random_string = ce_random_string();
   // Make a file name from the random numbers and extension.
-  $filename = $random_string . "." . $image_extension; 
+  $filename = $random_string . "." . $image_extension;
 
   // Figure out where we will put the images.
   $dir = "tmp_images/";
   // Combine the file name and directories to determine where the file will go
   $target_file = $dir . $filename;
-  
+
   // Move the temporary image file to a new location.
   if(move_uploaded_file($image_data["tmp_name"], $target_file))
   {
@@ -91,8 +91,8 @@ else
       camanObject.render();
     });
 
-    $(" #revert ").on("click", function(){
-      camanObject.revert(false);
+    $(" #remove ").on("click", function(){
+      camanObject.revert(true);
     });
     $(" #next ").on("click", function(){
       var imageData = camanObject.toBase64("<?php echo ce_caman_image_type($image_extension); ?>");
@@ -169,6 +169,6 @@ div.two
   <input type="hidden" name="data" id="imageData" value="" /> <!--Will be filled in with javascript-->
   <input type="hidden" name="type" id="imageType" value="<?php echo $image_extension; ?>" />
 </form>
-  
+
 </body>
 </html>
