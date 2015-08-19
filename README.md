@@ -1,4 +1,4 @@
-#Simplified Caman.js & Wordpress
+#Simplified [Caman.js](https://github.com/meltingice/CamanJS) & Wordpress
 
 ## Important notes
 + Require a title
