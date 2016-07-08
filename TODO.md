@@ -1,0 +1,5 @@
+- MAKE A NOTES.md for caman.
+- wireframes?
+- add comments or likes
+- database 
+- 

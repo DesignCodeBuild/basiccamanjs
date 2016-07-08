@@ -44,7 +44,7 @@ function uploadImage()
 Or, using jQuery:
 ```javascript
 $( document ).ready(function() {
-  $("#image").on("change, function(){
+  $("#image").on("change", function(){
     $("#imageForm").submit();
   });
 });
