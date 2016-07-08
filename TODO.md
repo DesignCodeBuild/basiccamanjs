@@ -2,4 +2,5 @@
 - wireframes?
 - add comments or likes
 - database 
+- Create thumbnails (WITHOUT wordpress) (gd image functions work)
 - 
