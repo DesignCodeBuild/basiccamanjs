@@ -3,4 +3,7 @@
 - add comments or likes
 - database 
 - Create thumbnails (WITHOUT wordpress) (gd image functions work)
-- 
+- Custom filter settings; NON MINIFIED 
+- Comment in the camanjs
+- Database system
+- Overlay words / may mays

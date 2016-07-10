@@ -1,15 +1,73 @@
 <?php
 
+  /*
   require_once('../wp-config.php');
   require_once(ABSPATH.'wp-includes/functions.php');
   require_once(ABSPATH.'wp-includes/media.php');
   require_once(ABSPATH.'wp-includes/option.php' );
   require_once(ABSPATH.'wp-includes/post.php' );
-  require_once(ABSPATH.'wp-admin/includes/image.php' );
+  require_once(ABSPATH.'wp-admin/includes/image.php' ); */
 
+  
+  //simplifies resizing using GD functions
+  function ce_img_resize($inputfilename, $outputfilename, $type, $width, $height, $crop = true)
+  {
+	$src_image;
+	if($type == "jpg")
+	  $src_image = imagecreatefromjpeg($inputfilename);
+	else if($type == "png")
+	  $src_image = imagecreatefrompng($inputfilename);
+	else if($type == "gif")
+	  $src_image = imagecreatefromgif($inputfilename);
+	else
+	  return false;
+	  
+    $old_x=imageSX($src_image);
+    $old_y=imageSY($src_image);
+    $thumb_x;
+    $thumb_y;
+    $new_x = $width;
+    $new_y = $height;
+    
+    $smallerProp = min($old_x/$new_x, $old_y/$new_y);
+    $src_w = intval($new_x*$smallerProp);
+    $src_h = intval($new_y*$smallerProp);
+  
+    $src_x = ($old_x-$src_w)/2;
+    $src_y = ($old_y-$src_h)/2;
+  //  echo $src_x . " " . $src_y;
+  
+    if(!$crop)
+    {
+      $src_x = $src_y = 0;
+      $src_w = $old_x;
+      $src_h = $old_y;
+    }
+  
+    $dst_image;
+    $dst_image=ImageCreateTrueColor($new_x,$new_y);
+  
+    imagecopyresampled($dst_image, $src_image,
+      0,0,
+      $src_x, $src_y,
+      $new_x, $new_y,
+      $src_w, $src_h);
+    
+    
+    if($type == "jpg")
+      imagejpeg($dst_image, $outputfilename);
+    else if($type == "png")
+      imagepng($dst_image, $outputfilename);
+    else if($type == "gif")
+      imagegif($dst_image, $outputfilename);
+    
+    return true;
+  }
+  
   // Takes mime type and returns extension (png or jpg)
   // Returns (false) if the extension is unsupported
   //    Otherwise, it returns the extension ("png" or "jpg")
+    
   function ce_find_extension($ce_image_type)
   {
     $ce_extension;
@@ -19,8 +77,11 @@
 
     if($ce_image_type == "image/png")
       $ce_extension = "png";
+    
+    if($ce_image_type == "image/gif")
+      $ce_extension = "gif";
 
-    if($ce_image_type != "image/jpg" && $ce_image_type != "image/jpeg" && $ce_image_type != "image/png")
+    if($ce_image_type != "image/jpg" && $ce_image_type != "image/jpeg" && $ce_image_type != "image/png" && $ce_image_type != "image/gif")
       $ce_extension = false;
 
     return $ce_extension;
@@ -30,6 +91,7 @@
   // Returns (false) if the extension is unsupported.
   function ce_create_mime_type($ce_extension)
   {
+	$ce_extension = strtolower($ce_extension);
     $ce_mime_type;
 
     if($ce_extension == "png")
@@ -37,8 +99,11 @@
 
     if($ce_extension == "jpeg" || $ce_extension == "jpg")
       $ce_mime_type = "image/jpeg";
+      
+    if($ce_extension == "gif")
+      $ce_mime_type = "image/gif";
 
-    if($ce_extension != "jpeg" && $ce_extension != "jpg" && $ce_extension != "png")
+    if($ce_extension != "jpeg" && $ce_extension != "jpg" && $ce_extension != "png" && $ce_extension != "gif")
       $ce_mime_type = false;
     return $ce_mime_type;
   }
@@ -51,6 +116,8 @@
 
   // Using the uploads/year/month format, this will return the current directory
   //   or create it if it doesn't exist.
+  
+  /*
   function ce_get_media_directory($ce_wordpress_dir = "./", $ce_base = "wp-content/uploads/")
   {
     // Find out the current year
@@ -65,7 +132,7 @@
     if(!is_dir($ce_wordpress_dir.$ce_media_dir))
       mkdir($ce_wordpress_dir.$target_dir);
     return $ce_media_dir;
-  }
+  }*/
 
   // When exporting as base64 data, must specify either "jpeg" or "png"
   //   It uses "jpeg" instead of "jpg"
@@ -105,6 +172,7 @@
     return base64_decode($dataArr[1]);
   }
 
+/*
   function ce_get_image_sizes()
   {
     $ce_sizes = array();
@@ -117,8 +185,9 @@
       // This one is hard to find: I think it depends on the theme.
     $ce_sizes['sixzerofour'] = array('width' => 604, 'height' => 270, 'crop'=>true);
     return $ce_sizes;
-  }
+  } */
 
+/*
   function ce_smaller_image($ce_image_location)
   {
     $ce_image_data = wp_get_image_editor($ce_image_location);
@@ -129,8 +198,22 @@
     }
     else
       return false;
+  } */
+  
+  function ce_smaller_image($ce_image_location)
+  {
+	ce_img_resize($ce_image_location, $ce_image_location, 
+	              ce_find_extension(mime_content_type($ce_image_location)),
+	              640, 640, true );
+  }
+  
+  function ce_create_thumbnails($ce_image_location)
+  {
+	  $sizes["100x100"] = [100,100];
+	  
   }
 
+/*
   function ce_create_thumbnails($ce_image_location)
   {
     $requiredSizes = ce_get_image_sizes();
@@ -139,10 +222,10 @@
     {
       $iarray = $image->multi_resize($requiredSizes);
     }
-  }
+  } */
 
 
-
+/*
   function ce_add_to_database($ce_filename, $ce_imageMimeType, $ce_imageTitle, $ce_imageCaption, $ce_imageDescription)
   {
     if(trim($ce_imageTitle) == "")
@@ -166,8 +249,8 @@
     $attach_data = wp_generate_attachment_metadata($attach_ID, $ce_imageLocation);
     wp_update_attachment_metadata($attach_ID, $attach_data);
     return $attach_ID;
-  }
-
+  } */
+/*
   function ce_add_to_photo_gallery($ce_gallery_id, $ce_image_id)
   {
     // Get that post's content, eg "...[gallery ids="1, 2, 5"]..."
@@ -214,6 +297,6 @@
     // Make the changes live in the database.
     wp_update_post($ce_postdata);
 
-  }
+  } */
 
 ?>

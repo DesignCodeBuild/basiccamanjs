@@ -2,10 +2,9 @@
 $inputfilename = "IMG_6117.JPG";
 $outputfilename = "thumb.jpg";
 
-
-function imgResize($filename, $width, $height, $crop = true)
+function ce_img_resize($inputfilename, $outputfilename, $type, $width, $height, $crop = true)
 {
-  $src_image = imagecreatefromjpeg($filename);
+  $src_image = imagecreatefromjpeg($inputfilename);
 //  echo "yay we're resizing";
   $old_x=imageSX($src_image);
   $old_y=imageSY($src_image);
@@ -43,7 +42,7 @@ function imgResize($filename, $width, $height, $crop = true)
   return $dst_image;
 } 
 
-$output = imgResize($inputfilename, 400, 400, true);
+$output = ce_img_resize($inputfilename, $outputfilename, "jpg", 400, 400, true);
 header('Content-Type:image/jpeg');
 imagejpeg($output);
 

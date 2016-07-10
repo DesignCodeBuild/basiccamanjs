@@ -20,6 +20,7 @@ if($image_extension === false)
 {
   // Redirect to the previous page, and tell it that the image type was incorrect.
   header( "Location: begin.php?q=type" ) ;
+  
 }
 else
 {
@@ -32,6 +33,7 @@ else
   $dir = "tmp_images/";
   // Combine the file name and directories to determine where the file will go
   $target_file = $dir . $filename;
+  //echo $target_file;
 
   // Move the temporary image file to a new location.
   if(move_uploaded_file($image_data["tmp_name"], $target_file))
@@ -42,8 +44,8 @@ else
   // If moving the file is unsuccessful, redirect to the last page to report that it didn't work.
   else
   {
-    // Redirect to the previous page, and tell it that the image type was incorrect.
-    header( 'Location: begin.php?q=error' ) ;
+    // Redirect to the previous page, and tell it that there was an unknown error
+    //header( 'Location: begin.php?q=error' ) ;
   }
 }
 
