@@ -29,6 +29,14 @@
     $new_x = $width;
     $new_y = $height;
     
+    if($new_x > $old_x)
+      $new_x = $old_x;
+    if($new_y > $old_y)
+      $new_y = $old_y;
+      
+    if($new_x == $old_x && $new_y == $old_y)
+      return true;
+    
     $smallerProp = min($old_x/$new_x, $old_y/$new_y);
     $src_w = intval($new_x*$smallerProp);
     $src_h = intval($new_y*$smallerProp);
@@ -200,17 +208,41 @@
       return false;
   } */
   
+  function ce_extension_from_filename($filename)
+  {
+    $lastperiod = strrpos($filename, ".");
+    if($lastperiod > 0 && $lastperiod < strlen($filename)-1)
+    {
+      $ext = substr($filename, $lastperiod+1);
+      $mime = ce_create_mime_type($ext);
+      return ce_find_extension($mime);
+    }
+    else
+      return false;
+  }
+  
   function ce_smaller_image($ce_image_location)
   {
 	ce_img_resize($ce_image_location, $ce_image_location, 
-	              ce_find_extension(mime_content_type($ce_image_location)),
+	              ce_extension_from_filename($ce_image_location),
 	              640, 640, true );
   }
   
   function ce_create_thumbnails($ce_image_location)
   {
-	  $sizes["100x100"] = [100,100];
-	  
+
+	  $sizes["100x100"] = array(100,100);
+	  foreach($sizes as $name=>$size )
+	  {
+		  // strrpos = str[Reverse]pos
+		  $extension = ce_extension_from_filename($ce_image_location);
+		  $dotpos = strrpos($ce_image_location, ".");
+		  $thumb_name = substr($ce_image_location, 0, $dotpos);
+		  $thumb_name .= "-" . $name . "." . $extension;
+		  
+		  //              input file,         save file, jpg/png,     width,     height, crop?
+		  ce_img_resize($ce_image_location, $thumb_name, $extension, $size[0], $size[1], true);
+	  } 
   }
 
 /*
@@ -224,6 +256,32 @@
     }
   } */
 
+
+  function ce_add_to_database($data, $databasename, $username, $password, $tablename)
+  {
+  //$filename, $imageTitle, $imageCaption, $imageDescription
+  
+  if(!isset($data['filename'])
+  || !isset($data['title'])
+  || !isset($data['caption'])
+  || !isset($data['description']))
+    return false;
+
+  if(trim($data['title']) == "")
+    $data['title'] = "Image";
+
+  $conn = new pdo();
+  $conn = new mysqli("localhost",$username,$password,$databasename);
+
+  $stm = "INSERT INTO $tablename(filename, title, caption, description)".
+    " VALUES (?,?,?,?,?)";
+  $stmt = $conn->prepare($stm);
+  $stmt->bind_param("ssss", $data[0], $data[1], $data[2], $data[3]);
+  $stmt->execute();
+
+  $conn->close();
+  
+  }
 
 /*
   function ce_add_to_database($ce_filename, $ce_imageMimeType, $ce_imageTitle, $ce_imageCaption, $ce_imageDescription)

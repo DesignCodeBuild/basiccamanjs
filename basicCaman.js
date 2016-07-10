@@ -102,9 +102,10 @@
       url: actionLocation,
       data: dataArray
       //{data: ceEscapeString(imageData), name: imageName, type: imageType, dir: ceEscapeString(imageDir), title: ceEscapeString(imageTitle), caption: ceEscapeString(imageCaption), description: ceEscapeString(imageDescription)}
-    }).done(function(){ 
+    }).done(function(result){ 
     if(redirectLocation != "")
-      window.location.replace(redirectLocation);
+      console.log(result);
+      //window.location.replace(redirectLocation);
     });
 
    

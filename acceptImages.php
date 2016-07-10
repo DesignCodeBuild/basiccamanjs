@@ -1,6 +1,7 @@
 <?php
   
   require_once('basicCaman.php');
+  require_once('database_config.php');
 
   $ce_photo_gallery_ID = 4;
 
@@ -12,7 +13,11 @@
   $image_caption = ce_unescape_string($_POST['caption']);
   $image_title = ce_unescape_string($_POST['title']);
 
+/*
   $image_directory = ABSPATH. ce_get_media_directory("../");
+  */
+  
+  $image_directory = "./images/";
 
   $image_name = ce_random_string();
 
@@ -26,9 +31,13 @@
     fwrite($filestream, ce_base64_to_image($image_data));
     fclose($filestream);
   
-    ce_create_thumbnails($image_directory.$image_name.".".$image_type);
-    $image_id = ce_add_to_database($image_directory. $image_name.".". $image_type, $image_mime_type, $image_title, $image_caption, $image_description);
-    ce_add_to_photo_gallery($ce_photo_gallery_ID, $image_id);
+    ce_create_thumbnails($image_directory . $image_name . "." . $image_type);
+    $data['filename'] = $image_name.".".$image_type;
+    $data['title'] = $image_title;
+    $data['caption'] = $image_caption;
+    $data['description'] = $image_description;
+    ce_add_to_database($data, C_DATABASENAME, C_USERNAME, C_PASSWORD, C_TABLE);
+//    ce_add_to_photo_gallery($ce_photo_gallery_ID, $image_id);
     echo "</body></html>";
   }
   else
