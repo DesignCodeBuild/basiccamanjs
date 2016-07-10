@@ -270,14 +270,14 @@
   if(trim($data['title']) == "")
     $data['title'] = "Image";
 
-  $conn = new pdo();
   $conn = new mysqli("localhost",$username,$password,$databasename);
 
   $stm = "INSERT INTO $tablename(filename, title, caption, description)".
-    " VALUES (?,?,?,?,?)";
+    " VALUES (?,?,?,?)";
   $stmt = $conn->prepare($stm);
-  $stmt->bind_param("ssss", $data[0], $data[1], $data[2], $data[3]);
+  $stmt->bind_param("ssss", $data['filename'], $data['title'], $data['caption'], $data['description']);
   $stmt->execute();
+  $stmt->close();
 
   $conn->close();
   
