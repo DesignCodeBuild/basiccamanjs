@@ -245,6 +245,17 @@
 	  } 
   }
 
+  function ce_add_thumbnail_suffix($ce_image_location)
+  {
+    $name = "100x100";
+    $extension = ce_extension_from_filename($ce_image_location);
+    $dotpos = strrpos($ce_image_location, ".");
+    $thumb_name = substr($ce_image_location, 0, $dotpos);
+    $thumb_name .= "-" . $name . "." . $extension;
+    
+    return $thumb_name;
+  }
+
 /*
   function ce_create_thumbnails($ce_image_location)
   {
@@ -281,6 +292,22 @@
 
   $conn->close();
   
+  }
+
+  function ce_get_database_list($databasename, $username, $password, $tablename)
+  {
+    $conn = new mysqli("localhost",$username,$password,$databasename);
+
+    if($result = $conn->query("SELECT * FROM $tablename", MYSQLI_USE_RESULT))
+    {
+      $out = array();
+      while($row = $result->fetch_array())
+        $out[] = $row;
+      $conn->close();
+      return $out;
+    }
+
+    $conn->close();
   }
 
 /*
