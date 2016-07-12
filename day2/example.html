@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Initial Caman JS Tests</title>
+<script type="text/javascript" src="caman.full.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="../basicCaman.js"></script>
+<script>
+$( document ).ready(function() {
+  var camanObject = Caman("#toEdit");
+  $(" #vintage ").on("click", function(){
+    camanObject.revert(false);
+    camanObject["vintage"]();
+    camanObject.render();
+  });
+});
+</script>
+</head>
+<body>
+  <img src="uno.png" id="toEdit" />
+<br /><br />
+  <button class="btn btn-default" style="width:120px" id="vintage">Vintage</button>
+</body>
+</html>
+

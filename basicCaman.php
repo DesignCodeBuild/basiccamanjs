@@ -227,11 +227,18 @@
 	              ce_extension_from_filename($ce_image_location),
 	              640, 640, true );
   }
+
+  function ce_get_sizes()
+  {
+    $sizes = array();
+    $sizes["100x100"] = array(100,100);
+    return $sizes;
+  }
   
   function ce_create_thumbnails($ce_image_location)
   {
 
-	  $sizes["100x100"] = array(100,100);
+	  $sizes = ce_get_sizes();
 	  foreach($sizes as $name=>$size )
 	  {
 		  // strrpos = str[Reverse]pos
