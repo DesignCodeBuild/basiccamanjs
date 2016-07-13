@@ -14,7 +14,7 @@ Javascript runs on the **client** browser.  PHP runs on the **server**.
 
 PHP can be integrated with HTML code like this:
 
-```html
+```php
 <!DOCTYPE html>  
 <html>  
 <head>  
