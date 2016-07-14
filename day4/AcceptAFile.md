@@ -88,11 +88,4 @@ else
     //header( 'Location: begin.php?q=error' ) ;
   }
 }
-
-?>
-<!doctype html>
-<html>
-<head>
-  <title>Select A Filter</title>
-  <script type="text/javascript" src="caman/caman.full.min.js"></script>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+```
