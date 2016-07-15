@@ -43,7 +43,7 @@ Description: <input type="text" id="descrip" /><br />
     $( "#save" ).on("click", function(){
       camanObject.render(function(){
         var imageData = camanObject.toBase64("<?php echo ce_caman_image_type($image_type); ?>");
-        var allData = {data: ceEscapeString(imageData), tmploc: ceEscapeString("<?php echo $image_tmp_location; ?>"), type: "<?php echo $image_type; ?>", title: ceEscapeString($("#title").val()), caption: ceEscapeString($("#caption").val()), description: ceEscapeString($("#descrip").val())};
+        var allData = {data: ceEscapeString(imageData), tmploc: ceEscapeString("<?php echo $target_file; ?>"), type: "<?php echo $image_extension; ?>", title: ceEscapeString($("#title").val()), caption: ceEscapeString($("#caption").val()), description: ceEscapeString($("#descrip").val())};
         ceAjaxSend("acceptImages.php", allData, "./gallery.php");
 //"../index.php/photo-gallery/", imageData, "<?php echo $random_string; ?>", "<?php echo $image_extension; ?>", "<?php echo $wp_media_dir; ?>", $("#title").val(), $("#caption").val(),$("#descrip").val());
     });
