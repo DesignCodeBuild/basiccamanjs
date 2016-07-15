@@ -90,7 +90,7 @@ else
   else
   {
     // Redirect to the previous page, and tell it that there was an unknown error
-    //header( 'Location: begin.php?q=error' ) ;
+    header( 'Location: begin.php?q=error' ) ;
   }
 }
 ```
