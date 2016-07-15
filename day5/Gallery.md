@@ -1,6 +1,6 @@
 #Gallery
 
-**Create your gallery page.**
+##Create your gallery page.
 
 Create a new .php file and name it gallery.php. Start it off as another basic web page by either typing the code below or copying and pasting the code from yesterday's **select.php** file - but delete everything inside ````<body>... </body>```` and ````<script>... </script>````. It should look like this:
 
@@ -25,9 +25,11 @@ Create a new .php file and name it gallery.php. Start it off as another basic we
 </body>
 </html>
 ````
-(Where it says http://yourname.designcode... of course change yourname to your directory name.)
+**(Where it says http://yourname.designcode... of course change yourname to your directory name.)**
 
-**Now, add the code to display the images that have been uploaded, edited with filters, and saved. Inside ````<body>... </body>````, add this:
+##Add the code to display the uploaded and edited images
+
+**Inside ````<body>... </body>````, add this:
 
 ````
  <h1>Gallery</h1>
@@ -49,4 +51,8 @@ Create a new .php file and name it gallery.php. Start it off as another basic we
   </div>
 ````
 
-And again, where it says "yourname", change it to the name of your database. Hint: you probably named the database after your application, rather than your own name. If you are unsure, go to yourname.designcodebuild.com:2083, log in, find the **phpMyAdmin** button to look at your database and confirm.
+And again, where it says "yourname", change it to the name of your database. **Hint:** you probably named the database after your application, rather than your own name. If you are unsure, go to yourname.designcodebuild.com:2083, log in, find the **phpMyAdmin** button to look at your database and confirm. Write down the database details in your notebook.
+
+
+
+
