@@ -1,5 +1,15 @@
 #Accept A File Upload
 
+##First, fix the send file:
+
+Form should have;
+
+```html
+  <form ... enctype="multipart/form-data">
+```
+
+##Start filters.php
+
 This is for **filters.php**
 
 Again, start off with your standard HTML setup:
