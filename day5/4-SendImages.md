@@ -32,7 +32,7 @@ Add inputs for title caption, description:
 ```html
 Title: <input type="text" id="title" /><br />
 Caption: <input type="text" id="caption" /><br />
-Description: <input type="text" id="description" /><br />
+Description: <input type="text" id="descrip" /><br />
 ```
 
 **Alternatively** if you don't want this, ask one of us.
@@ -41,10 +41,8 @@ Description: <input type="text" id="description" /><br />
 
 ```javascript
     $( "#save" ).on("click", function(){
-      caman.revert(false);
-      ceUpdateCaman(caman, MyControls);
-      caman.render(function(){
-        var imageData = caman.toBase64("<?php echo ce_caman_image_type($image_type); ?>");
+      camanObject.render(function(){
+        var imageData = camanObject.toBase64("<?php echo ce_caman_image_type($image_type); ?>");
         var allData = {data: ceEscapeString(imageData), tmploc: ceEscapeString("<?php echo $image_tmp_location; ?>"), type: "<?php echo $image_type; ?>", title: ceEscapeString($("#title").val()), caption: ceEscapeString($("#caption").val()), description: ceEscapeString($("#descrip").val())};
         ceAjaxSend("acceptImages.php", allData, "./gallery.php");
 //"../index.php/photo-gallery/", imageData, "<?php echo $random_string; ?>", "<?php echo $image_extension; ?>", "<?php echo $wp_media_dir; ?>", $("#title").val(), $("#caption").val(),$("#descrip").val());
