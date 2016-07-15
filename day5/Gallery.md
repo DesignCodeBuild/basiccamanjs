@@ -60,7 +60,20 @@ And again, where it says "yourname", change it to the name of your database. **H
 Open style.css, and add the following styles:
 
 ````
-
+#contain {
+  width:670px;
+  display:block;
+  margin: 0 auto;
+}
+#img {
+  width:100px;
+  margin: 5px;
+  float:left;
+}
+h1 {
+  text-align:center;
+}
+</style>
 
 ````
 
