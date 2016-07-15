@@ -42,6 +42,9 @@ $mimeType = $image_data['type'];
 //   If it is unsupported, it will return (false).
 $image_extension = ce_find_extension($mimeType);
 
+// Variable for file name
+$target_file;
+
 echo "This is a " . $image_extension . " file!";
 
 ```
