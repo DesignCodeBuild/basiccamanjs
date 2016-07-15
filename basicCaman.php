@@ -301,6 +301,20 @@
   
   }
 
+  function ce_update_reactions($databasename, $username, $password, $tablename, $filename, $reactions)
+  {
+    $conn = new mysqli("localhost",$username,$password,$databasename);
+
+    $stm = "UPATE $tablename SET reactions=? WHERE $filename=?";
+    $stmt = $conn->prepare($stm);
+    $stmt->bind_param("ss", $reactions, $filename);
+    $stmt->execute();
+    $stmt->close();
+    
+
+    $conn->close();
+  }
+
   function ce_get_database_list($databasename, $username, $password, $tablename)
   {
     $conn = new mysqli("localhost",$username,$password,$databasename);

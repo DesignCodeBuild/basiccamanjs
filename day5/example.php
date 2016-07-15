@@ -68,6 +68,7 @@ $( document ).ready(function() {
   <img src="<?php echo $target_file; ?>" id="toEdit" />
 <br /><br />
   <button class="btn btn-default" style="width:120px" id="vintage">Vintage</button>
+  <button class="btn btn-default" style="width:120px" id="save">Save</button>
 </body>
 </html>
 
