@@ -9,7 +9,7 @@ Create a new .php file and name it gallery.php. Start it off as another basic we
 <html>
 <head>
 <title>Gallery</title>
-    <link href="http://kyell.designcodebuild.com/images/icon.png" rel="apple-touch-icon" sizes="114x114" />
+    <link href="http://yourname.designcodebuild.com/images/icon.png" rel="apple-touch-icon" sizes="114x114" />
     <link rel="stylesheet" href="http://mxcd.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="style.css"/>
     <script type="text/javascript" src="caman.full.js"></script>
@@ -25,6 +25,7 @@ Create a new .php file and name it gallery.php. Start it off as another basic we
 </body>
 </html>
 ````
+(Where it says http://yourname.designcode... of course change yourname to your directory name.)
 
-
+Then, 
 
