@@ -22,7 +22,8 @@ Find the code for the image you previously selected.  The code should look like 
 <img src="[your url]" id="toEdit" />
 ```
 
-Now, replace [your url] with PHP code to output the fi
+Now, replace [your url] with PHP code to output the filename:
 
 ```php
+<img src="<?php echo $target_file; ?>" id="toEdit" />
 ```
