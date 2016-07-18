@@ -8,7 +8,7 @@
   require_once(ABSPATH.'wp-includes/post.php' );
   require_once(ABSPATH.'wp-admin/includes/image.php' ); */
 
-  
+
   //simplifies resizing using GD functions
   function ce_img_resize($inputfilename, $outputfilename, $type, $width, $height, $crop = true)
   {
@@ -21,61 +21,61 @@
 	  $src_image = imagecreatefromgif($inputfilename);
 	else
 	  return false;
-	  
+
     $old_x=imageSX($src_image);
     $old_y=imageSY($src_image);
     $thumb_x;
     $thumb_y;
     $new_x = $width;
     $new_y = $height;
-    
+
     if($new_x > $old_x)
       $new_x = $old_x;
     if($new_y > $old_y)
       $new_y = $old_y;
-      
+
     if($new_x == $old_x && $new_y == $old_y)
       return true;
-    
+
     $smallerProp = min($old_x/$new_x, $old_y/$new_y);
     $src_w = intval($new_x*$smallerProp);
     $src_h = intval($new_y*$smallerProp);
-  
+
     $src_x = ($old_x-$src_w)/2;
     $src_y = ($old_y-$src_h)/2;
   //  echo $src_x . " " . $src_y;
-  
+
     if(!$crop)
     {
       $src_x = $src_y = 0;
       $src_w = $old_x;
       $src_h = $old_y;
     }
-  
+
     $dst_image;
     $dst_image=ImageCreateTrueColor($new_x,$new_y);
-  
+
     imagecopyresampled($dst_image, $src_image,
       0,0,
       $src_x, $src_y,
       $new_x, $new_y,
       $src_w, $src_h);
-    
-    
+
+
     if($type == "jpg")
       imagejpeg($dst_image, $outputfilename);
     else if($type == "png")
       imagepng($dst_image, $outputfilename);
     else if($type == "gif")
       imagegif($dst_image, $outputfilename);
-    
+
     return true;
   }
-  
+
   // Takes mime type and returns extension (png or jpg)
   // Returns (false) if the extension is unsupported
   //    Otherwise, it returns the extension ("png" or "jpg")
-    
+
   function ce_find_extension($ce_image_type)
   {
     $ce_extension;
@@ -85,7 +85,7 @@
 
     if($ce_image_type == "image/png")
       $ce_extension = "png";
-    
+
     if($ce_image_type == "image/gif")
       $ce_extension = "gif";
 
@@ -107,7 +107,7 @@
 
     if($ce_extension == "jpeg" || $ce_extension == "jpg")
       $ce_mime_type = "image/jpeg";
-      
+
     if($ce_extension == "gif")
       $ce_mime_type = "image/gif";
 
@@ -124,7 +124,7 @@
 
   // Using the uploads/year/month format, this will return the current directory
   //   or create it if it doesn't exist.
-  
+
   /*
   function ce_get_media_directory($ce_wordpress_dir = "./", $ce_base = "wp-content/uploads/")
   {
@@ -207,7 +207,7 @@
     else
       return false;
   } */
-  
+
   function ce_extension_from_filename($filename)
   {
     $lastperiod = strrpos($filename, ".");
@@ -220,10 +220,10 @@
     else
       return false;
   }
-  
+
   function ce_smaller_image($ce_image_location)
   {
-	ce_img_resize($ce_image_location, $ce_image_location, 
+	ce_img_resize($ce_image_location, $ce_image_location,
 	              ce_extension_from_filename($ce_image_location),
 	              640, 640, true );
   }
@@ -234,7 +234,7 @@
     $sizes["100x100"] = array(100,100);
     return $sizes;
   }
-  
+
   function ce_create_thumbnails($ce_image_location)
   {
 
@@ -246,10 +246,10 @@
 		  $dotpos = strrpos($ce_image_location, ".");
 		  $thumb_name = substr($ce_image_location, 0, $dotpos);
 		  $thumb_name .= "-" . $name . "." . $extension;
-		  
+
 		  //              input file,         save file, jpg/png,     width,     height, crop?
 		  ce_img_resize($ce_image_location, $thumb_name, $extension, $size[0], $size[1], true);
-	  } 
+	  }
   }
 
   function ce_add_thumbnail_suffix($ce_image_location)
@@ -259,7 +259,7 @@
     $dotpos = strrpos($ce_image_location, ".");
     $thumb_name = substr($ce_image_location, 0, $dotpos);
     $thumb_name .= "-" . $name . "." . $extension;
-    
+
     return $thumb_name;
   }
 
@@ -278,7 +278,7 @@
   function ce_add_to_database($data, $databasename, $username, $password, $tablename)
   {
   //$filename, $imageTitle, $imageCaption, $imageDescription
-  
+
   if(!isset($data['filename'])
   || !isset($data['title'])
   || !isset($data['caption'])
@@ -298,7 +298,7 @@
   $stmt->close();
 
   $conn->close();
-  
+
   }
 
   function ce_update_reactions($databasename, $username, $password, $tablename, $filename, $reactions)
@@ -310,7 +310,7 @@
     $stmt->bind_param("ss", $reactions, $filename);
     $stmt->execute();
     $stmt->close();
-    
+
 
     $conn->close();
   }

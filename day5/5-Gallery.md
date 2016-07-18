@@ -4,7 +4,7 @@
 
 Create a new .php file and name it gallery.php. Start it off as another basic web page by either typing the code below or copying and pasting the code from yesterday's **select.php** file - but delete everything inside ````<body>... </body>```` and ````<script>... </script>````. It should look like this:
 
-````
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,14 +24,14 @@ Create a new .php file and name it gallery.php. Start it off as another basic we
 
 </body>
 </html>
-````
+```
 **(Where it says http://yourname.designcode... of course change yourname to your directory name.)**
 
 ##Add the code to display the uploaded and edited images
 
-**Inside ````<body>... </body>````, add this:
+**Inside ```<body>... </body>```, add this:
 
-````
+```php
  <h1>Gallery</h1>
   <div id="contain">
   <?php
@@ -49,7 +49,7 @@ Create a new .php file and name it gallery.php. Start it off as another basic we
     
   ?>
   </div>
-````
+```
 
 And again, where it says "yourname", change it to the name of your database. **Hint:** you probably named the database after your application, rather than your own name. If you are unsure, go to yourname.designcodebuild.com:2083, log in, find the **phpMyAdmin** button to look at your database and confirm. Write down the database details in your notebook.
 
@@ -59,7 +59,8 @@ And again, where it says "yourname", change it to the name of your database. **H
 
 Open style.css, and add the following styles:
 
-````
+```css
+
 #contain {
   width:670px;
   display:block;
@@ -73,8 +74,6 @@ Open style.css, and add the following styles:
 h1 {
   text-align:center;
 }
-</style>
-
-````
+```
 
 
