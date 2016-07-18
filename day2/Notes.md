@@ -21,21 +21,25 @@ Let's get started:
 
 2. Create a html page
 
-> &lt;!DOCTYPE html&gt;  
-> &lt;html&gt;  
-> &lt;head&gt;  
-> &lt;title&gt;Initial Caman JS Tests&lt;/title&gt;  
-> &lt;/head&gt;  
-> &lt;body&gt;  
-> &lt;/body&gt;  
-> &lt;/html&gt;  
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Initial Caman JS Tests</title>
+</head>
+<body>
+</body>
+</html>
+```
 
 - Find a simple image that we can use for testing
 - Put it in the directory
 - Include the image inside the body.
 	* We will include an "id" which allows us to select this image with javascript.
 
-> &nbsp; &lt;img src="[yourfilename]" id="toEdit" />
+```html
+  <img src="[yourfilename]" id="toEdit" />
+```
 
 ####Section 2 (cont)
 We should now allow the user to add preset filters to their image.  This will primarily require html and javascript.
