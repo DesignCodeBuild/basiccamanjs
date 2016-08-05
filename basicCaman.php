@@ -9,7 +9,7 @@
   require_once(ABSPATH.'wp-admin/includes/image.php' ); */
 
 
-  //simplifies resizing using GD functions
+  //simplifies resizing using GD functions (graphics library in PHP that makes it possible to manipulate files (the $ arguments are what we deem important to the process of resizing - for the filter.php page and gallery.php page)
   function ce_img_resize($inputfilename, $outputfilename, $type, $width, $height, $crop = true)
   {
 	$src_image;
