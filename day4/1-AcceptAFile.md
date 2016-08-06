@@ -94,7 +94,7 @@ else
   if(move_uploaded_file($image_data["tmp_name"], $target_file))
   {
     // This will crop it to no more than 640 px per side.
-    ce_smaller_image($target_file);
+    ce_img_resize($target_file, $target_file, $image_extension, 640,640,true);
   }
   // If moving the file is unsuccessful, redirect to the last page to report that it didn't work.
   else
@@ -143,7 +143,7 @@ else
   if(move_uploaded_file($image_data["tmp_name"], $target_file))
   {
     // This will crop it to no more than 640 px per side.
-    ce_smaller_image($target_file);
+    ce_img_resize($target_file, $target_file, $image_extension, 640,640,true);
   }
   // If moving the file is unsuccessful, redirect to the last page to report that it didn't work.
   else
