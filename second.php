@@ -2,9 +2,6 @@
 // Important functions that make this easier
 require_once("basicCaman.php");
 
-// Identify where wordpress is installed relative to our current directory.
-$wordpress_home = "../";
-
 //Figure out if the image is real and what format it is
 
 //This retrieves all the image data that we sent from the previous HTML file.  It is an array.
