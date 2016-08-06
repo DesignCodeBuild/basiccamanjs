@@ -2,17 +2,17 @@
 
 ##Table of Contents
 
-* [ce\_add\_to\_database](ce_add_to_database)
-* [ce\_base64\_to\_image](ce_base64_to_image)
-* [ce\_caman\_image\_type](ce_caman_image_type)
-* [ce\_create\_mime\_type](ce_create_mime_type)
-* [ce\_escape\_string](ce_escape_string)
-* [ce\_find\_extension](ce_find_extension)
-* [ce\_get\_database\_list](ce_get_database_list)
-* [ce\_image\_resize](ce_image_resize)
-* [ce\_like\_image](ce_like_image)
-* [ce\_random\_string](ce_random_string)
-* [ce\_unescape\_string](ce_unescape_string)
+* [ce\_add\_to\_database](#ce_add_to_database)
+* [ce\_base64\_to\_image](#ce_base64_to_image)
+* [ce\_caman\_image\_type](#ce_caman_image_type)
+* [ce\_create\_mime\_type](#ce_create_mime_type)
+* [ce\_escape\_string](#ce_escape_string)
+* [ce\_find\_extension](#ce_find_extension)
+* [ce\_get\_database\_list](#ce_get_database_list)
+* [ce\_image\_resize](#ce_image_resize)
+* [ce\_like\_image](#ce_like_image)
+* [ce\_random\_string](#ce_random_string)
+* [ce\_unescape\_string](#ce_unescape_string)
 
 
 ##<a name="ce_add_to_database"></a>function ce\_add\_to\_database($data, $databasename, $username, $password, $tablename)
