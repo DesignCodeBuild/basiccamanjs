@@ -16,6 +16,7 @@
 		+ Code Snippet hint for implementing the JS [here](http://www.jsfiddle.net/6pusyskL/)
 		+ Implement a new "().click()" for each button/filter
 		+ Add a "remove filters" button
+		+ Caption textarea/text input
 		+ AJAX to send to *backend save* page to do the saving using [jquery ajax](http://www.w3schools.com/js/js_window_location.asp) and use *POST* not GET for the **method**
 			* Escape problematic characters using ceEscapeString in base64 data using [this code](https://github.com/DesignCodeBuild/basiccamanjs/blob/master/escape.js)
 		+ Redirect to Gallery [with javascript](http://www.w3schools.com/js/js_window_location.asp)
