@@ -127,6 +127,8 @@
         return "jpeg";
       if($ce_extension == "png")
         return "png";
+      if($ce_extension == "gif")
+        return "gif";
     }
     else // If this is actually a mime type
     {
@@ -134,6 +136,8 @@
         return "jpeg";
       if($ce_extension == "image/png")
         return "png";
+      if($ce_extension == "image/gif")
+        return "gif";
     }
     return false;
   }
