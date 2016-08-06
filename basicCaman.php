@@ -171,73 +171,25 @@
       return false;
   }
 
-  function ce_smaller_image($ce_image_location)
-  {
-	ce_img_resize($ce_image_location, $ce_image_location,
-	              ce_extension_from_filename($ce_image_location),
-	              640, 640, true );
-  }
-
-  function ce_get_sizes()
-  {
-    $sizes = array();
-    $sizes["100x100"] = array(100,100);
-    return $sizes;
-  }
-
-  function ce_create_thumbnails($ce_image_location)
-  {
-
-	  $sizes = ce_get_sizes();
-	  foreach($sizes as $name=>$size )
-	  {
-		  // strrpos = str[Reverse]pos
-		  $extension = ce_extension_from_filename($ce_image_location);
-		  $dotpos = strrpos($ce_image_location, ".");
-		  $thumb_name = substr($ce_image_location, 0, $dotpos);
-		  $thumb_name .= "-" . $name . "." . $extension;
-
-		  //              input file,         save file, jpg/png,     width,     height, crop?
-		  ce_img_resize($ce_image_location, $thumb_name, $extension, $size[0], $size[1], true);
-	  }
-  }
-
-  function ce_add_thumbnail_suffix($ce_image_location)
-  {
-    $name = "100x100";
-    $extension = ce_extension_from_filename($ce_image_location);
-    $dotpos = strrpos($ce_image_location, ".");
-    $thumb_name = substr($ce_image_location, 0, $dotpos);
-    $thumb_name .= "-" . $name . "." . $extension;
-
-    return $thumb_name;
-  }
-
-
   function ce_add_to_database($data, $databasename, $username, $password, $tablename)
   {
   //$filename, $imageTitle, $imageCaption, $imageDescription
 
   if(!isset($data['filename'])
-  || !isset($data['title'])
-  || !isset($data['caption'])
-  || !isset($data['description']))
+  || !isset($data['caption']))
     return false;
-
-  if(trim($data['title']) == "")
-    $data['title'] = "Image";
 
   $conn = new mysqli("localhost",$username,$password,$databasename);
 
-  $stm = "INSERT INTO $tablename(filename, title, caption, description)".
-    " VALUES (?,?,?,?)";
+  $stm = "INSERT INTO $tablename(filename, caption)".
+    " VALUES (?,?)";
   $stmt = $conn->prepare($stm);
-  $stmt->bind_param("ssss", $data['filename'], $data['title'], $data['caption'], $data['description']);
+  $stmt->bind_param("ss", $data['filename'], $data['caption']);
   $stmt->execute();
   $stmt->close();
 
   $conn->close();
-
+  return true;
   }
 
   function ce_update_reactions($databasename, $username, $password, $tablename, $filename, $reactions)
@@ -255,7 +207,7 @@
   }
 
   // returns false for unsuccessful like; true for successful like.
-  function ce_like_image($databasename, $username, $password, $tablename, $filename)
+  function ce_like_image($filename, $databasename, $username, $password, $tablename)
   {
     // find out if the image has been liked before
     // grab all previous liked images

@@ -7,13 +7,17 @@
 		+ Upload button ([Check here](http://www.w3schools.com/php/php_file_upload.asp))
 		+ Submit button
 	* Add filters
+		+ PHP File
+		+ Accept image ([Check here again](http://www.w3schools.com/php/php_file_upload.asp))
+		+ Save image to temporary image folder
+		+ Resize image (640x640 is often good) if it is too large
 		+ Include [JQuery](https://code.jquery.com/) and [CamanJS](https://github.com/meltingice/CamanJS/tree/36697e053d0b8f3b5cc58fba274b5cd65cb219c2/dist) (download caman.full.js for use)
 		+ Check out filters you want from [this CamanJS Example](http://camanjs.com/examples/) (at the bottom)
 		+ Code Snippet hint for implementing the JS [here](http://www.jsfiddle.net/6pusyskL/)
 		+ Implement a new "().click()" for each button/filter
 		+ Add a "remove filters" button
 		+ AJAX to send to *backend save* page to do the saving using [jquery ajax](http://www.w3schools.com/js/js_window_location.asp) and use *POST* not GET for the **method**
-			* Escape problematic characters using ceEscapeString in base64 data
+			* Escape problematic characters using ceEscapeString in base64 data using [this code](https://github.com/DesignCodeBuild/basiccamanjs/blob/master/escape.js)
 		+ Redirect to Gallery [with javascript](http://www.w3schools.com/js/js_window_location.asp)
 	* Backend Save - a less-obvious page to save & put in the database
 		+ PHP file
