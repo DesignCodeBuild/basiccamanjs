@@ -9,7 +9,7 @@
 * [ce\_escape\_string](#ce_escape_string)
 * [ce\_find\_extension](#ce_find_extension)
 * [ce\_get\_database\_list](#ce_get_database_list)
-* [ce\_image\_resize](#ce_image_resize)
+* [ce\_img\_resize](#ce_img_resize)
 * [ce\_like\_image](#ce_like_image)
 * [ce\_random\_string](#ce_random_string)
 * [ce\_unescape\_string](#ce_unescape_string)
@@ -109,7 +109,7 @@ foreach($data as $image)
 ```
 
 
-##<a name="ce_image_resize"></a>function ce\_image\_resize($inputfilename, $outputfilename, $type, $width, $height, $crop = true)
+##<a name="ce_img_resize"></a>function ce\_img\_resize($inputfilename, $outputfilename, $type, $width, $height, $crop = true)
 
 This function uses **gd** php functions to resize an image.  
 
