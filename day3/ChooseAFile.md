@@ -12,6 +12,7 @@ Start off with your standard HTML setup:
 </body>
 </html>
 ```
+Save this as index.html, and add the following inside the **body** container:
 
 ##Form
 
