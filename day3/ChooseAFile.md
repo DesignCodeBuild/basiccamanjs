@@ -1,6 +1,6 @@
 #Choose A File Page
 
-Start off with your standard HTML setup:
+Create a new HTML file in your code editor, and name it **index.html**. Inside this file, start off with your standard HTML setup:
 
 ```html
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ Start off with your standard HTML setup:
 </body>
 </html>
 ```
-Save this as index.html, and add the following inside the **body** container:
+Next, add the following code inside the **body** container to create an **upload** button:
 
 ##Form
 
@@ -21,10 +21,12 @@ A **form** lets you enter information -- like your name... or choose a file to u
 Inside the **body** type:
 
 ```html
-  <form action="filters.php" method="post">
+  <form action="filters.php" method="post" enctype="multipart/form-data">
     <input type="file" name="image" />
     <input type="submit" value="Submit" />
   </form>
 ```
 
-Check to see how it looks!  We next need to **accept the file** and **add filters**
+See where it says **filters.php**? This helps the **form** you are creating to send the user's uploaded **image** to the **filters.php** page. 
+
+Check to see how it looks!  We next need to **accept the file** onto the **filters.php** page, and **add filters**
