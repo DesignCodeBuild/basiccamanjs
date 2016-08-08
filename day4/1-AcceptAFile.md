@@ -10,7 +10,7 @@ Make sure the form includes the **enctype** parameter. This helps the data from 
 
 ##Start filters.php
 
-Create a new HTML file in your code editor called **filters.php**
+Create a new HTML file in your code editor and call it **filters.php**
 
 Again, start off with your standard HTML setup:
 
@@ -24,10 +24,9 @@ Again, start off with your standard HTML setup:
 </body>
 </html>
 ```
+**Save it, then follow the instructions below to add PHP to this file:**
 
-Save it as **filters.php.**
-
-##PHP Section
+##Create the PHP Section
 
 Add a php section at the top, BEFORE the DOCTYPE line.
 
@@ -37,8 +36,7 @@ Add a php section at the top, BEFORE the DOCTYPE line.
 ?>
 <!DOCTYPE html> ...
 ```
-
-##Add this code inside the **php** tag.
+##Now, add this code inside the **php** tag.
 
 **This will enable your page to retrieve information about the image file that was uploaded. See the comments after the // below for explanations of each $argument:**
 
@@ -60,9 +58,9 @@ $target_file;
 echo "This is a " . $image_extension . " file!";
 
 ```
-Okay, check it and it probably shows you what kind of file you have. 
+**Now, let's check to see if the PHP arguments work before adding more to the code.
 
-To check it:First upload your new **filters.php** file, and then get **basicCaman.php** from here and also uploaded it to your site. 
+To check it, first upload (FTP) your new **filters.php** file to your site. Then, get **basicCaman.php** from here and also upload it to your site. 
 
 You can read about what **basicCaman.php** is and why you need it **here**.
 
