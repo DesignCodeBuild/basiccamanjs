@@ -1,8 +1,8 @@
 #Accept A File Upload
 
-##First, fix the send file:
+##First, double-check your **send** file (which is the index.html page with the **form** you just created in the last step):
 
-Form should have;
+Make sure the form includes the **enctype** parameter. This helps the data from your uploaded image to be transmitted to and read accurately by the server so the image does not appear broken. 
 
 ```html
   <form ... enctype="multipart/form-data">
@@ -10,7 +10,7 @@ Form should have;
 
 ##Start filters.php
 
-This is for **filters.php**
+Create a new HTML file in your code editor called **filters.php**
 
 Again, start off with your standard HTML setup:
 
@@ -67,6 +67,11 @@ Now instead of this:
 ```php
 echo "This is a " . $image_extension . " file!";
 ```
+
+##Test this step:
+
+Upload your new **filters.php** file, and **basicCaman.php** to your public_html folder online. Get **basicCaman.php** here, and read about what it is and why you need it **here**.
+
 
 Do this:
 
