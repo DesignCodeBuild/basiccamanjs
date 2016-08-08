@@ -38,7 +38,9 @@ Add a php section at the top, BEFORE the DOCTYPE line.
 <!DOCTYPE html> ...
 ```
 
-##Grab File info
+##Add this code inside the **php** tag.
+
+**This will enable your page to retrieve information about the image file that was uploaded. See the comments after the // below for explanations of each $argument:**
 
 ```php
 require_once("basicCaman.php");
@@ -58,7 +60,11 @@ $target_file;
 echo "This is a " . $image_extension . " file!";
 
 ```
-Okay, check it and it probably shows you what kind of file you have.
+Okay, check it and it probably shows you what kind of file you have. 
+
+To check it:First upload your new **filters.php** file, and then get **basicCaman.php** from here and also uploaded it to your site. 
+
+You can read about what **basicCaman.php** is and why you need it **here**.
 
 ##Check for errors
 
@@ -69,8 +75,6 @@ echo "This is a " . $image_extension . " file!";
 ```
 
 ##Test this step:
-
-Upload your new **filters.php** file, and **basicCaman.php** to your public_html folder online. Get **basicCaman.php** here, and read about what it is and why you need it **here**.
 
 
 Do this:
