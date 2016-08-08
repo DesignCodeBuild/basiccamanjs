@@ -29,4 +29,4 @@ Inside the **body** type:
 
 See where it says **filters.php**? This helps the **form** you are creating to send the user's uploaded **image** to the **filters.php** page. 
 
-Check to see how it looks!  We next need to **accept the file** onto the **filters.php** page, and **add filters**
+Check to see how it looks!  We next need to actually create the **filters.php** page, so we can **accept the file** onto it to display the image and **add filters** to this image. 
