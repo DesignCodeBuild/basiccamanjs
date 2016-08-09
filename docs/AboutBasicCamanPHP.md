@@ -1,6 +1,7 @@
 #basicCaman.php docs
 
-This handy PHP file was written by @davidberard98 to handle some of the tasks our web app needs to perform to get our uploaded images to appear and behave in the various ways we want them to in our application. Reading through the explanations of each of these arguments will give you an understanding of what the browser and server need to know in order for them to find, display, and resize files.
+This handy PHP file was written by ([@davidberard98](https://github.com/davidberard98/)) to handle some of the tasks our web app needs to perform to get our uploaded images to appear and behave in the various ways we want them to in our application. Reading through the explanations of each of these arguments will give you an understanding of what the browser and server need to know in order for them to find, display, and resize files. To be able to utilize the functions, you will need to call this file into your document &lt;? php&gt;.
+
 
 ##Table of Contents
 
