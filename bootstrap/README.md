@@ -1,4 +1,4 @@
-You can include bootstrap.min.css and bootstrap.min.js in the <head> of your web pages which will make creating the gallery easier, as bootstrap comes with pre-built styles for many popular web elements including multi-column photo gallery pages. You can read more about bootstrap ([here](http://getbootstrap.com/))
+You can include bootstrap.min.css and bootstrap.min.js in the &lt;head&gt; of your web pages which will make creating the gallery easier, as bootstrap comes with pre-built styles for many popular web elements including multi-column photo gallery pages. You can read more about bootstrap ([here](http://getbootstrap.com/))
 
 The files are placed here for reference... you will probably not want to link to the ones here directly, but rather to the ones hosted on a bootstrap CDN, i.e.:
 
@@ -13,4 +13,4 @@ The files are placed here for reference... you will probably not want to link to
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 ```
 
-Copy the above lines and paste them into your <head> tags. 
+Copy the above lines and paste them into your  &lt;head &gt; tags. 
