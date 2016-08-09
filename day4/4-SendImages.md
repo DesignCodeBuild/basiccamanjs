@@ -19,11 +19,12 @@ For example:
 
 ##Include basicCaman.js
 
-In the head, this:
+In the head, add this JavaScript file:
 
 ```html
   <script type="text/javascript" src="basicCaman.js"></script>
 ```
+Of course, now you will need to make sure this JavaScript file, **basicCaman.js**, is on your server as well. You can get it **[here]()** - just copy and paste it into a new code file and save it with the name **basicCaman.js**. Read the comments after the // to get an idea of the functions that this script provides to the application. 
 
 ##Title, Caption, Description
 
