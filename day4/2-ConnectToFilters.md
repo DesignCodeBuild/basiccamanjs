@@ -38,4 +38,4 @@ Remember, **caman** is the open-source repository we are using for the image edi
 
 If your filters work, you can have a bit of fun renaming the filters (only the name that is between the <button></button> brackets. Don't change the IDs, for now. 
 
-Or, ([continue to the next step](https://github.com/DesignCodeBuild/basiccamanjs/blob/master/day4/3-AcceptImages.md))
+Or, ([continue to the next step](https://github.com/DesignCodeBuild/basiccamanjs/blob/master/day4/3-AcceptImages.md)) where we add the code for a button to save the effect onto the image. 
