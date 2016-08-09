@@ -9,6 +9,8 @@
 
 You might find it helpful to first read through this ([overview](docs/Tasks.md)) which describes the specs for this web app, and the logistical issues and tasks that are involved with creating it. 
 
+**About the files**: All the individual files not inside the folders in this repository are the files necessary for this web application to run. You could in theory save all these files to a directory on your server, and with a few tweaks for database names, file names, etc., get it all to work. But we are going to build these pages from scratch using the instructions in folders Day 3 - Day 4 so you can understand the development process better.
+
 ## For more experienced developers 
 ** ([These instructions](z-oldResources/README-WordpressEdition.md)) include how to send the rendered images to a WordPress gallery which provides the opportunity to extend the gallery features even further to include comments, user login, and more. 
 
