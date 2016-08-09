@@ -15,8 +15,10 @@
 ![Alt text](http://designcodebuild.com/lessons/database/4.jpeg "Add User to Database")
 6. **Assign privileges to the user** Choose "all privileges".
 ![Alt text](http://designcodebuild.com/lessons/database/5.jpeg "Assign user privileges")
-7. Return to your cPanel home and find the **phpMyAdmin** link. 
-8. **Create a table in your new database**
+7. **Return to your cPanel home** and find the **phpMyAdmin** link. 
+![Alt text](http://designcodebuild.com/lessons/database/6.jpeg "phpMyAdmin")
+8. **Create a table in your new database** Name it "photos" and give it 4 columns.
+![Alt text](http://designcodebuild.com/lessons/database/7.jpeg "phpMyAdmin")
 
 ##Database
 - PID (auto_increment)
