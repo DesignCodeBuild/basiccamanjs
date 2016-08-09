@@ -32,6 +32,10 @@ Look in the HEAD tag... you will see the line
 ```
  <script src="caman.full.js"></script>
  ```
-Which means it needs to have the file **caman.full.js** uploaded to the directory also. Find this in the caman folder in this github repository, save it and upload it, and run again. The filters should work. 
+Which means it needs to have the file **caman.full.js** uploaded to the directory also. Find this in the caman folder in this github repository, save it and upload it, and run again. The filters should work. If they don't, doublecheck that you have called caman.full.js properly, i.e. your link matches the name / filepath on the server. 
 
 Remember, **caman** is the open-source repository we are using for the image editing features. Read more about Caman **([here](http://camanjs.com))**.
+
+If your filters work, you can have a bit of fun renaming the filters (only the name that is between the <button></button> brackets. Don't change the IDs, for now. 
+
+Or, ([continue to the next step](https://github.com/DesignCodeBuild/basiccamanjs/blob/master/day4/3-AcceptImages.md))
