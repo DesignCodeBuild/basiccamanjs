@@ -147,32 +147,32 @@ That first line is confusing.  It has 3 parts:
 
 Here's what's happening in the computer:
 
-$i = 0.  
-echo 0.  
-$i = 1.  
-  
-[back to beginning of the loop]  
-is $i < 5? 1<5, so yes -- let's do the loop!  
-echo 1.  
-$i = 2;  
-  
-[back to beginning of the loop]  
-is $i < 5? 2<5, so yes -- let's do the loop!  
-echo 2.  
-$i = 3;  
-  
-[back to beginning of the loop]  
-is $i < 5? 3<5, so yes -- let's do the loop!  
-echo 3.  
-$i = 4;  
-  
-[back to beginning of the loop]  
-is $i < 5? 4<5, so yes -- let's do the loop!  
-echo 4.  
-$i = 5;  
-  
-[back to beginning of the loop]  
-is $i < 5? 5 IS NOT less than 5, so EXIT.  
+> $i = 0.  
+> echo 0.  
+> $i = 1.  
+>   
+> [back to beginning of the loop]  
+> is $i &lt; 5? 1&lt;5, so yes -- let's do the loop!  
+> echo 1.  
+> $i = 2;  
+>   
+> [back to beginning of the loop]  
+> is $i &lt; 5? 2&lt;5, so yes -- let's do the loop!  
+> echo 2.  
+> $i = 3;  
+>   
+> [back to beginning of the loop]  
+> is $i &lt; 5? 3&lt;5, so yes -- let's do the loop!  
+> echo 3.  
+> $i = 4;  
+>   
+> [back to beginning of the loop]  
+> is $i &lt; 5? 4&lt;5, so yes -- let's do the loop!  
+> echo 4.  
+> $i = 5;  
+>   
+> [back to beginning of the loop]  
+> is $i &lt; 5? 5 IS NOT less than 5, so EXIT.  
 
 Okay **let's do it for the array**.
 
