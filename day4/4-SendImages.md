@@ -38,7 +38,7 @@ Caption: <input type="text" id="caption" /><br />
 
 ##Create JS for the SAVE function
 
-Your SAVE button won't work until you add the JavaScript to render the image with the filter, check the file validity, and send it to the database (**"acceptImages.php**) and the gallery page (**"./gallery.php"**).
+Your SAVE button won't work until you add the JavaScript to render the image with the filter, check the file validity, and send it to the database (ceAjaxSend(**"acceptImages.php**)) and the gallery page (**"./gallery.php"**).
 
 ```javascript
     $( "#save" ).on("click", function(){
@@ -49,6 +49,7 @@ Your SAVE button won't work until you add the JavaScript to render the image wit
 //"../index.php/photo-gallery/", imageData, "<?php echo $random_string; ?>", "<?php echo $image_extension; ?>", "<?php echo $wp_media_dir; ?>", $("#title").val(), $("#caption").val(),$("#descrip").val());
     });
 ```
+This code should go below the JS code for the last button, and before the closing **});** tag before **</script>**
 
 ##Set the correct gallery location
 
