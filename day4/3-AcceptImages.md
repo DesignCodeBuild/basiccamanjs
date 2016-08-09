@@ -80,7 +80,11 @@ In the place that says //Database code goes here, type this:
 
 ##Type in database info:
 
-Instead of C\_DATABASENAME, C\_USERNAME, C\_PASSWORD, and C\_TABLE, type your login information.
+Instead of C\_DATABASENAME, C\_USERNAME, C\_PASSWORD, and C\_TABLE, type your login information. They will need to be inside double quotes, so for example:
+
+```
+    ce_add_to_database($data, "yourdatabasename", "yourusername", "yourpassword", "yourtablename");
+```
 
 ##FINAL
 
