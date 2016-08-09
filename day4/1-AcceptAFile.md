@@ -58,7 +58,7 @@ echo "This is a " . $image_extension . " file!";
 To check it, first upload (FTP) your new **filters.php** file to your site. Then, get **basicCaman.php** from here and also upload it to your site. 
 
 (You can read about what **basicCaman.php** is and why you need it 
-([here](basiccamanjs/blob/master/docs/AboutBasicCamanPHP.md))
+([here](https://github.com/DesignCodeBuild/basiccamanjs/blob/master/docs/AboutBasicCamanPHP.md))
 
 Now, in the browser go to your site (yourname.designcodebuild.com) and try uploading a photo. You should get a blank page that says, "This is a (.jpg / .png) file!". If you don't get this, and get another kind of error or warning instead, you might need to still upload your basicCaman.php file or it's corrupted and you should re-save and re-upload it. 
 
