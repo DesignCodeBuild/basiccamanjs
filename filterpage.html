@@ -1,0 +1,88 @@
+<html>
+   <head>
+     <script <script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script></script>
+     <script src="caman.full.js"></script>
+     <script>
+     $(document).ready(function () {
+
+  var camanObject = Caman("#toEdit");
+  $("#vintage").click(function () {
+  	camanObject.revert(false);
+    camanObject['vintage']();
+    camanObject.render();
+  });
+  $("#hemingway").click(function () {
+  	camanObject.revert(false);
+    camanObject['hemingway']();
+    camanObject.render();
+  });
+  $("#clarity").click(function () {
+  	camanObject.revert(false);
+    camanObject['clarity']();
+    camanObject.render();
+  });
+  $("#jarques").click(function () {
+  	camanObject.revert(false);
+    camanObject['jarques']();
+    camanObject.render();
+  });
+  $("#sunrise").click(function () {
+  	camanObject.revert(false);
+    camanObject['sunrise']();
+    camanObject.render();
+  });
+  $("#hazydays").click(function () {
+  	camanObject.revert(false);
+    camanObject['hazyDays']();
+    camanObject.render();
+  });
+});
+
+     </script>
+     <title>Editing</title>
+     <style>
+     body {
+       background-color: lightblue;
+   }
+
+   h1 {
+       color: white;
+       text-align: center;
+   }
+
+   p {
+       font-family: verdana;
+       font-size: 20px;
+   }
+   #toEdit {
+     margin:0 auto;
+     display: block;
+   }
+   .buttondiv {
+     width: 600px;
+     margin-top: 40px;
+     margin-left: auto;
+     margin-right: auto;
+
+   }
+   .buttondiv button {
+     width: 100px;
+     height: 30px;
+     background-color:pink
+     color:pink;
+   }
+     </style>
+   </head>
+   <body>
+       <h1>FilterPage Example</h1>
+     <img src="<?php echo $target_file; ?>" id="toEdit" />
+       <div class="buttondiv">
+         <button id="vintage">Vintage</button>
+         <button id="hemingway">Hemingway</button>
+         <button id="clarity">Clarity</button>
+         <button id="jarques">Jarques</button>
+         <button id="sunrise">Sunrise</button>
+         <button id="hazydays">Hazy Days</button>
+       </div>
+   </body>
+ </html>
