@@ -1,6 +1,14 @@
-#PHP: "Hello World
+#PHP: "Hello World"
 
-**PHP can go in the middle of an HTML file**
+##What is PHP?##
+
+**Read a definition ([here](http://www.w3schools.com/php/php_intro.asp))**
+
+**PHP can appear anywhere within an HTML file**
+
+You will sometimes see it above <!DOCTYPE html>, or inside or around any HTML container below that. 
+
+**Try it out: Create a new page and add the following code:**
 
 ```php
 <!DOCTYPE html>  
