@@ -26,17 +26,15 @@ In the head, add this JavaScript file:
 ```
 Of course, now you will need to make sure this JavaScript file, **basicCaman.js**, is on your server as well. You can get it **[here]()** - just copy and paste it into a new code file and save it with the name **basicCaman.js**. Read the comments after the // to get an idea of the functions that this script provides to the application. 
 
-##Title, Caption, Description
+##Add a Caption Field
 
-Add inputs for title caption, description:
+Let's add a way to include a caption for your image. Also on the filters.php page, add an input like this somewhere on the page. You can enter this code above or below the buttons , or even above the image if you want:
 
 ```html
-Title: <input type="text" id="title" /><br />
 Caption: <input type="text" id="caption" /><br />
-Description: <input type="text" id="descrip" /><br />
 ```
 
-**Alternatively** if you don't want this, ask one of us.
+**Alternatively** you can also add a Title and Description, even Comments. If you're feeling ambitious, after making sure the Captions work, you can try **[this]()**
 
 ##Create JS for save function
 
