@@ -70,9 +70,7 @@ In the place that says //Database code goes here, type this:
   
     ce_create_thumbnails($image_directory . $image_name . "." . $image_type);
     $data['filename'] = $image_name.".".$image_type;
-    $data['title'] = $image_title;
     $data['caption'] = $image_caption;
-    $data['description'] = $image_description;
     ce_add_to_database($data, C_DATABASENAME, C_USERNAME, C_PASSWORD, C_TABLE);
 ```
 
@@ -92,9 +90,7 @@ Everything put together:
   $image_tmp_location = ce_unescape_string($_POST['tmploc']);
   $image_type = $_POST['type'];
   $image_mime_type = ce_create_mime_type($image_type);
-  $image_description = ce_unescape_string($_POST['description']);
   $image_caption = ce_unescape_string($_POST['caption']);
-  $image_title = ce_unescape_string($_POST['title']);
 
   $image_directory = "./images/";
 
@@ -110,9 +106,7 @@ Everything put together:
   
     ce_create_thumbnails($image_directory . $image_name . "." . $image_type);
     $data['filename'] = $image_name.".".$image_type;
-    $data['title'] = $image_title;
     $data['caption'] = $image_caption;
-    $data['description'] = $image_description;
     ce_add_to_database($data, C_DATABASENAME, C_USERNAME, C_PASSWORD, C_TABLE);
   }
   else
