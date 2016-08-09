@@ -35,13 +35,15 @@ We will eventually be gathering data about the images to put in the database.  T
 
 ##Define image directory & choose an image name
 
-See where it says "./images/"? The code is telling the application to store the uploaded image inside that folder on your server. So, you will need to make sure there is a folder called "images" on your server (using an FTP client i.e. CyberDuck) create this folder in the same directory as your php files, and make sure it has the right permissions. Basically, chmod 777 or "others read write execute". 
+Enter these lines below the previous lines. Add comments above any lines to provide reference notes for yourself by prefacing them with //:
 
 ```php
   $image_directory = "./images/";
 
   $image_name = ce_random_string();
 ```
+See where it says "./images/"? The code is telling the application to store the uploaded image inside that folder on your server. So, you will need to make sure there is a folder called "images" on your server (using an FTP client i.e. CyberDuck) create this folder in the same directory as your php files, and make sure it has the right permissions. Basically, chmod 777 or "others read write execute". 
+
 
 ##Check if data actually exists
 
