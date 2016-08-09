@@ -1,6 +1,6 @@
 #Create the first page of the web app - where users upload a photo (Page 1, index.html file)
 
-Create a new HTML file in your code editor, and name it **index.html**. Inside this file, start off with your standard HTML setup:
+Create a new HTML file in your code editor, and name it **index.html**. Inside this file, start off with your standard HTML setup and type:
 
 ```html
 <!DOCTYPE html>
