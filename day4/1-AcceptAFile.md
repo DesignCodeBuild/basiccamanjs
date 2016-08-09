@@ -166,3 +166,4 @@ else
 </html>
 
 ```
+This page is not going to be very exciting until we add HTML inside the BODY tags that will display the image and filter buttons. So, let's go to ([the next step](basiccamanjs/day4/2-ConnectToFilters.md))
