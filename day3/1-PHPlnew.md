@@ -38,9 +38,9 @@ Now **save** the file.  It can be anything but it needs to *end with* **.php**.
 ##Step 2: "Hello World"
 
 Inside the PHP section, write this:
-
-  echo "Hello World!";
-
+``` 
+echo "Hello World!";
+```
 Save it and **upload it**.  And see what the page looks like in the browser.
 
 *You must upload the PHP file.  PHP is a server-side language so the code will only run if it is on a server.  Your computer is not a server, so it must be uploaded to a server to test it first.*
@@ -61,8 +61,10 @@ Remember in javascript we always start by declaring our variable like this: *var
 
 This code should create a variable, and display the contents.  Type the code into a PHP code section.
 
+```
   $name = "John";  
   echo $name;  
+```
 
 **Task**: change the name to your name.
 
@@ -76,6 +78,7 @@ There's actually multiple ways to do this:
 
 **Method 1:**
 
+```
   $days = array(); // Let the computer know this is going to be an array, not a normal variable
   $days[0] = "Sunday"; // arrays always start at 0
   $days[1] = "Monday";
@@ -84,9 +87,11 @@ There's actually multiple ways to do this:
   $days[4] = "Thursday";
   $days[5] = "Friday";
   $days[6] = "Saturday";
+```
 
 **Method 2:** a bit of a shortcut with [].
 
+```
   $days = array(); // Let the computer know this is going to be an array, not a normal variable
   $days[] = "Sunday"; // the [] means "add to the next available spot"
   $days[] = "Monday";
@@ -95,10 +100,13 @@ There's actually multiple ways to do this:
   $days[] = "Thursday";
   $days[] = "Friday";
   $days[] = "Saturday";
+```
 
 **Method 3:** Shortcut
 
+```
   $days = array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+```
 
 All of these do the same thing.  
 
@@ -110,6 +118,7 @@ Again, there's multiple ways.  Type this **after** you define the array.
 
 The period actually means **add** -- it adds two words or characters together.
 
+```
   echo $days[0] . "<br />"; // Sunday  
   echo $days[1] . "<br />"; // Monday   
   echo $days[2] . "<br />"; // Tuesday   
@@ -117,15 +126,18 @@ The period actually means **add** -- it adds two words or characters together.
   echo $days[4] . "<br />"; // Thursday   
   echo $days[5] . "<br />"; // Friday   
   echo $days[6] . "<br />"; // Saturday   
+```
 
 **Method 2:** For loop
 
 A for loop lets you repeat an action over and over again for a set number of times.  Let's start by looking at a simple for loop:
 
+```
   for($i=0;$i<5;++$i)
   {
     echo $i . "<br />";
   }
+```
 
 That first line is confusing.  It has 3 parts:
 
@@ -171,20 +183,24 @@ The 3 parts of the for loop:
 	- count($days) tells you how many elements are in the array "$days".  $days has 7 elements, so that is what we want.
 3. As usual, add 1 at the end of the loop.
 
+```
   for($i=0;$i<count($days);++$i)
   {
    
   }
-
+```
 So what is the code to go inside the loop?  We want to display all the days, so let's use $i=0 as an example:
 
+```
 echo $days[$i] . "<br />";
-
+```
 Now we just put that inside the loop
 
+```
   for($i=0;$i<count($days);++$i)
   {
     echo $days[$i] . "<br />";
   }
+```
 
-Upload it and check!
+Upload your .php file and check to see if it works!
