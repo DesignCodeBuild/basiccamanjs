@@ -1,0 +1,1 @@
+You can include this in the <head> of your web pages which will make creating the gallery easier, as bootstrap comes with pre-built styles for many popular web elements including multi-column photo gallery pages. You can read more about bootstrap ([here](http://getbootstrap.com/))
