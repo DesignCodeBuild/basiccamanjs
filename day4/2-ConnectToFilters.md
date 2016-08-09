@@ -34,4 +34,4 @@ Look in the HEAD tag... you will see the line
  ```
 Which means it needs to have the file **caman.full.js** uploaded to the directory also. Find this in the caman folder in this github repository, save it and upload it, and run again. The filters should work. 
 
-Remember, **caman** is the repository we are using for the image editing features. Read more about Caman **([here](http://camanjs.com))**.
+Remember, **caman** is the open-source repository we are using for the image editing features. Read more about Caman **([here](http://camanjs.com))**.
