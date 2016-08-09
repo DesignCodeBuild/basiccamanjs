@@ -1,4 +1,8 @@
-You can include bootstrap.min.css and bootstrap.min.js in the &lt;head&gt; of your web pages which will make creating the gallery easier, as bootstrap comes with pre-built styles for many popular web elements including multi-column photo gallery pages. You can read more about bootstrap ([here](http://getbootstrap.com/))
+#What is Bootstrap?
+
+##A collection of CSS styles, JavaScript, and fonts which will help you make your site look clean and modern. It comes with styles for buttons, menus, galleries, forms, etc., and responsive styles for mobile devices. 
+
+You can include bootstrap.min.css and bootstrap.min.js in the &lt;head&gt; of your web pages which will make creating the image-sharing gallery easier. You can read more about bootstrap ([here](http://getbootstrap.com/))
 
 The files are placed here for reference... you will probably not want to link to the ones here directly, but rather to the ones hosted on a bootstrap CDN, i.e.:
 
