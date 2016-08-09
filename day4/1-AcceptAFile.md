@@ -167,4 +167,11 @@ else
 </html>
 
 ```
+
+If you were to upload this page, the index page, (and make sure you upload basicCaman.php too), then try out the upload button from yourname.designcodebuild.com, you will probably get an error. Read the error... it likely begins, "Warning: move_uploaded_file(tmp_images/..." We need to create the folder for the uploaded image to go into! 
+
+So, open Cyberduck, and in the same folder where your .html and .php file are, create a new folder called **tmp_images**. Make sure the permissions on the folder are set to 777, or Others Read Write Execute.
+
+Try to run it again, and you should see a perfectly blank page. This means there were no errors and the image was uploaded - check the tmp_images folder on your server using Cyberduck to see if that's the case!
+
 This page is not going to be very exciting until we add HTML inside the BODY tags that will display the image and filter buttons. So, let's go to ([the next step](2-ConnectToFilters.md))
