@@ -1,7 +1,15 @@
 <?php
 
+  /*
+  require_once('../wp-config.php');
+  require_once(ABSPATH.'wp-includes/functions.php');
+  require_once(ABSPATH.'wp-includes/media.php');
+  require_once(ABSPATH.'wp-includes/option.php' );
+  require_once(ABSPATH.'wp-includes/post.php' );
+  require_once(ABSPATH.'wp-admin/includes/image.php' ); */
 
-  //simplifies resizing using GD functions (graphics library in PHP that makes it possible to manipulate files (the $ arguments are what we deem important to the process of resizing - for the filter.php page and gallery.php page)
+
+  //simplifies resizing using GD functions
   function ce_img_resize($inputfilename, $outputfilename, $type, $width, $height, $crop = true)
   {
 	$src_image;
@@ -35,6 +43,7 @@
 
     $src_x = ($old_x-$src_w)/2;
     $src_y = ($old_y-$src_h)/2;
+  //  echo $src_x . " " . $src_y;
 
     if(!$crop)
     {
@@ -116,6 +125,23 @@
   // Using the uploads/year/month format, this will return the current directory
   //   or create it if it doesn't exist.
 
+  /*
+  function ce_get_media_directory($ce_wordpress_dir = "./", $ce_base = "wp-content/uploads/")
+  {
+    // Find out the current year
+    $ce_media_dir = "wp-content/uploads/" . date("Y") . "/";
+    //Check to see if year directory exists; create it if not.
+    if(!is_dir($ce_wordpress_dir.$ce_media_dir))
+      mkdir($ce_wordpress_dir.$ce_media_dir);
+
+    // Find out the current month
+    $ce_media_dir .=  date("m") . "/";
+    // Create the month directory if it doesn't exist
+    if(!is_dir($ce_wordpress_dir.$ce_media_dir))
+      mkdir($ce_wordpress_dir.$target_dir);
+    return $ce_media_dir;
+  }*/
+
   // When exporting as base64 data, must specify either "jpeg" or "png"
   //   It uses "jpeg" instead of "jpg"
   function ce_caman_image_type($ce_extension)
@@ -127,8 +153,6 @@
         return "jpeg";
       if($ce_extension == "png")
         return "png";
-      if($ce_extension == "gif")
-        return "gif";
     }
     else // If this is actually a mime type
     {
@@ -136,8 +160,6 @@
         return "jpeg";
       if($ce_extension == "image/png")
         return "png";
-      if($ce_extension == "image/gif")
-        return "gif";
     }
     return false;
   }
@@ -158,6 +180,34 @@
     return base64_decode($dataArr[1]);
   }
 
+/*
+  function ce_get_image_sizes()
+  {
+    $ce_sizes = array();
+    foreach(array('thumbnail', 'medium', 'large') as $ce_size)
+    {
+      $ce_sizes[ $ce_size ]['width'] = get_option( $ce_size . '_size_w' );
+      $ce_sizes[ $ce_size ]['height'] = get_option( $ce_size . '_size_h' );
+      $ce_sizes[ $ce_size ]['crop'] = get_option( $ce_size . '_crop' );
+    }
+      // This one is hard to find: I think it depends on the theme.
+    $ce_sizes['sixzerofour'] = array('width' => 604, 'height' => 270, 'crop'=>true);
+    return $ce_sizes;
+  } */
+
+/*
+  function ce_smaller_image($ce_image_location)
+  {
+    $ce_image_data = wp_get_image_editor($ce_image_location);
+    if( ! is_wp_error($ce_image_data) )
+    {
+      $ce_image_data->resize(640, 640, false);
+      $ce_image_data->save($ce_image_location);
+    }
+    else
+      return false;
+  } */
+
   function ce_extension_from_filename($filename)
   {
     $lastperiod = strrpos($filename, ".");
@@ -171,6 +221,60 @@
       return false;
   }
 
+  function ce_smaller_image($ce_image_location)
+  {
+	ce_img_resize($ce_image_location, $ce_image_location,
+	              ce_extension_from_filename($ce_image_location),
+	              640, 640, true );
+  }
+
+  function ce_get_sizes()
+  {
+    $sizes = array();
+    $sizes["250x250"] = array(250,250);
+    return $sizes;
+  }
+
+  function ce_create_thumbnails($ce_image_location)
+  {
+
+	  $sizes = ce_get_sizes();
+	  foreach($sizes as $name=>$size )
+	  {
+		  // strrpos = str[Reverse]pos
+		  $extension = ce_extension_from_filename($ce_image_location);
+		  $dotpos = strrpos($ce_image_location, ".");
+		  $thumb_name = substr($ce_image_location, 0, $dotpos);
+		  $thumb_name .= "-" . $name . "." . $extension;
+
+		  //              input file,         save file, jpg/png,     width,     height, crop?
+		  ce_img_resize($ce_image_location, $thumb_name, $extension, $size[0], $size[1], true);
+	  }
+  }
+
+  function ce_add_thumbnail_suffix($ce_image_location)
+  {
+    $name = "250x250";
+    $extension = ce_extension_from_filename($ce_image_location);
+    $dotpos = strrpos($ce_image_location, ".");
+    $thumb_name = substr($ce_image_location, 0, $dotpos);
+    $thumb_name .= "-" . $name . "." . $extension;
+
+    return $thumb_name;
+  }
+
+/*
+  function ce_create_thumbnails($ce_image_location)
+  {
+    $requiredSizes = ce_get_image_sizes();
+    $image = wp_get_image_editor($imageLocation);
+    if( ! is_wp_error($image) )
+    {
+      $iarray = $image->multi_resize($requiredSizes);
+    }
+  } */
+
+
   function ce_add_to_database($data, $databasename, $username, $password, $tablename)
   {
   //$filename, $imageTitle, $imageCaption, $imageDescription
@@ -179,17 +283,20 @@
   || !isset($data['caption']))
     return false;
 
+  if(trim($data['title']) == "")
+    $data['title'] = "Image";
+
   $conn = new mysqli("localhost",$username,$password,$databasename);
 
-  $stm = "INSERT INTO $tablename(filename, caption)".
-    " VALUES (?,?)";
+  $stm = "INSERT INTO $tablename(filename, caption, likes)".
+    " VALUES (?,?,0)";
   $stmt = $conn->prepare($stm);
   $stmt->bind_param("ss", $data['filename'], $data['caption']);
   $stmt->execute();
   $stmt->close();
 
   $conn->close();
-  return true;
+
   }
 
   function ce_update_reactions($databasename, $username, $password, $tablename, $filename, $reactions)
@@ -204,64 +311,6 @@
 
 
     $conn->close();
-  }
-
-  // returns false for unsuccessful like; true for successful like.
-  function ce_like_image($filename, $databasename, $username, $password, $tablename)
-  {
-    // find out if the image has been liked before
-    // grab all previous liked images
-    session_start();
-    $likedArray; 
-    if(!isset($_SESSION['ig_files']) || ( isset($_SESSION['ig_files']) && $_SESSION['ig_files'] == "" ) )
-    {
-      $likedArray = array();
-    }
-    else
-    {
-      $likedArray = explode("|", $_SESSION['ig_files']);
-    }
-
-    // check to see if this image has been liked
-    $matchFound = false;
-    
-    for($i = 0; $i<count($likedArray);++$i)
-    {
-      if ($likedArray[$i] == $filename) 
-      {
-        $matchFound = true;
-        break;
-      }
-    }
-
-    $output = false;
-    //act
-    if($matchFound)
-    {
-      $output = false;
-    }
-    else
-    {
-      $likedArray[] = $filename;
-      $output = true;
-    
-      // Send the like to the database
-      $conn = new mysqli("localhost",$username,$password,$databasename);
-    
-      $stm = "UPDATE $tablename SET likes = likes + 1 WHERE filename = ?";
-      $stmt = $conn->prepare($stm);
-      $stmt->bind_param("s", $filename);
-      
-      $stmt->execute();
-      
-      $stmt->close();
-      $conn->close();
-    }
-    
-    // update & remember liked files
-    $_SESSION['ig_files'] = implode("|",$likedArray);
-
-    return $output;    
   }
 
   function ce_get_database_list($databasename, $username, $password, $tablename)
@@ -279,5 +328,79 @@
 
     $conn->close();
   }
+
+/*
+  function ce_add_to_database($ce_filename, $ce_imageMimeType, $ce_imageTitle, $ce_imageCaption, $ce_imageDescription)
+  {
+    if(trim($ce_imageTitle) == "")
+    {
+      $ce_imageTitle = "Image";
+    }
+    $UploadPicture = array(
+      //'ID'		=> {}, // leave empty to specify that this is a NEW
+      'post_content'	=> $ce_imageDescription,
+      'post_name'	=> strtolower($ce_imageTitle),
+      'post_title'	=> $ce_imageTitle,
+      'post_status' 	=> 'inherit',
+      'post_author'	=> 1,
+      'post_excerpt'	=> $ce_imageCaption,
+      'post_mime_type'	=> $ce_imageMimeType
+    );
+
+    $ce_imageLocation = $ce_filename;
+    echo "iloc: " . $ce_imageLocation . "<br />";
+    $attach_ID = wp_insert_attachment($UploadPicture, $ce_imageLocation);
+    $attach_data = wp_generate_attachment_metadata($attach_ID, $ce_imageLocation);
+    wp_update_attachment_metadata($attach_ID, $attach_data);
+    return $attach_ID;
+  } */
+/*
+  function ce_add_to_photo_gallery($ce_gallery_id, $ce_image_id)
+  {
+    // Get that post's content, eg "...[gallery ids="1, 2, 5"]..."
+    $ce_postdata = get_post($ce_gallery_id);
+    $ce_oldcontent = $ce_postdata->post_content;
+    // Find where the first gallery begins
+    $ce_startpos = strpos($ce_oldcontent, '[gallery');
+    // (if there is no gallery, exit.)
+    if($startpos === false)
+      return false;
+
+    // Cut off anything before "[gallery.." and save it
+    $ce_begin_portion = substr($ce_oldcontent, 0, $ce_startpos);
+    // Gallery portion is "[gallery.." and after
+    $ce_gallery_portion = substr($ce_oldcontent, $ce_startpos);
+
+    // Find where '[gallery..' ends: where there is a ']'.
+    $ce_endpos = strpos($ce_gallery_portion, ']');
+    // Cut off the end, and save it (if there are more characters there.
+    $ce_end_portion = "";
+    if(strlen($ce_gallery_portion) > $ce_endpos+1)
+    {
+      $ce_end_portion = substr($ce_gallery_portion, $ce_endpos+1);
+    }
+    $ce_gallery_portion = substr($ce_gallery_portion, 0, $ce_endpos+1);
+
+    // This should specifically find the ids within parentheses.
+    // e.g. in '[gallery ids="4,7,10,15"]' this would find "4, 7, 10, 15"
+    $e1 = explode('ids=', $ce_gallery_portion);
+    $e2 = explode('"', $e1[1]);
+    $ids = $e2[1];
+      //$ids = explode('"', explode('ids', $ce_gallery_portion)[1])[1];
+    // Add the new image we just created.
+    $ids = $ce_image_id . "," . $ids;
+
+    //Put the new ids's section back into a [gallery] shortlist.
+    $ce_gallery_portion = $e1[0] . 'ids="' . $ids . '"' . $e2[2];
+    //Add information preceeding or going after the [gallery].
+    $ce_newdata = $ce_begin_portion . $ce_gallery_portion . $ce_end_portion;
+    echo "cenewdata: " . $ce_newdata . "<br />";
+
+    // Change this object
+    $ce_postdata->post_content=$ce_newdata;
+    // Make the changes live in the database.
+    wp_update_post($ce_postdata);
+
+  } */
 
 ?>
