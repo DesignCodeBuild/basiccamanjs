@@ -18,3 +18,5 @@ The files are placed here for reference... you will probably not want to link to
 ```
 
 Copy the above lines and paste them into your  &lt;head &gt; tags. 
+
+([Here's a great walkthrough](http://michaelsoriano.com/create-a-responsive-photo-gallery-with-bootstrap-framework/)) on how to use bootstrap to style your gallery.
