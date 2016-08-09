@@ -6,7 +6,7 @@ We will do this with **javascript**
 
 ##Create "save" button
 
-Copy another button and change it to say "save" instead.
+Return to your **filter.php** page. Copy the code for one of the filter buttons, but change it to say "save" instead.
 
 For example:
 
