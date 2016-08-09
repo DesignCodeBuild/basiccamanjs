@@ -49,7 +49,7 @@ Your SAVE button won't work until you add the JavaScript to render the image wit
 //"../index.php/photo-gallery/", imageData, "<?php echo $random_string; ?>", "<?php echo $image_extension; ?>", "<?php echo $wp_media_dir; ?>", $("#title").val(), $("#caption").val(),$("#descrip").val());
     });
 ```
-This code should go below the JS code for the last button, and before the closing **});** tag before **</script>**
+This code should go below the JS code for the last button, and before the closing **});** tag before **&lt;/script&gt;**
 
 ##Set the correct gallery location
 
