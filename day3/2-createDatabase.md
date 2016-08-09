@@ -22,6 +22,6 @@
 9. **Name the columns as follows.** Pay attention to the TYPE for each and check off the **A_I** box for the PID column. **Save**
 ![Alt text](http://designcodebuild.com/lessons/database/8.jpeg "phpMyAdmin")
 
-**Write down the database name, username, and passwords in a secure place for reference. 
+**Write down the database name, username, and passwords in a secure place for reference.**
 
-Now, return to the cPanel Home, and Log Off**
+**Now, return to the cPanel Home, and Log Off**
