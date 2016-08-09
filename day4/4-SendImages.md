@@ -36,7 +36,9 @@ Caption: <input type="text" id="caption" /><br />
 
 **Alternatively** you can also add a Title and Description, even Comments. If you're feeling ambitious, after making sure the Captions work, you can try **[this]()**
 
-##Create JS for save function
+##Create JS for the SAVE function
+
+Your SAVE button won't work until you add the JavaScript to render the image with the filter, check the file validity, and send it to the database (**"acceptImages.php**) and the gallery page (**"./gallery.php"**).
 
 ```javascript
     $( "#save" ).on("click", function(){
