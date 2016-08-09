@@ -23,7 +23,7 @@ First include basicCaman.php, which will give us a lot of necessary functions.
 
 ##Next, gather the information.
 
-We will eventually be gathering data about the images to put in the database.  This collects the data and puts it in variables.
+We will eventually be gathering data about the images to put in the database.  This collects the data and puts it in variables. Copy these lines, below, and paste them inside the PHP tag below the basicCaman.php line:
 
 ```php
   $image_data = ce_unescape_string($_POST['data']);
