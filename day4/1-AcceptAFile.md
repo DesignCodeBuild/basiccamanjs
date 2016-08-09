@@ -54,9 +54,13 @@ echo "This is a " . $image_extension . " file!";
 
 To check it, first upload (FTP) your new **filters.php** file to your site. Then, get **basicCaman.php** from here and also upload it to your site. 
 
-You can read about what **basicCaman.php** is and why you need it **here**.
+(You can read about what **basicCaman.php** is and why you need it **here**.)
 
-##Check for errors
+Now, in the browser go to your site (yourname.designcodebuild.com) and try uploading a photo. You should get a blank page that says, "This is a (.jpg / .png) file!". If you don't get this, and get another kind of error or warning instead, you might need to still upload your basicCaman.php file or it's corrupted and you should re-save and re-upload it. 
+
+Once you get the "This is a ____ file!" message you are ready to move to the next step. 
+
+##Adding the ability to upload the image, crop it and display it on the filter page
 
 Now instead of this:
 
@@ -64,10 +68,7 @@ Now instead of this:
 echo "This is a " . $image_extension . " file!";
 ```
 
-##Test this step:
-
-
-Do this:
+Replace with this:
 
 ```php
 if($image_extension === false)
