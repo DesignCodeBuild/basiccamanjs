@@ -1,13 +1,5 @@
 #Accept A File Upload
 
-##First, double-check your **send** file (which is the index.html page with the **form** you just created in the last step):
-
-Make sure the form includes the **enctype** parameter. This helps the data from your uploaded image to be transmitted to and read accurately by the server so the image does not appear broken. 
-
-```html
-  <form ... enctype="multipart/form-data">
-```
-
 ##Start filters.php
 
 Create a new HTML file in your code editor and call it **filters.php**
