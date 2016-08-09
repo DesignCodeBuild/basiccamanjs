@@ -51,6 +51,6 @@ Your SAVE button won't work until you add the JavaScript to render the image wit
 ```
 This code should go below the JS code for the last button, and before the closing **});** tag before **&lt;/script&gt;**
 
-##Set the correct gallery location
+##Create your Gallery Page
 
-If your gallery is **not** called **gallery.php** , replace that name in the line that begins with "var allData..."
+This won't work until you have a **Gallery** page for the script to send the image to. Note that your **filters.php** JavaScript for the SAVE button refers to a file called **gallery.php**. **[Let's make this now]()**. You can actually name the file anything you want - but you will just have to make sure this name matches what you call it here on your **filters.php** file JavaScript, on the line that begins with "var allData..."
