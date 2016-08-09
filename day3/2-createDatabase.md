@@ -19,9 +19,5 @@
 ![Alt text](http://designcodebuild.com/lessons/database/6.jpeg "phpMyAdmin")
 8. **Create a table in your new database** Name it "photos" and give it 4 columns.
 ![Alt text](http://designcodebuild.com/lessons/database/7.jpeg "phpMyAdmin")
-
-##Database
-- PID (auto_increment)
-- filename 
-- caption
-- reactions
+9. **Name the columns as follows** pay attention to the TYPE for each and check off **A I** for the PID column.
+![Alt text](http://designcodebuild.com/lessons/database/8.jpeg "phpMyAdmin")
