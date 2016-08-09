@@ -5,7 +5,7 @@ Let's say someone hired you to create a website where visitors could upload imag
 The point of this tutorial is to show how you can extend a web page by pulling in jQuery and custom library includes such as those from the Caman repository - and how to add a bit of PHP and database programming to turn the caman functionality into a rich, full-featured site. 
 
 
-#Instagram tasks
+#Image-Sharing Web App tasks
 
 
 - Create 4 pages:
