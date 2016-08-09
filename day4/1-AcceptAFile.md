@@ -36,7 +36,7 @@ Add a php section at the top, BEFORE the DOCTYPE line.
 require_once("basicCaman.php");
 
 //This retrieves all the image data that we sent from the previous HTML file.  It is an array.
-$image_data = $_FILES["image"];
+$image_data = $_FILES["fileToUpload"];
 //Part of the array is the "mime type" which identifies what kind of image it is that we're using.
 $mimeType = $image_data['type'];
 
@@ -112,7 +112,7 @@ else
 require_once("basicCaman.php");
 
 //This retrieves all the image data that we sent from the previous HTML file.  It is an array.
-$image_data = $_FILES["image"];
+$image_data = $_FILES["fileToUpload"];
 //Part of the array is the "mime type" which identifies what kind of image it is that we're using.
 $mimeType = $image_data['type'];
 
