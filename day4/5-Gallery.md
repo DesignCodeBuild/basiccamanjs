@@ -2,7 +2,7 @@
 
 ##Create your gallery page.
 
-Create a new .php file and name it gallery.php. Start it off as another basic web page by either typing the code below or copying and pasting the code from yesterday's **select.php** file - but delete everything inside ````<body>... </body>```` and ````<script>... </script>````. It should look like this:
+Create a new .php file and name it gallery.php. Start it off as another basic web page by either typing the code below or copying and pasting the code from **index.php** file - but delete everything inside ````<body>... </body>```` and ````<script>... </script>````. It should look like this:
 
 ```html
 <!DOCTYPE html>
@@ -36,7 +36,7 @@ Create a new .php file and name it gallery.php. Start it off as another basic we
   <div id="contain">
   <?php
     include("basicCaman.php");
-    $list = ce_get_database_list("yourname_database", "yourname_caman", "kuR[GuBHE801", "photos");
+    $list = ce_get_database_list("yourname_database", "yourdatabaseusername", "yourpassword", "yourtablename");
     
     foreach($list as $imagedata)
     {
