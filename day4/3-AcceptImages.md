@@ -124,4 +124,4 @@ Everything put together:
   }
 ?>
 ```
-You can upload this file to your server now - but you won't be able to properly test it until you add a SAVE button to the filter.php page. 
+You can upload this file to your server now - but you won't be able to properly test it until you **[add a SAVE button](https://github.com/DesignCodeBuild/basiccamanjs/blob/master/day4/4-SendImages.md)** to the filter.php page. 
