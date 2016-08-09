@@ -31,7 +31,7 @@ Notice the **&lt;?php** and **?&gt;** brackets.
 
 Now **save** the file.  It can be anything but it needs to *end with* **.php**.
 
-##Inside the &lt?php ?&gt; section....
+##Inside the &lt;?php ?&gt; section....
 
 Type:
 
