@@ -30,9 +30,7 @@ We will eventually be gathering data about the images to put in the database.  T
   $image_tmp_location = ce_unescape_string($_POST['tmploc']);
   $image_type = $_POST['type'];
   $image_mime_type = ce_create_mime_type($image_type);
-  $image_description = ce_unescape_string($_POST['description']);
   $image_caption = ce_unescape_string($_POST['caption']);
-  $image_title = ce_unescape_string($_POST['title']);
 ```
 
 ##Define image directory & choose an image name
