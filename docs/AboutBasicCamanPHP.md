@@ -1,5 +1,7 @@
 #basicCaman.php docs
 
+This handy PHP file was written by @davidberard98 to handle some of the tasks our web app needs to perform to get our uploaded images to appear and behave in the various ways we want them to in our application. Reading through the explanations of each of these arguments will give you an understanding of what the browser and server need to know in order for them to find, display, and resize files.
+
 ##Table of Contents
 
 * [ce\_add\_to\_database](#ce_add_to_database)
