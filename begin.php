@@ -3,6 +3,7 @@
 <head>
   <title>Upload A Picture</title>
   <style type="text/css">
+  /*this file can also be named index.php*/
     body
     {
 
