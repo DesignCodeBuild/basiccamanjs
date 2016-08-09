@@ -19,12 +19,12 @@ For example:
 
 ##Include basicCaman.js
 
-In the head, add this JavaScript file:
+In the **&lt;head&gt;** tag of **filters.php**, include this JavaScript file by adding this line of code:
 
 ```html
   <script type="text/javascript" src="basicCaman.js"></script>
 ```
-Of course, now you will need to make sure this JavaScript file, **basicCaman.js**, is on your server as well. You can get it **[here]()** - just copy and paste it into a new code file and save it with the name **basicCaman.js**. Read the comments after the // to get an idea of the functions that this script provides to the application. 
+Of course, now you will need to make sure this JavaScript file, **basicCaman.js**, exists on your server as well. You can get it **[here]()** - just copy and paste it into a new code file and save it with the name **basicCaman.js** - then, upload it via FTP (i.e. CyberDuck) to your server. Read the comments after the // to get an idea of the functions that this script provides to the application. 
 
 ##Add a Caption Field
 
