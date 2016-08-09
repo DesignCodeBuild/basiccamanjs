@@ -1,6 +1,6 @@
 # Array
 
-Let's get some practice to get used to PHP.
+Let's get some practice to get used to PHP. In this example, we will create code that lists the days of the week.
 
 Start of with a simple **variable**.
 
