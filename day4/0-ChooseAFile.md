@@ -1,4 +1,4 @@
-#Choose A File Page (Page 1, index.html file)
+#Create the first page of the web app - where users upload a photo (Page 1, index.html file)
 
 Create a new HTML file in your code editor, and name it **index.html**. Inside this file, start off with your standard HTML setup:
 
@@ -29,4 +29,5 @@ Inside the **body** type:
 
 See where it says **filters.php**? This helps the **form** you are creating to send the user's uploaded **image** to the **filters.php** page. 
 
-Check to see how it looks!  We next need to actually create the **filters.php** page, so we can **accept the file** onto it to display the image and **add filters** to this image. 
+Check to see how it looks!  We next need to actually create the **filters.php** page, so we can **accept the file** onto it to display the image and **add filters** to this image. To do this, ([proceed to the next step](https://github.com/DesignCodeBuild/basiccamanjs/blob/master/day4/1-AcceptAFile.md))
+
