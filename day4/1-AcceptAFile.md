@@ -35,7 +35,7 @@ Add a php section at the top, BEFORE the DOCTYPE line.
 ```php
 require_once("basicCaman.php");
 
-//This retrieves all the image data that we sent from the previous HTML file.  It is an array.
+//This retrieves all the image data that we sent from the previous HTML file. Note the "fileToUpload" name is the same as the one used in the form input from the index.html file. This is important, so the two pages can keep track of the file. It is part of an array (i.e. and array of information about the uploaded file):
 $image_data = $_FILES["fileToUpload"];
 //Part of the array is the "mime type" which identifies what kind of image it is that we're using.
 $mimeType = $image_data['type'];
