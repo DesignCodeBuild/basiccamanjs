@@ -7,6 +7,6 @@
 Day 1 and Day 2 are a tutorial on HTML and JavaScript and how to build the page to run locally without being able to save the finished filtered image. You may want to jump ahead to Day 3 and Day 4 to begin creating the actual application immediately.
 
 ## For more experienced developers 
-** ([These instructions](https://github.com/DesignCodeBuild/basiccamanjs/blob/master/README-WordpressEdition.md)) include how to send the rendered images to a WordPress gallery which provides the opportunity to extend the gallery features even further to include comments, user login, and more. 
+** ([These instructions](z-oldResources/README-WordpressEdition.md)) include how to send the rendered images to a WordPress gallery which provides the opportunity to extend the gallery features even further to include comments, user login, and more. 
 
 
