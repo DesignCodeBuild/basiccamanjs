@@ -2,7 +2,7 @@
 
 ##Media Queries
 
-You may want to create a custom look for your web app to optimize its appearance depending on whether visitors are viewing your site from a desktop or mobile device. This is called **responsive design**, as in, the site styles respond to the screen width or device that it is viewed on. This magic is done in your style.css file. 
+You may want to create a custom look for your web app to optimize its appearance depending on whether visitors are viewing your site from a desktop or mobile device. This is called **responsive design**, i.e. the site styles *respond* to the screen width or device that it is viewed on. This magic is done in your **style.css** file. 
 
 Right now, your style.css file should look something like this:
 
@@ -47,7 +47,7 @@ Underneath the styles that are already in your style.css, add these lines:
 ```
 This sets up a group of styles each for tablets and for phones. Just leave the space between the {  } blank for now. 
 
-And then (~~this is very important~~) in your **gallery.php** page, and any other page that you would like to make responsive, add this line just inside &lt;head&gt;: 
+And then (*this is very important*) in your **gallery.php** page, and any other page that you would like to make responsive, add this line just inside &lt;head&gt;: 
 ```
 <meta name="viewport" content="width=device-width, initial-scale=1">
 ```
@@ -163,9 +163,9 @@ img {
 
 ```
 
-Save and upload the file, then refresh your page and play with the width of the browser by dragging in the right edge. You should see the photos scale, and stack differently at the two widths specified, i.e. at 768px wide, and at 414px wide. 
+Save and upload the file, then refresh your page and play with the width of the browser by dragging in the right edge. You should see the photos scale, and stack differently at the two widths specified, i.e. at 800px wide, and at 414px wide. 
 
-These happen to be Apple device screen widths for iPad and iPhone, but they are quite close to the most popular Android device screen widths as well. You can get more detail about various devices widths [here](http://www.kylejlarson.com/blog/iphone-6-screen-size-web-design-tips/) 
+These widths correspond to screen widths for Android and Apple devices. You can get more detail about various devices widths [here](http://www.kylejlarson.com/blog/iphone-6-screen-size-web-design-tips/) 
 
 ##More Responsive Styles
 
