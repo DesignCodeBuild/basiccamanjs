@@ -12,11 +12,31 @@ h1, h3, .ctr {
   text-align:center;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
-function reaction(rid)
-{ // rid = reaction id
+function likeThis()
+{
+  var filename = $("#mainimg").attr("src");
+
+  // crop it so it's just "l3i34ysdclsi.png";
+  var position = filename.lastIndexOf("/");
+  filename = filename.substring(position+1);
+
+  // make the url;
+  var likeurl = "likes.php?file=" + filename;
   
-  
+  $.ajax({
+    method: "GET", 
+    context: this,
+    url: likeurl
+  }).done(function (result) {
+    if(result == 'y')
+    {
+      var Likes = parseInt($("#likecount").text());
+      $("#likecount").text(Likes + 1);
+      
+    }
+  });
 }
 </script>
 </head>
@@ -25,28 +45,25 @@ function reaction(rid)
     include("basicCaman.php");
     $list = ce_get_database_list("david_database", "david_caman", "kuR[GuBHE801", "photos");
     
-    foreach($list as $image)
+    if(isset($_POST['s']))
     {
-      if($_POST['s'] == $image['filename'])
+      foreach($list as $image)
       {
-        echo "<h1>" . $image['title'] . "</h1>";
-        echo "<img src='./images/" . $image['filename'] . "' alt='" . $image['title'] . "' />";
-        echo "<input type='hidden' id='filename' value='" . $image["filename"] . "' />";
-	echo "<h3>" . $image['caption'] . "</h3>";
-	echo "<div class='ctr'>" . $image['description'] . "</div>";
-        
-        $reactions = explode("|",$image['reactions']);
-        for($i=0;$i<count($reactions);++$i)
+        if($_POST['s'] == $image['filename'])
         {
-	  echo "<span class='irct'>" . $reactions[$i] ."</span>";
-	  echo "<a href='javascript:react('$i')'>" . "<img src='reactions/$i.png' /></a>"
+          echo "<h1>" . $image['title'] . "</h1>";
+          echo "<img src='./images/" . $image['filename'] . "' alt='" . $image['title'] . "' id='mainimg' />";
+          echo "<input type='hidden' id='filename' value='" . $image["filename"] . "' />";
+	  echo "<h3>" . $image['caption'] . "</h3>";
+	  echo "<div class='ctr'>" . $image['description'] . "</div>";
+          
+          echo "<div id='likes'><span id='likecount'>" . $image['likes'] . "</span> Likes.  <a href='likeThis()' id='lti'>Like this image</a></div>";
+          
+          
+          break;
         }
-        
-        
-        
-        break;
-      }
-    }    
+      }    
+    }
     
   ?>
 </body>
