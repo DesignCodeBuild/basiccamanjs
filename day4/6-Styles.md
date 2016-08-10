@@ -163,7 +163,9 @@ img {
 
 ```
 
-Save and upload the file, then refresh your page and play with the width of the browser by dragging in the right edge. You should see the photos scale, and stack differently at the two widths specified, i.e. at 800px wide, and at 414px wide. 
+Save and upload the file, then refresh your page and play with the width of the browser by dragging in the right edge. You should see the photos scale, and stack differently at the two widths specified, i.e. at 768px wide, and at 414px wide. 
+
+These happen to be Apple device screen widths for iPad and iPhone, but they are quite close to the most popular Android device screen widths as well. You can get more detail about various devices widths [here](http://www.kylejlarson.com/blog/iphone-6-screen-size-web-design-tips/) 
 
 ##More Responsive Styles
 
