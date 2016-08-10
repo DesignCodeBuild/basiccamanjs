@@ -36,7 +36,7 @@ Underneath the styles that are already in your style.css, add these lines:
 
 ```
 /* tablet Portrait */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
 
 }
 
