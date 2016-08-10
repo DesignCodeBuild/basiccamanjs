@@ -62,18 +62,21 @@ Open style.css, and add the following styles:
 ```css
 
 #contain {
-  width:670px;
+  width:800px;
   display:block;
   margin: 0 auto;
 }
 #img {
-  width:100px;
+  width:250px;
   margin: 5px;
   float:left;
 }
 h1 {
   text-align:center;
+  font-family:'Arial', sans-serif;
+  color:#333333;
 }
 ```
+
 
 
