@@ -165,4 +165,8 @@ img {
 
 Save and upload the file, then refresh your page and play with the width of the browser by dragging in the right edge. You should see the photos scale, and stack differently at the two widths specified, i.e. at 800px wide, and at 414px wide. 
 
+##More Responsive Styles
 
+The sky is the limit as far as defining styles in media queries. You can show or hide elements by having an element defined as **display:block** in one media query and **display:none** in another. You can change font size and color; background color and images, etc.
+
+There are some [great media query tutorials online](http://www.w3schools.com/css/css_rwd_mediaqueries.asp) and you can also google "media query examples" to learn even more. 
