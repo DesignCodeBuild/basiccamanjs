@@ -26,7 +26,7 @@ h1 {
 
 ```
 
-To quickly test how your page looks on phones or other narrower devices as you are coding, try dragging the right edge of your browser window in towards the left as far as it will go. You will notice that your content will start to get cut off. 
+To quickly test how your **gallery.php** page looks on phones or other narrower devices as you are coding, view the page in your browser, then try dragging the right edge of your browser window in towards the left as far as it will go. You will notice that your content will start to get cut off. 
 
 Fortunately, we can solve this with **media queries** which are easy and pretty painless to set up. 
 
