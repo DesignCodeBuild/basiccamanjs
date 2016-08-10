@@ -1,8 +1,10 @@
 #What We're Building
 
-Let's say someone hired you to create a website where visitors could upload images, add filters to them, and share them to a gallery. You know how to build a simple web page with HTML, but how would you add more advanced functionality like image upload and manipulation? After a bit of online research you might discover that there was a promising jQuery repository called camanjs that when implemented on a web page, allowed visitors the ability to add photo filters and make image adjustments such as brightness, contrast, blur and sharpening, etc. However, it did not provide a method for uploading images and sharing them to a gallery or on social media. 
+Let's say someone hired you to create a website where visitors could upload images, add filters to them, and share them to a gallery. You know how to build a simple web page with HTML, but how would you add more advanced functionality like image upload and manipulation? In an ideal world, you would have the time to learn how to create all of those features and code a bespoke site for your client from scratch. However, in a production environment deadlines are tight and there is rarely that kind of time. Even experienced developers frequently use third-party APIs and incorporate existing libraries into their code bases. In fact it's an important thing to learn how to do - for example, you would need to use Facebook's API if you wanted to offer users the ability to share their images on their Facebook pages. 
 
-The point of this tutorial is to show how you can extend a web page by pulling in jQuery and custom library includes such as those from the Caman repository - and how to add a bit of PHP and database programming to turn the caman functionality into a rich, full-featured site. 
+So, after a bit of online research you might discover that there was a promising jQuery repository called camanjs that when implemented on a web page, allowed visitors the ability to add photo filters and make image adjustments such as brightness, contrast, blur and sharpening, etc. However, it did not provide a method for uploading images and sharing them to a gallery or on social media. 
+
+The point of this tutorial is to introduce to you how to extend a web page by pulling in jQuery and custom library includes such as those from the Caman repository - and how to add a bit of PHP and database programming to turn the caman functionality into a rich, full-featured site. 
 
 
 #Image-Sharing Web App tasks
