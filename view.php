@@ -43,13 +43,13 @@ function likeThis()
 <body>
   <?php
     include("basicCaman.php");
-    $list = ce_get_database_list("david_database", "david_caman", "kuR[GuBHE801", "photos");
+    $list = ce_get_database_list("david_database", "david_caman", "kuR[GuBHE801", "photos2");
     
-    if(isset($_POST['s']))
+    if(isset($_GET['s']))
     {
       foreach($list as $image)
       {
-        if($_POST['s'] == $image['filename'])
+        if($_GET['s'] == $image['filename'])
         {
           echo "<h1>" . $image['title'] . "</h1>";
           echo "<img src='./images/" . $image['filename'] . "' alt='" . $image['title'] . "' id='mainimg' />";
@@ -57,7 +57,7 @@ function likeThis()
 	  echo "<h3>" . $image['caption'] . "</h3>";
 	  echo "<div class='ctr'>" . $image['description'] . "</div>";
           
-          echo "<div id='likes'><span id='likecount'>" . $image['likes'] . "</span> Likes.  <a href='likeThis()' id='lti'>Like this image</a></div>";
+          echo "<div id='likes'><span id='likecount'>" . $image['likes'] . "</span> Likes.  <a href='javascript:likeThis()' id='lti'>Like this image</a></div>";
           
           
           break;

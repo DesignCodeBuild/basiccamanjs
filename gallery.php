@@ -17,11 +17,12 @@
   <div id="contain">
   <?php
     include("basicCaman.php");
-    $list = ce_get_database_list("cathdcb_photodatabase", "cathdcb_cath", "858Cath!", "photos");
+    //$list = ce_get_database_list("cathdcb_photodatabase", "cathdcb_cath", "858Cath!", "photos");
+    $list = ce_get_database_list("david_database", "david_caman", "kuR[GuBHE801", "photos2");
 
     foreach($list as $imagedata)
     {
-      ?> <a href="images/<?php
+      ?> <a href="view.php?s=<?php
       echo $imagedata['filename'];
       ?>"><img src="images/<?php
       echo ce_add_thumbnail_suffix($imagedata['filename']);

@@ -2,10 +2,10 @@
 	
 	// Figure out which image to like
 	$filename = $_GET['file'];
-	$my_database = "matthew_photos";
-	$my_username = "matthew_photos";
-	$my_password = "myatthew_password";
-	$my_table = "photos";
+	$my_database = "david_database";
+	$my_username = "david_caman";
+	$my_password = "kuR[GuBHE801";
+	$my_table = "photos2";
 	
 	
 	// Figure out if the person has liked this image before
@@ -38,12 +38,11 @@
 	else
 	{
 		$likedArray[] = $filename;
-		echo "y";
 	
 		// Send the like to the database
 		$conn = new mysqli("localhost",$my_username,$my_password,$my_database);
 	
-		$stm = "UPDATE photos SET likes = likes + 1 WHERE filename = ?";
+		$stm = "UPDATE $my_table SET likes = likes + 1 WHERE filename = ?";
 		$stmt = $conn->prepare($stm);
 		$stmt->bind_param("s", $filename);
 		
@@ -51,6 +50,8 @@
 		
 		$stmt->close();
 		$conn->close();
+
+		echo "y";
 	}
 	
 	$_SESSION['ig_files'] = implode("|",$likedArray);

@@ -22,7 +22,7 @@ require_once('basicCaman.php');
     ce_create_thumbnails($image_directory . $image_name . "." . $image_type);
     $data['filename'] = $image_name.".".$image_type;
     $data['caption'] = $image_caption;
-    ce_add_to_database($data, "cathdcb_photodatabase", "cathdcb_cath", "858Cath!", "photos");
+    ce_add_to_database($data, "david_database", "david_caman", "kuR[GuBHE801", "photos2");
   }
   else
   {
