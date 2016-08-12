@@ -9,6 +9,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
 
+
 </script>
 </head>
 <body>
@@ -16,7 +17,7 @@
   <div id="contain">
   <?php
     include("basicCaman.php");
-    $list = ce_get_database_list("halley_photodatabase", "halley_shopaholi", "858Halley!", "photos");
+    $list = ce_get_database_list("cathdcb_photodatabase", "cathdcb_cath", "858Cath!", "photos");
 
     foreach($list as $imagedata)
     {
@@ -29,5 +30,7 @@
 
   ?>
   </div>
+
+
 </body>
 </html>
