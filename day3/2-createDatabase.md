@@ -26,4 +26,4 @@
 
 **Now, return to the cPanel Home, and Log Off**
 
-**Learn how to [](send images) to your database**
+**Learn how to [https://github.com/DesignCodeBuild/basiccamanjs/blob/master/day4/3-AcceptImages.md](send images) to your database**
