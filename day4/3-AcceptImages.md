@@ -11,7 +11,7 @@ This is another php file.  Set up the php:
 
 And save it as **acceptImages.php**.
 
-This file will **put the images into the database**. So, this file provides the code to send images to a database, but first you will need to actually have a database. **[Follow the steps here]**(https://github.com/DesignCodeBuild/basiccamanjs/blob/master/day3/2-createDatabase.md) if you have not created one yet. 
+This file will **put the images into the database**. So, this file provides the code to send images to a database, but first you will need to actually have a database. [https://github.com/DesignCodeBuild/basiccamanjs/blob/master/day3/2-createDatabase.md](Follow the steps here) if you have not created one yet. 
 
 ##Include basicCaman.php
 
