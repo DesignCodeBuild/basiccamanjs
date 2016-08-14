@@ -44,9 +44,8 @@ Your SAVE button won't work until you add the JavaScript to render the image wit
     $( "#save" ).on("click", function(){
       camanObject.render(function(){
         var imageData = camanObject.toBase64("<?php echo ce_caman_image_type($image_extension); ?>");
-        var allData = {data: ceEscapeString(imageData), tmploc: ceEscapeString("<?php echo $target_file; ?>"), type: "<?php echo $image_extension; ?>", title: ceEscapeString($("#title").val()), caption: ceEscapeString($("#caption").val()), description: ceEscapeString($("#descrip").val())};
+        var allData = {data: ceEscapeString(imageData), tmploc: ceEscapeString("<?php echo $target_file; ?>"), type: "<?php echo $image_extension; ?>", caption: ceEscapeString($("#caption").val())};
         ceAjaxSend("acceptImages.php", allData, "./gallery.php");
-//"../index.php/photo-gallery/", imageData, "<?php echo $random_string; ?>", "<?php echo $image_extension; ?>", "<?php echo $wp_media_dir; ?>", $("#title").val(), $("#caption").val(),$("#descrip").val());
     });
 ```
 This code should go below the JS code for the last button, and before the closing **});** tag before **&lt;/script&gt;**
