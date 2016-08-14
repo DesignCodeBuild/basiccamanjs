@@ -25,3 +25,5 @@
 **Write down the database name, username, and passwords in a secure place for reference.**
 
 **Now, return to the cPanel Home, and Log Off**
+
+**Learn how to [](send images) to your database**
