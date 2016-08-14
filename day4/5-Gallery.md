@@ -77,6 +77,9 @@ h1 {
   color:#333333;
 }
 ```
+These styles are just a start - there's almost no limit to what you can make your gallery look like. Click here for some examples:
+[https://www.instagram.com/explore/tags/codinglife/](instagram.com)
+[http://preview.codecanyon.net/item/final-tiles-grid-gallery/full_screen_preview/4734090](jQuery Masonry Gallery with Infinite Scroll)
+[http://preview.codecanyon.net/item/final-tiles-grid-gallery/full_screen_preview/4734090](Gallery with Zoom Effects)
 
-
-
+Some of these are plugins you can buy and install on your site - but you can also learn how to create these effects. 
