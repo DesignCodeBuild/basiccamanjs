@@ -78,13 +78,13 @@ Here's some ideas:
   <title>
     My Title
   </title>
-  <script>
+  <style>
     #toEdit
     {
       width:600px;
       margin: 0 auto;
     }
-  </script>
+  </style>
 </head>
 <body>
   <img src="MY FILENAME" id="toEdit" />
