@@ -45,12 +45,12 @@ Now, right below the **&lt;/title&gt;** tag, add a **style** tag and **/style** 
 Now, **in between the tags**, we type **CSS code**
 
 ```html
-<script>
+<style>
 #toEdit {
   width:600px;
   margin: 0 auto;
 }
-</script>
+</style>
 ```
 
 * The hashtag indicates that "toEdit" is an ID.
