@@ -33,13 +33,13 @@ Update your image code to have the id tag:
 
 ##Size & Centering
 
-Now, right below the **&lt;/title&gt;** tag, add a **script** tag and **/script** tag:
+Now, right below the **&lt;/title&gt;** tag, add a **style** tag and **/style** tag:
 
 ```html
-<script>
+<style>
 
 
-</script>
+</style>
 ```
 
 Now, **in between the tags**, we type **CSS code**
