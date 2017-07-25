@@ -1,6 +1,6 @@
-#Add a View Page From the Gallery
+# Add a View Page From the Gallery
 
-##This page will display a full-size version of an image selected from the Gallery
+## This page will display a full-size version of an image selected from the Gallery
 
 Again, start with a simple HTML template, below - and name it **view.php**:
 
@@ -27,8 +27,8 @@ Again, start with a simple HTML template, below - and name it **view.php**:
 
 This time, you are going to add PHP code inside the BODY that will not only pull in the large version of the image chosen from the gallery - but will also pull in the caption, and dynamically create the **containers** and **formatting** for the image. 
 
-##Pull in the image with PHP##
-
+## Pull in the image with PHP
+ 
 Inside the &lt;body&gt; tags, type or paste this code:
 
 ```

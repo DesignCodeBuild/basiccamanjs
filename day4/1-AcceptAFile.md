@@ -1,6 +1,6 @@
-#Accept A File Upload
+# Accept A File Upload
 
-##Start filters.php
+## Start filters.php
 
 Create a new HTML file in your code editor and call it **filters.php**
 
@@ -18,7 +18,7 @@ Again, start off with your standard HTML setup:
 ```
 **Save it, then follow the instructions below to add PHP to this file:**
 
-##Create the PHP Section
+## Create the PHP Section
 
 Add a php section at the top, BEFORE the DOCTYPE line.
 
@@ -28,7 +28,7 @@ Add a php section at the top, BEFORE the DOCTYPE line.
 ?>
 <!DOCTYPE html> ...
 ```
-##Now, add this code inside the **php** tag.
+## Now, add this code inside the **php** tag.
 
 **This will enable your page to retrieve information about the image file that was uploaded. See the comments after the // below for explanations of each $argument:**
 
@@ -64,7 +64,7 @@ Now, in the browser go to your site (yourname.designcodebuild.com) and try uploa
 
 Once you get the "This is a ____ file!" message you are ready to move to the next step. 
 
-##Adding the ability to upload the image, crop it and display it on the filter page
+## Adding the ability to upload the image, crop it and display it on the filter page
 
 Now instead of this:
 
@@ -109,7 +109,7 @@ else
 }
 ```
 
-##FINAL
+## FINAL
 
 ```php
 <?php

@@ -1,4 +1,4 @@
-#Create the first page of the web app - where users upload a photo (Page 1, index.html file)
+# Create the first page of the web app - where users upload a photo (Page 1, index.html file)
 
 Create a new HTML file in your code editor, and name it **index.html**. Inside this file, start off with your standard HTML setup and type:
 
@@ -14,7 +14,7 @@ Create a new HTML file in your code editor, and name it **index.html**. Inside t
 ```
 Next, add the following code inside the **body** container to create an **upload** button:
 
-##Form
+## Form
 
 A **form** lets you enter information -- like your name... or choose a file to upload!
 

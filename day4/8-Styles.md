@@ -1,6 +1,6 @@
-#Responsive Design: Adding Custom Styles for Desktop and Mobile Devices
+# Responsive Design: Adding Custom Styles for Desktop and Mobile Devices
 
-##Media Queries
+## Media Queries
 
 You may want to create a custom look for your web app to optimize its appearance depending on whether visitors are viewing your site from a desktop or mobile device. This is called **responsive design**, i.e. the site styles *respond* to the screen width or device that it is viewed on. This magic is done in your **style.css** file. 
 
@@ -30,7 +30,7 @@ To quickly test how your **gallery.php** page looks on phones or other narrower 
 
 Fortunately, we can solve this with **media queries** which are easy and pretty painless to set up. 
 
-##Setting up your Media Queries
+## Setting up your Media Queries
 
 Underneath the styles that are already in your style.css, add these lines:
 
@@ -53,7 +53,7 @@ And then (*this is very important*) in your **gallery.php** page, and any other 
 ```
 If this line is not found in your document's &lt;head&gt; tags, responsive design / media queries will not work. 
 
-##Adding Custom Styles for Different Screen Widths 
+## Adding Custom Styles for Different Screen Widths 
 
 To most clearly illustrate how this works, copy and paste the styles above the media query lines into each set of brackets { }, so you have this: 
 
@@ -124,7 +124,7 @@ h1 {
 
 If you were to save and upload style.css now, and test, your page would look the same as before. That's because all the styles inside the tablet and phone groups are identical. 
 
-##Customizing styles for different screen widths
+## Customizing styles for different screen widths
 
 Now, try changing the tablet values like this:
 
@@ -167,7 +167,7 @@ Save and upload the file, then refresh your page and play with the width of the 
 
 These widths correspond to screen widths for Android and Apple devices. You can get more detail about various devices widths [here](http://www.kylejlarson.com/blog/iphone-6-screen-size-web-design-tips/) 
 
-##More Responsive Styles
+## More Responsive Styles
 
 The sky is the limit as far as defining styles in media queries. You can show or hide elements by having an element defined as **display:block** in one media query and **display:none** in another. You can change font size and color; background color and images, etc.
 

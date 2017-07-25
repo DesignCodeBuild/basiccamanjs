@@ -1,4 +1,4 @@
-#Accepting Images
+# Accepting Images
 
 This is another php file.  Set up the php:
 
@@ -13,7 +13,7 @@ And save it as **acceptImages.php**.
 
 This file will **put the images into the database**. So, this file provides the code to send images to a database, but first you will need to actually have a database. [Follow the steps here](https://github.com/DesignCodeBuild/basiccamanjs/blob/master/day3/2-createDatabase.md) if you have not created one yet. 
 
-##Include basicCaman.php
+## Include basicCaman.php
 
 First include basicCaman.php, which will give us a lot of necessary functions.
 
@@ -21,7 +21,7 @@ First include basicCaman.php, which will give us a lot of necessary functions.
   require_once('basicCaman.php');
 ```
 
-##Next, gather the information.
+## Next, gather the information.
 
 We will eventually be gathering data about the images to put in the database.  This collects the data and puts it in variables. Copy these lines, below, and paste them inside the PHP tag below the basicCaman.php line:
 
@@ -33,7 +33,7 @@ We will eventually be gathering data about the images to put in the database.  T
   $image_caption = ce_unescape_string($_POST['caption']);
 ```
 
-##Define image directory & choose an image name
+## Define image directory & choose an image name
 
 Enter these lines below the previous lines. Add comments above any lines to provide reference notes for yourself by prefacing them with //:
 
@@ -45,7 +45,7 @@ Enter these lines below the previous lines. Add comments above any lines to prov
 See where it says "./images/"? The code is telling the application to store the uploaded image inside that folder on your server. So, you will need to make sure there is a folder called "images" on your server (using an FTP client i.e. CyberDuck) create this folder in the same directory as your php files, and make sure it has the right permissions. Basically, chmod 777 or "others read write execute". 
 
 
-##Check if data actually exists
+## Check if data actually exists
 
 If there's no actual image data, we shouldn't put an empty image in the database.
 
@@ -61,7 +61,7 @@ If there's no actual image data, we shouldn't put an empty image in the database
   }
 ```
 
-##Save the file on the server & in the database.
+## Save the file on the server & in the database.
 
 In the place that says //Database code goes here, type this:
 
@@ -78,7 +78,7 @@ In the place that says //Database code goes here, type this:
     ce_add_to_database($data, C_DATABASENAME, C_USERNAME, C_PASSWORD, C_TABLE);
 ```
 
-##Type in database info:
+## Type in database info:
 
 Instead of C\_DATABASENAME, C\_USERNAME, C\_PASSWORD, and C\_TABLE, type your login information. They will need to be inside double quotes, so for example:
 
@@ -86,7 +86,7 @@ Instead of C\_DATABASENAME, C\_USERNAME, C\_PASSWORD, and C\_TABLE, type your lo
     ce_add_to_database($data, "yourdatabasename", "yourusername", "yourpassword", "yourtablename");
 ```
 
-##FINAL
+## FINAL
 
 Everything put together:
 

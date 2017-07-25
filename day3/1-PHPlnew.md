@@ -1,6 +1,6 @@
-#PHP lesson
+# PHP lesson
 
-##What is PHP, why is it different from Javascript?
+## What is PHP, why is it different from Javascript?
 
 **Server** and **Client**:
 - The **client** is your browser -- it runs calculations on **your** computer.  Each person has a different computer, so they might see different things.
@@ -10,7 +10,7 @@ Javascript runs on the **client** browser.  PHP runs on the **server**.
 
 **Why do we need it?** We want to have a gallery that stores all the images that people have uploaded.  The server can remember all the images because every person who uploads an image uploads it to the same server.  If we used only Javascript, the server would not know of all the images that we uploaded.  So, we need PHP!
 
-##Step 1: Make a PHP file
+## Step 1: Make a PHP file
 
 PHP can be integrated with HTML code like this:
 
@@ -35,7 +35,7 @@ Notice the **<?php** and **?>** brackets.
 
 Now **save** the file.  It can be anything but it needs to *end with* **.php**.
 
-##Step 2: "Hello World"
+## Step 2: "Hello World"
 
 Inside the PHP section, write this:
 ``` 
@@ -49,7 +49,7 @@ Find the **source code** once you see the page in the browser.
 
 Now, **compare** the code you just wrote to the source code in the browser.
 
-##Step 3: Array
+## Step 3: Array
 
 Let's get some practice to get used to PHP.
 
