@@ -1,17 +1,17 @@
-#Add An Image
+# Add An Image
 
 We want to add an image that is:
 
 - fairly big
 - *centered*
 
-##Download Image
+## Download Image
 
 First let's find an image that we want to use as an example for our instagram filters
 
 Find the image and **download it** to your computer.  Remember the name of the image file.
 
-##HTML image code
+## HTML image code
 
 You may remember this from the codecademy.  If you can, **write it yourself** without copying from this page.  Otherwise, look here to refresh your memory.
 
@@ -21,7 +21,7 @@ You may remember this from the codecademy.  If you can, **write it yourself** wi
 
 Of course **replace** *MY FILENAME* with the actual name of your image file.
 
-##Image ID
+## Image ID
 
 We will later need an image id so the computer can find the image.
 
@@ -31,7 +31,7 @@ Update your image code to have the id tag:
 <img src="MY FILENAME" id="toEdit" />
 ```
 
-##Size & Centering
+## Size & Centering
 
 Now, right below the **&lt;/title&gt;** tag, add a **style** tag and **/style** tag:
 
@@ -59,17 +59,17 @@ Now, **in between the tags**, we type **CSS code**
 
 This is the same as using *style="..."* but it allows for easy-to-read code
 
-##Add Other Stylistic things:
+## Add Other Stylistic things:
 
 Here's some ideas:
 
 - Title (use &lt;h1&gt;)
 - Background (*background-color:orange*)
-- Color of the words`*color:brown*
+- Color of the words `*color:brown*` 
 - Bootstrap (download from [here](http://getbootstrap.com/getting-started/) and ask us)
 
 
-##Final
+## Final
 
 ```html
 <!DOCTYPE html>
