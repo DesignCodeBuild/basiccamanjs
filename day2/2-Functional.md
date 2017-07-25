@@ -1,10 +1,10 @@
-#Functional Filters
+# Functional Filters
 
 We have buttons -- but they don't actually do anything!
 
 Let's add *Javascript* code that will make the buttons work!
 
-##Script tags
+## Script tags
 
 Javascript must go in &lt;script&gt; &lt;/script&gt; tags which go **in the head**:
 
@@ -19,7 +19,7 @@ Javascript must go in &lt;script&gt; &lt;/script&gt; tags which go **in the head
 </head>
 ```
 
-##Include Caman JS
+## Include Caman JS
 
 In fact, we can include a whole bunch of scripts and styles:
 
@@ -37,14 +37,14 @@ We also have to **download** some files: [caman.full.js](https://raw.githubuserc
 
 Save them in your folder.
 
-##Select the image
+## Select the image
 
 Now, enable the buttons using javascript and jQuery.  Use this at the beginning of the &lt;script&gt;:
 ```javascript
   var camanObject = Caman("#toEdit");
 ```
 
-##Document.ready
+## Document.ready
 
 This will allow code to run as soon as the page loads.
 
