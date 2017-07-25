@@ -1,14 +1,14 @@
-#Setup
+# Setup
 
 If you haven't already done the **Codecademy** lesson, go [here](https://www.codecademy.com/learn/web) to do that!
 
-##Setup your HTML page.
+## Setup your HTML page.
 
 Here's the general setup of an HTML page:
 
 ![visual structure](https://github.com/DesignCodeBuild/basiccamanjs/raw/master/day1/visualstructure.png)
 
-##HTML code for the setup:
+## HTML code for the setup:
 
 ```html
 <!DOCTYPE html>
