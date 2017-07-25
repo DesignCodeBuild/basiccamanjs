@@ -1,8 +1,8 @@
-#Filter Buttons
+# Filter Buttons
 
 When you have nothing to do, you can practice javascript and jQuery on Codecademy over [here](https://www.codecademy.com/learn/jquery).
 
-##Check out your filter options!
+## Check out your filter options!
 
 What is **Caman JS**?
 
@@ -12,9 +12,9 @@ Instead, we use **caman.js** -  a lot of javascript code that someone else wrote
 
 Check out the preexisting filters [here](http://camanjs.com/examples/).  Scroll to the bottom to see the filters
 
-####Write down the filters you want to use
+#### Write down the filters you want to use
 
-##Make the buttons
+## Make the buttons
 
 Here's an example for the **Vintage** button:
 
